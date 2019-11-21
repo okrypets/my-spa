@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import './SingleItem.scss';
 import PropTypes from 'prop-types';
 import history from "../history";
@@ -29,9 +29,10 @@ class SingleItem extends PureComponent {
 
     render() {
         console.log("SingleItem - render");
-        console.log(this.props.itemId);
-        console.log(this.props.items);
-        let item = this.props.items.find( c => c.id === this.props.itemId );
+        const {itemId, items} = this.props;
+        //console.log(this.props.itemId);
+        //console.log(this.props.items);
+        let item = items.find( c => c.id === itemId );
         //console.log(item);
         return (
                     <div className="SingleItem">
@@ -39,10 +40,24 @@ class SingleItem extends PureComponent {
                         <h2>
                             {item.Name}
                         </h2>
-                        <div>
-                            <span>{item.Price}</span>
-                            <input type="number" defaultValue={1}/>
-                            <input type="button" value="Купить"/>
+                        <div className="priceBlock">
+                            <span className='itemPrice'>
+                                {item.Price === 0 ?
+                                    <span>Available only if isFavorite</span>
+                                    :
+                                    <Fragment>
+                                        Price: <span>{item.Price}</span> $
+                                    </Fragment>
+                                }
+                            </span>
+                            <input type="number"
+                                   defaultValue={1}
+                                   disabled={!item.Price}
+                            />
+                            <input type="button"
+                                   value="Купить"
+                                   disabled={!item.Price}
+                            />
                         </div>
                         <div>
                             <span>{item.excerpt}</span>

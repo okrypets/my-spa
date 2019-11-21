@@ -1,6 +1,6 @@
 
 import {PRODUCTS_LOADING, PRODUCTS_ERROR, PRODUCTS_SET,
-    //IS_PRODUCT_FAVORITE
+    IS_PRODUCT_FAVORITE
 } from '../Actions/productsAC';
 
 const initState={
@@ -43,26 +43,61 @@ export default function productsReducer(state=initState,action) {
             console.log('state после обработки редьюсером:',newState);
             return newState;
         }
-/*
+
         case IS_PRODUCT_FAVORITE: {
             console.log('action:',action);
             console.log('state до обработки редьюсером:',state);
+            console.log(state.data);
+            //let itemIndex = state.data.findIndex(i => i.id === action.item.id);
             let newState = {...state,
                 status:3,
                 data: [
                     ...state.data,
-                    {...state.item,
-                        [action.item]: state.data[action.item],
-                    [action.isFavorite]: state.data[action.isFavorite]
-                    }
+                    action.item
                 ]
             };
             console.log('state после обработки редьюсером:',newState);
-            return newState;
-        }
+            //return newState;
+/*
+            if (itemIndex === 0) {
+                let newState = {...state,
+                    status:3,
+                    data: [
+                        //...state.data,
+                        action.item,
+                        ...state.data.slice(1)
+                    ]
+                };
+                console.log('state после обработки редьюсером:',newState);
+                return newState;
+            } else if (itemIndex === state.data.length) {
+                let newState = {...state,
+                    status:3,
+                    data: [
+                        //...state.data,
+                        ...state.data.slice(0,-1),
+                        action.item
+                    ]
+                };
+                console.log('state после обработки редьюсером:',newState);
+                return newState;
+            } else {
+                let newState = {...state,
+                    status:3,
+                    data: [
+                        //...state.data,
+                        ...state.data.slice(0,itemIndex-1),
+                        action.item,
+                        ...state.data.slice(itemIndex+1),
+                    ]
+                };
+                console.log('state после обработки редьюсером:',newState);
+                return newState;
+            }
 
  */
 
+        }
         default:
             return state;
     }

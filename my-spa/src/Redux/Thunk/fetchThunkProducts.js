@@ -69,3 +69,34 @@ export const productsThunkAC = () => async (dispatch) => {
     }
 };
 
+export const postProductsThunkAC = () => async (dispatch) => {
+    //dispatch(productsLoadingAC());
+    try {
+
+        const response = await isoFetch(`http://localhost:3004/posts`
+            , {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dispatch)
+            }
+
+        );
+
+        if (!response.ok) {
+            dispatch(productsErrorAC());
+            //throw new Error("fetch error " + response.status);
+        }
+        const data = await response.json();
+        console.log("Products success post", data);
+        //dispatch(productsSetAC(data));
+    } catch (error) {
+        //this.fetchError(error.message);
+        console.log("throwing Error", error);
+        //dispatch(productsErrorAC());
+        throw error;
+    }
+};
+

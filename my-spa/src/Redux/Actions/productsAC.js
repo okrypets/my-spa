@@ -1,7 +1,7 @@
 const PRODUCTS_LOADING='PRODUCTS_LOADING';
 const PRODUCTS_ERROR='PRODUCTS_ERROR';
 const PRODUCTS_SET='PRODUCTS_SET';
-//const IS_PRODUCT_FAVORITE = 'IS_PRODUCT_FAVORITE';
+const IS_PRODUCT_FAVORITE = 'IS_PRODUCT_FAVORITE';
 
 const productsLoadingAC=function() {
     return {
@@ -21,20 +21,18 @@ const productsSetAC=function(products) {
         products:products,
     };
 }
-/*
-const isProductFavoriteAC=function(item, isFavorite) {
+
+const isProductFavoriteAC=function(item) {
     return {
-        type: PRODUCTS_SET,
-        isFavorite:isFavorite,
+        type: IS_PRODUCT_FAVORITE,
         item:item,
     };
 }
 
- */
 
 export {
     productsLoadingAC,PRODUCTS_LOADING,
     productsErrorAC,PRODUCTS_ERROR,
     productsSetAC,PRODUCTS_SET,
-    //isProductFavoriteAC, IS_PRODUCT_FAVORITE,
+    isProductFavoriteAC, IS_PRODUCT_FAVORITE,
 }

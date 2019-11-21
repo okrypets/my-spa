@@ -15,6 +15,9 @@ import {
     //BY_NAME,
     //FAVORITE_ONLY
 } from './Sorting';
+import {
+    CATALOG_ITEM,
+} from '../pages/PageShop'
 
 class ShopCatalog extends PureComponent {
 
@@ -23,11 +26,12 @@ class ShopCatalog extends PureComponent {
         //match:PropTypes.object.isRequired,
         //location: PropTypes.object.isRequired,
         //history: PropTypes.object.isRequired,
-        products: PropTypes.array,
-        catalogLink: PropTypes.object,
+        products: PropTypes.array, // REDUX
+        //catalogLink: PropTypes.object,
         isSortBy: PropTypes.number,
         currentPage:PropTypes.number.isRequired,
-        favoriteList:PropTypes.array,
+        //favoriteList:PropTypes.array,
+        showMode: PropTypes.string,
         //pagination:PropTypes.object, // REDUX
     };
 
@@ -36,14 +40,16 @@ class ShopCatalog extends PureComponent {
         isSortBy: NO_SORT,
         allProducts: this.props.products,
         allSortedProducts: {},
-        currentProducts: [],
+        currentPageProducts: [],
         currentPage: this.props.currentPage,
         totalPages: null,
-        favoriteList:[],
+        //favoriteList:[],
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
         console.log(`componentWillReceiveProps - ShopCatalog`);
+        console.log(nextProps.currentPage);
+        console.log(this.props.currentPage);
         this.setState({currentPage: nextProps.currentPage,})
         //const currentPage = this.props.currentPage;
         //this.setState({ currentPage:currentPage });
@@ -85,10 +91,10 @@ class ShopCatalog extends PureComponent {
         //const { totalPages, pageLimit } = data;
         const offset = (currentPage - 1) * pageLimit;
 
-        const currentProducts = allProducts.slice(offset, offset + pageLimit);
+        const currentPageProducts = allProducts.slice(offset, offset + pageLimit);
 
         //this.props.history.push(`/catalog/page-${currentPage}`);
-        this.setState({ currentPage, currentProducts, totalPages });
+        this.setState({ currentPage, currentPageProducts, totalPages });
         //this.props.dispatch(paginationStateAC(data.currentPage, currentProducts) );
     };
 
@@ -102,7 +108,7 @@ class ShopCatalog extends PureComponent {
 
         const {
             allProducts,
-            //currentProducts,
+            currentPageProducts,
             currentPage,
             totalPages
         } = this.state;
@@ -120,11 +126,15 @@ class ShopCatalog extends PureComponent {
 
                 {
                         //currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
-                    allProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
+                    currentPageProducts.map((item) => <ShopCatalogItem className={`CatalogItem`}
+                                                               key={item.id}
+                                                               item={item}
+                                                               showMode = {CATALOG_ITEM}
+                    />)
                 }
                 <Pagination
                     totalRecords={totalProducts}
-                    pageLimit={55}
+                    pageLimit={5}
                     pageNeighbours={1}
                     onPageChanged={this.onPageChanged}
                     currentPage={currentPage}

@@ -1,69 +1,78 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {Link, withRouter} from "react-router-dom";
+import {Link,
+    //withRouter
+        } from "react-router-dom";
 import IconStar from './IconStar'
 import {appEvents} from "./events";
 //import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
 
 import './ShopCatalogItem.scss';
-
+//import {connect} from "react-redux";
+import {
+    CATALOG_ITEM,
+    SINGLE_ITEM,
+} from '../pages/PageShop'
 
 class  ShopCatalogItem extends PureComponent {
 
     static propTypes = {
-        item:PropTypes.object.isRequired,
-        //match: PropTypes.object
+        item:PropTypes.object,
+        //products: PropTypes.object,
         isFavorite: PropTypes.bool,
-
+        showMode: PropTypes.string,
     };
 
     state = {
         isFavorite: false,
-
-    }
+    };
 
     isFavoriteItemHandleClick = () => {
         this.state.isFavorite ? this.favoriteDisable()
             :
             this.favoriteActive()
-    }
+    };
     favoriteActive = () => {
         this.setState({
             isFavorite: true,
         }, () => this.isFavoriteItem(this.state.isFavorite));
 
         //this.props.dispatch( isProductFavoriteAC(this.props.item,true) );
-    }
+    };
     favoriteDisable = () => {
         this.setState({
             isFavorite: false,
         }, () => this.isFavoriteItem(this.state.isFavorite))
         //this.props.dispatch( isProductFavoriteAC(this.props.item,false) );
-    }
+    };
 
     isFavoriteItem = () => {
-        let newItem = this.props.item;
-        newItem["isFavorite"] = this.state.isFavorite;
-        //console.log(newItem);
-        appEvents.emit('EisFavoriteItemOnChange', newItem);
-    }
+        const {item} = this.props;
+        const {isFavorite} = this.state;
+        item["isFavorite"] = isFavorite;
+        console.log(item["isFavorite"]);
+        appEvents.emit('EisFavoriteItemOnChange', item);
+        //this.props.dispatch( isProductFavoriteAC(item) );
+    };
 
 
     render() {
         console.log("ShopCatalogItem - render");
+        const {showMode} = this.props;
         //console.log(this.props.match);
         let item = this.props.item;
         const {isFavorite} = this.state;
 
         return (
             <div className={`ShopCatalogItem ${isFavorite ? 'active' : ''}`} key={item.id}>
-                <img src={`/Images/Shop/${item.ImgSrc}`} alt=""/>
+                <div className={`block`}>
+                    <img src={`/Images/Shop/${item.ImgSrc}`} alt=""/>
 
-                <h2>
-                    <Link to={`/catalog/${item.id}`} className="SingleItemName">{item.Name}</Link>
-                </h2>
+                    <h2>
+                        <Link to={`/catalog/${item.id}`} className="SingleItemName">{item.Name}</Link>
+                    </h2>
 
-                <div className="priceBlock">
+                    <div className="priceBlock">
                     <span className='itemPrice'>
                         {item.Price === 0 ?
                             <span>Available only if isFavorite</span>
@@ -73,15 +82,25 @@ class  ShopCatalogItem extends PureComponent {
                             </Fragment>
                         }
                     </span>
-                    <div className="buttonBlock">
-                        <input type="number" defaultValue={1}/>
-                        <input  type="button"
-                                className="inBasket"
-                                value="Купить"
-                                disabled={!item.Price && !isFavorite}
-                        />
+                        <div className="buttonBlock">
+                            <input type="number"
+                                   defaultValue={1}
+                                   disabled={!item.Price && !isFavorite}
+                            />
+                            <input  type="button"
+                                    className="inBasket"
+                                    value="Купить"
+                                    disabled={!item.Price && !isFavorite}
+                            />
+                        </div>
                     </div>
                 </div>
+
+                {showMode === SINGLE_ITEM &&
+                    <div>
+                        <span>{item.excerpt}</span>
+                    </div>
+                }
                 <div className="favorite">
                     <button className={`favoriteButton ${isFavorite ? 'active' : ''}`} onClick={this.isFavoriteItemHandleClick}>
                         <IconStar
@@ -92,6 +111,20 @@ class  ShopCatalogItem extends PureComponent {
         )
     }
 }
+/*
+const mapStateToProps = function (store) {
+    return {
+        //isFavorite:store.isFavorite,
+        //item:store.item,
+        products: store.products,
+    };
+};
+
+
+//const withRouterPageShop = withRouter(PageShop);
+export default connect(mapStateToProps)(ShopCatalogItem);
+ */
+export default ShopCatalogItem;
 
 /*
 
@@ -109,4 +142,6 @@ class  ShopCatalogItem extends PureComponent {
 <button onClick={() => props.changePage()}>Go to about page via redux</button>
 
 */
-export default withRouter(ShopCatalogItem);
+
+
+//export default withRouter(ShopCatalogItem);
