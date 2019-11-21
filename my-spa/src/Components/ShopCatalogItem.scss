@@ -1,6 +1,55 @@
 .ShopCatalogItem {
+  position: relative;
+  display: flex;
+  background: #eee;
+  border: 1px solid #d8d8d8;
+  margin: 0.5em;
+  padding: 0 30px 0 0;
   >img {
     width: 100px;
     height: auto;
+  }
+  h2 {
+    &>a {
+      text-decoration: none;
+      color: #333333;
+    }
+  }
+  .priceBlock {
+    display: flex;
+    flex-direction: column;
+    .buttonBlock {
+      display: flex;
+      input {
+        &[type='button'] {
+          cursor: pointer;
+          &.inBasket {
+            background: #333;
+            border: none;
+            padding: 0.5em 1em;
+            color: #fff;
+            text-transform: uppercase;
+            &:disabled {
+              background: #888;
+              cursor: unset;
+            }
+          }
+        }
+        &[type="number"] {
+          width: 50px;
+        }
+      }
+    }
+  }
+  .favorite {
+    position: absolute;
+    right: 0;
+    top: 0;
+    &>button {
+      border: none;
+      background: none;
+      padding: 0;
+      margin: 0.2em;
+    }
   }
 }

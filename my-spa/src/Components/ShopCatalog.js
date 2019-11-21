@@ -1,27 +1,192 @@
-import React, {Fragment} from 'react';
-//import PropTypes from 'prop-types';
-//import {Switch, Route} from "react-router-dom";
-import shopData from '../shopItemArr';
-
+import React, {PureComponent, Fragment} from 'react';
+import PropTypes from 'prop-types';
+//import {appEvents} from "./events";
+//import { paginationStateAC } from "../Redux/Actions/paginationAC";
+import Sorting from "./Sorting"
+import Pagination from "./Pagination"
 import ShopCatalogItem from './ShopCatalogItem';
-//import {Link} from "react-router-dom";
+//import {connect} from "react-redux";
+//import {withRouter} from "react-router-dom";
 //import SingleItem from "./SingleItem";
-let itemsArr = shopData.shopItemArr;
 
-const ShopCatalog = ({match}) => {
-    console.log({match});
-    return (
-        <Fragment>
-            {itemsArr && (
-                itemsArr.map((i) => {
-                        console.log(i);
-                        return (<ShopCatalogItem key={i.id} i={i}/>)
+import {
+    NO_SORT,
+    //BY_PRICE,
+    //BY_NAME,
+    //FAVORITE_ONLY
+} from './Sorting';
+
+class ShopCatalog extends PureComponent {
+
+    static propTypes = {
+        //router:PropTypes.object, // REDUX
+        //match:PropTypes.object.isRequired,
+        //location: PropTypes.object.isRequired,
+        //history: PropTypes.object.isRequired,
+        products: PropTypes.array,
+        catalogLink: PropTypes.object,
+        isSortBy: PropTypes.number,
+        currentPage:PropTypes.number.isRequired,
+        favoriteList:PropTypes.array,
+        //pagination:PropTypes.object, // REDUX
+    };
+
+
+    state = {
+        isSortBy: NO_SORT,
+        allProducts: this.props.products,
+        allSortedProducts: {},
+        currentProducts: [],
+        currentPage: this.props.currentPage,
+        totalPages: null,
+        favoriteList:[],
+    };
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log(`componentWillReceiveProps - ShopCatalog`);
+        this.setState({currentPage: nextProps.currentPage,})
+        //const currentPage = this.props.currentPage;
+        //this.setState({ currentPage:currentPage });
+        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+    }
+
+    componentWillMount() {
+        console.log(`componentWillMount - ShopCatalog`);
+        // создаем
+       //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+
+    }
+    componentDidMount = () => {
+        console.log(`componentDidMount - ShopCatalog`);
+        //appEvents.addListener('ESortingOnChange',this.sortingOnSelectChange);
+        //const allProducts = this.props.products.data;
+        //this.setState({ allProducts });
+
+        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+
+    };
+
+    componentWillUnmount = () => {
+        console.log(`componentWillUnmount - ShopCatalog`);
+        //appEvents.removeListener('ESortingOnChange',this.sortingOnSelectChange);
+        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+    };
+
+
+    onPageChanged = data => {
+        console.log(data);
+        console.log(`onPageChanged - ShopCatalog`);
+        const allProducts = this.props.products;
+        //const { isSortBy } = this.state;
+        //const allProducts = (isSortBy === BY_NAME) ? this.sortByName() : this.getAllProducts() ;
+
+        const { currentPage, totalPages, pageLimit } = data;
+        //const currentPage = this.state.currentPage;
+        //const { totalPages, pageLimit } = data;
+        const offset = (currentPage - 1) * pageLimit;
+
+        const currentProducts = allProducts.slice(offset, offset + pageLimit);
+
+        //this.props.history.push(`/catalog/page-${currentPage}`);
+        this.setState({ currentPage, currentProducts, totalPages });
+        //this.props.dispatch(paginationStateAC(data.currentPage, currentProducts) );
+    };
+
+
+
+    render() {
+        console.log("ShopCatalog - render");
+
+        //console.log(this.props.products);
+        //let productsArr = this.props.products.data;
+
+        const {
+            allProducts,
+            //currentProducts,
+            currentPage,
+            totalPages
+        } = this.state;
+        const totalProducts = allProducts.length;
+        if (totalProducts === 0) return null;
+
+        //let pageLink = `page-${currentPage}`;
+
+
+        //console.log(this.props.match);
+
+        return (
+            <Fragment>
+                <Sorting />
+
+                {
+                        //currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
+                    allProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
                 }
+                <Pagination
+                    totalRecords={totalProducts}
+                    pageLimit={55}
+                    pageNeighbours={1}
+                    onPageChanged={this.onPageChanged}
+                    currentPage={currentPage}
+                />
+                {currentPage && (
+                    <div >
+                  Page <span className="current-page">{currentPage}</span> /{" "}
+                        <span className="total-page">{totalPages}</span>
+                </div>
+                )}
 
-                )
-            )
-            }
-        </Fragment>
-    )
+            </Fragment>
+        )
+    }
+
+}
+/*
+const mapStateToProps = function (store) {
+    return {
+        //router:state.router.location,
+        products: store.products,
+        //pagination: state.pagination.pagination,
+    };
 };
+const withRouterShopCatalog = withRouter(ShopCatalog);
+export default connect(mapStateToProps)(withRouterShopCatalog);
+ */
+/*
+const withRouterShopCatalog = withRouter(ShopCatalog);
+export default withRouterShopCatalog;
+
+ */
 export default ShopCatalog;
+/*
+<Route exact path={(totalPages>1 && currentPage!==1)?`/${this.props.catalogLink.catalog}/:page-${this.state.currentPage}`:`/${this.props.catalogLink.catalog}`}>
+
+
+<Switch>
+                        <Route path={`/${this.props.match.match.params.catalog}/:page-${currentPage}?`}>
+{
+    currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
+}
+</Route>
+</Switch>*/
+
+/*
+{
+                            currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
+                        }
+*/
+
+/*
+render = {({match}) => {
+                               console.log({match});
+                        return (
+
+                            (totalPages === null ? allProducts : currentProducts).map((item) => <ShopCatalogItem key={item.id} item={item} />)
+
+                        )
+
+                    }
+                           }
+ */
+
+

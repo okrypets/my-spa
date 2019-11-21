@@ -13,7 +13,7 @@ import PageBasket from "./PageBasket";
 //import shopData from "../shopItemArr";
 
 export default function PagesRouter() {
-
+/*
     return (
         <Switch>
             <Route exact path="/">
@@ -28,6 +28,8 @@ export default function PagesRouter() {
 
         </Switch>
     );
+
+ */
 }
 
     /*

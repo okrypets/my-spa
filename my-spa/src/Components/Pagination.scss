@@ -1,0 +1,19 @@
+nav {
+  ul {
+    &.pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    li {
+      list-style: none;
+      &.page-item {
+        &.active {
+          font-weight: bold;
+          font-size: 150%;
+        }
+      }
+    }
+  }
+
+}

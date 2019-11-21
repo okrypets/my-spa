@@ -1,3 +1,4 @@
+/*
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ShopCatalog from './ShopCatalog'
@@ -10,12 +11,12 @@ import ShopCatalog from './ShopCatalog'
 class ShopBlock extends PureComponent {
 
     static propTypes = {
-        /*item:PropTypes.shape({
+       item:PropTypes.shape({
             id: PropTypes.number.isRequired,
             Name: PropTypes.string.isRequired,
             ImgSrc: PropTypes.string.isRequired,
             excerpt: PropTypes.string.isRequired,
-        })*/
+        })
     };
 
     render() {
@@ -30,3 +31,5 @@ class ShopBlock extends PureComponent {
 }
 
 export default ShopBlock;
+*/
+

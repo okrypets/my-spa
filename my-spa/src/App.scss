@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  >main {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .App-logo {
@@ -15,4 +19,9 @@
 }
 .ShopCatalogItem img {
   width: 100px;
+}
+button:active,
+input:active,
+textarea:active {
+    outline: 0;
 }

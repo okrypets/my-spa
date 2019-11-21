@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import { connectRouter} from 'connected-react-router'
-import basket from './basket'
+import productsReducer from "./productsReducer";
+//import paginationReducer from "./paginationReducer";
 
 export default (history) => combineReducers({
     router: connectRouter(history),
-    basket
+    products: productsReducer,
+    //pagination: paginationReducer
 })
