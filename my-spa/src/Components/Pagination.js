@@ -24,6 +24,7 @@ const range = (from, to, step = 1) => {
     return range;
 };
 
+
 class Pagination extends PureComponent {
     constructor(props) {
         super(props);
@@ -60,16 +61,25 @@ class Pagination extends PureComponent {
     componentWillMount() {
         console.log(`componentWillMount - Pagination`);
         appEvents.addListener('EOnClickCatalogLink',this.handleClick);
+        //appEvents.addListener('EOnPAgeChange',this.gotoPage);
         //this.setState({currentPage: 1});
         //this.props.dispatch(paginationStateAC(this.state.currentPage) );
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
         console.log(`componentWillReceiveProps - Pagination`);
-        //this.catchUrl();
+        //this.setCurrentPage();
         console.log(nextProps.currentPage);
         console.log(this.props.currentPage);
-        this.setState({currentPage: nextProps.currentPage});
+        console.log(nextProps.location.pathname.replace(/[^0-9]/g, ""));
+
+        const locationCurrentPage = +nextProps.location.pathname.replace(/[^0-9]/g, "");
+
+            this.setState({
+                currentPage: locationCurrentPage,
+            });
+
+        //this.setState({currentPage: nextProps.currentPage});
         //this.gotoPage(this.state.currentPage);
     }
 
@@ -82,11 +92,12 @@ class Pagination extends PureComponent {
     componentWillUnmount() {
         console.log(`componentWillUnmount - Pagination`);
         appEvents.removeListener('EOnClickCatalogLink',this.handleClick);
+        appEvents.removeListener('EOnPAgeChange',this.gotoPage);
         //this.setState({currentPage: 1});
         //this.props.dispatch(paginationStateAC(this.state.currentPage) );
     }
 /*
-    catchUrl =()=> {
+    setCurrentPage =()=> {
 
         const isPageCatalog = this.props.location.pathname.includes('page-');
         console.log(isPageCatalog);
@@ -102,9 +113,9 @@ class Pagination extends PureComponent {
 
  */
 
-    gotoPage = page => {
+    gotoPage = (page) => {
         let nextPropsPageNumber = this.state.currentPage;
-        console.log(`gotoPage - run`);
+        console.log(`gotoCurrentPage - run`);
         console.log(page);
 
         if(nextPropsPageNumber !== page) {
@@ -125,7 +136,7 @@ class Pagination extends PureComponent {
         //this.props.dispatch(paginationStateAC(currentPage));
 
         this.setState({ currentPage }, () => onPageChanged(paginationData));
-
+        //return currentPage;
     };
 
 

@@ -8,6 +8,7 @@ import ShopCatalogItem from './ShopCatalogItem';
 //import {connect} from "react-redux";
 //import {withRouter} from "react-router-dom";
 //import SingleItem from "./SingleItem";
+import FavoriteCount from '../Components/FavoriteCount'
 
 import {
     NO_SORT,
@@ -62,7 +63,7 @@ class ShopCatalog extends PureComponent {
        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
 
     }
-    componentDidMount = () => {
+    componentDidMount() {
         console.log(`componentDidMount - ShopCatalog`);
         //appEvents.addListener('ESortingOnChange',this.sortingOnSelectChange);
         //const allProducts = this.props.products.data;
@@ -72,7 +73,7 @@ class ShopCatalog extends PureComponent {
 
     };
 
-    componentWillUnmount = () => {
+    componentWillUnmount() {
         console.log(`componentWillUnmount - ShopCatalog`);
         //appEvents.removeListener('ESortingOnChange',this.sortingOnSelectChange);
         //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
@@ -118,12 +119,12 @@ class ShopCatalog extends PureComponent {
         //let pageLink = `page-${currentPage}`;
 
 
-        //console.log(this.props.match);
+        console.log(currentPage);
 
         return (
             <Fragment>
-                <Sorting />
-
+                <Sorting products={allProducts}/>
+                <FavoriteCount products={allProducts}/>
                 {
                         //currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
                     currentPageProducts.map((item) => <ShopCatalogItem className={`CatalogItem`}
@@ -132,6 +133,7 @@ class ShopCatalog extends PureComponent {
                                                                showMode = {CATALOG_ITEM}
                     />)
                 }
+
                 <Pagination
                     totalRecords={totalProducts}
                     pageLimit={5}

@@ -9,7 +9,7 @@ const BY_NAME = "BY_NAME";
 
 class Sorting extends PureComponent {
     static propTypes = {
-        //products: PropTypes.object,
+        products: PropTypes.array,
         //match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,

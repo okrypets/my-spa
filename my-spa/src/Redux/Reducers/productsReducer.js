@@ -2,6 +2,7 @@
 import {PRODUCTS_LOADING, PRODUCTS_ERROR, PRODUCTS_SET,
     IS_PRODUCT_FAVORITE
 } from '../Actions/productsAC';
+//import {IS_FAVORITE} from '../../Components/ShopCatalogItem'
 
 const initState={
     status: 0, // 0 - ничего не началось, 1 - идёт загрузка, 2 - была ошибка, 3 - данные загружены
@@ -47,56 +48,47 @@ export default function productsReducer(state=initState,action) {
         case IS_PRODUCT_FAVORITE: {
             console.log('action:',action);
             console.log('state до обработки редьюсером:',state);
-            console.log(state.data);
-            //let itemIndex = state.data.findIndex(i => i.id === action.item.id);
-            let newState = {...state,
-                status:3,
+            //console.log(state.data);
+
+            let itemIndex = state.data.findIndex(i => i.id === action.item.id);
+            //console.log(itemIndex);
+            //console.log(action.item.id);
+            //console.log(action.item.IS_FAVORITE);
+            //console.log(state.data.length);
+            let newState;
+            if (itemIndex === 0) {
+                newState = {...state,
+                status:state.status,
                 data: [
-                    ...state.data,
-                    action.item
+                    action.item,
+                    ...state.data.slice(1),
                 ]
             };
-            console.log('state после обработки редьюсером:',newState);
-            //return newState;
-/*
-            if (itemIndex === 0) {
-                let newState = {...state,
-                    status:3,
-                    data: [
-                        //...state.data,
-                        action.item,
-                        ...state.data.slice(1)
-                    ]
-                };
                 console.log('state после обработки редьюсером:',newState);
-                return newState;
-            } else if (itemIndex === state.data.length) {
-                let newState = {...state,
-                    status:3,
+                //return newState;
+            } else if (itemIndex === state.data.length-1) {
+                newState = {...state,
+                    status:state.status,
                     data: [
-                        //...state.data,
-                        ...state.data.slice(0,-1),
+                        ...state.data.slice(0,state.data.length-1),
                         action.item
                     ]
                 };
                 console.log('state после обработки редьюсером:',newState);
-                return newState;
+                //return newState;
             } else {
-                let newState = {...state,
-                    status:3,
+                newState = {...state,
+                    status:state.status,
                     data: [
                         //...state.data,
-                        ...state.data.slice(0,itemIndex-1),
+                        ...state.data.slice(0,itemIndex),
                         action.item,
-                        ...state.data.slice(itemIndex+1),
+                        ...state.data.slice(itemIndex+1, state.data.length),
                     ]
                 };
                 console.log('state после обработки редьюсером:',newState);
-                return newState;
             }
-
- */
-
+            return newState;
         }
         default:
             return state;

@@ -6,15 +6,15 @@ import {
     // Redirect,
     withRouter
 } from "react-router-dom";
+import PropTypes from "prop-types";
 import {appEvents} from "../Components/events";
 import history from '../history';
 import {productsThunkAC} from "../Redux/Thunk/fetchThunkProducts";
 import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
 import {connect} from "react-redux";
-import loaderIcon from '../loader.gif';
+import loaderIconGif from '../loader.gif';
 import ShopCatalog from "../Components/ShopCatalog";
-import PropTypes from "prop-types";
-//import SingleItem from "../Components/SingleItem";
+
 import ShopCatalogItem from '../Components/ShopCatalogItem'
 //import Sorting from '../Components/Sorting'
 //import {NO_SORT, BY_PRICE, BY_NAME} from "../Components/Sorting";
@@ -30,7 +30,7 @@ class PageShop extends PureComponent {
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
         products: PropTypes.object,
-        catalogLink: PropTypes.object,
+        //catalogLink: PropTypes.object,
         //isSortBy: PropTypes.number,
         currentPage:PropTypes.number,
         //favoriteList:PropTypes.array,
@@ -41,21 +41,37 @@ class PageShop extends PureComponent {
         products: this.props.products.data,
         //catalogLink: ,
         //isSortBy,
-    }
+    };
 
     componentWillReceiveProps(nextProps, nextContext) {
         console.log(`componentWillReceiveProps - PageShop`);
-        console.log(nextProps.currentPage);
-        //console.log(this.props.location.pathname.replace(/[^0-9]/g, ""));
+        //console.log(nextProps.currentPage);
+        //console.log(this.props.currentPage);
+        //console.log(this.state.currentPage);
+
+        this.unlisten = history.listen((location, action) => {
+            console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`);
+
+            console.log(`The last navigation action was ${action}`)
+        });
+
+        const locationCurrentPage = nextProps.location.pathname.replace(/[^0-9]/g, "");
+        if (this.isPageCatalog()) {
+            this.setState({
+                currentPage: +locationCurrentPage,
+            });
+        } else {
+            this.setState({
+                currentPage: 1,
+            });
+        }
         if (this.props.products.status === 3) {
             this.setState({
                 products:this.props.products.data,
-                //currentPage: this.props.location.pathname.replace(/[^0-9]/g, ""),
+                //currentPage: {this.isPageCatalog ? +currentPage : 1 },
             });
         }
-
-
-        this.getUrl();
+        //this.setCurrentPage();
     }
 
     componentDidMount() {
@@ -67,15 +83,15 @@ class PageShop extends PureComponent {
         //appEvents.addListener('ESortingOnChange',this.sortingOnSelectChange);
 
         this.unlisten = history.listen((location, action) => {
-            console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
+            console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`);
 
             console.log(`The last navigation action was ${action}`)
         });
 
-        this.getUrl();
+        //this.getUrl();
     }
 
-    componentWillUnmount = () => {
+    componentWillUnmount() {
         console.log(`componentWillUnmount - PageShop`);
         appEvents.removeListener('EisFavoriteItemOnChange',this.setFavoriteItem);
         //appEvents.removeListener('onPageChangedEvent',this.dataPaginationToState);
@@ -84,15 +100,16 @@ class PageShop extends PureComponent {
     };
 
     setFavoriteItem = (item) => {
-        this.props.dispatch( isProductFavoriteAC(item) );
-    }
+        this.props.dispatch( isProductFavoriteAC(item));
+    };
 
     isPageCatalog = () => {
         const isPageCatalog = this.props.location.pathname.includes('page-');
+        console.log(isPageCatalog);
         return isPageCatalog;
-    }
+    };
 
-    getUrl =()=> {
+    setCurrentPage =()=> {
         //console.log(isPageCatalog);
         if (this.isPageCatalog()) {
             //let regex = /\d+/g;
@@ -100,14 +117,15 @@ class PageShop extends PureComponent {
             //let currentPage = isPageCatalog.match(regex);
 
           let currentPage =this.props.location.pathname.replace(/[^0-9]/g, "");
+          //  let currentPage =this.props.location.pathname.replace(/[^0-9]/g, "");
           console.log(currentPage); //
           this.setState({currentPage:+currentPage});
-
         } else {
             this.setState({currentPage:1});
         }
-
     };
+
+
 
     render() {
        const {
@@ -121,12 +139,10 @@ class PageShop extends PureComponent {
         const {match, products, location} = this.props;
         console.log(match.params);
 
-        //let currentPage = this.getUrl();
-        //let isPageCatalog = this.isPageCatalog();
 
 
         if ( products.status<=1 )
-            return <img src={loaderIcon} alt={`Загрузка данных`} />
+            return <img src={loaderIconGif} alt={`Загрузка данных`} />;
 
         if ( products.status===2 )
             return "ошибка загрузки данных";

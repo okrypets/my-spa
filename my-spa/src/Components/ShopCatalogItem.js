@@ -10,27 +10,29 @@ import {appEvents} from "./events";
 import './ShopCatalogItem.scss';
 //import {connect} from "react-redux";
 import {
-    CATALOG_ITEM,
+    //CATALOG_ITEM,
     SINGLE_ITEM,
 } from '../pages/PageShop'
+const IS_FAVORITE = "IS_FAVORITE";
 
 class  ShopCatalogItem extends PureComponent {
 
     static propTypes = {
         item:PropTypes.object,
         //products: PropTypes.object,
-        isFavorite: PropTypes.bool,
+        //isFavorite: PropTypes.bool,
         showMode: PropTypes.string,
     };
 
     state = {
-        isFavorite: false,
+        isFavorite: this.props.item.IS_FAVORITE,
     };
 
     isFavoriteItemHandleClick = () => {
         this.state.isFavorite ? this.favoriteDisable()
             :
             this.favoriteActive()
+
     };
     favoriteActive = () => {
         this.setState({
@@ -49,9 +51,15 @@ class  ShopCatalogItem extends PureComponent {
     isFavoriteItem = () => {
         const {item} = this.props;
         const {isFavorite} = this.state;
-        item["isFavorite"] = isFavorite;
-        console.log(item["isFavorite"]);
+        //let newItem = {...item};
+        if (isFavorite) {
+            item[IS_FAVORITE] = isFavorite;
+        } else {
+            delete item[IS_FAVORITE];
+        }
+        console.log(item[IS_FAVORITE]);
         appEvents.emit('EisFavoriteItemOnChange', item);
+        //appEvents.emit('EfavoriteItemCount', e);
         //this.props.dispatch( isProductFavoriteAC(item) );
     };
 
@@ -124,6 +132,7 @@ const mapStateToProps = function (store) {
 //const withRouterPageShop = withRouter(PageShop);
 export default connect(mapStateToProps)(ShopCatalogItem);
  */
+export {IS_FAVORITE};
 export default ShopCatalogItem;
 
 /*
