@@ -1,20 +1,20 @@
 import React, {PureComponent} from 'react';
 import isoFetch from 'isomorphic-fetch';
-import {productsThunkAC} from "../Redux/Thunk/fetchThunkProducts";
+//import {productsThunkAC} from "../Redux/Thunk/fetchThunkProducts";
 
 import PropTypes from "prop-types";
 
-let withDataLoad = (fetchConfig, propName) => Component => {
+let withDataLoad = (data) => Component => {
 
     class ComponentWithDataLoad extends PureComponent {
 
         componentDidMount() {
           console.log(`componentDidMount - ComponentWithDataLoad`);
-          this.loadData();
-          //productsThunkAC(fetchConfig, propName);
+          //this.loadData();
+          //productsThunkAC(data);
         }
         static propTypes = {
-            products: PropTypes.object, // REDUX
+           //products: PropTypes.object, // REDUX
         }
 
         state = {

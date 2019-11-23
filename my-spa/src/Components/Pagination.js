@@ -1,11 +1,8 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-//import {paginationStateAC} from '../Redux/Actions/paginationAC'
 import { withRouter } from 'react-router-dom'
 import './Pagination.scss';
-//import {connect} from "react-redux";
-//import {paginationStateAC} from "../Redux/Actions/paginationAC";
 import {appEvents} from "./events";
 
 const LEFT_PAGE = "LEFT";
@@ -38,8 +35,6 @@ class Pagination extends PureComponent {
                 : 0;
 
         this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
-
-        //this.state = { currentPage: 1 };
     }
 
     static propTypes = {
@@ -51,7 +46,6 @@ class Pagination extends PureComponent {
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
-        //pagination:PropTypes.object, // REDUX
     };
 
     state = {
@@ -60,27 +54,22 @@ class Pagination extends PureComponent {
 
     componentWillMount() {
         console.log(`componentWillMount - Pagination`);
-        appEvents.addListener('EOnClickCatalogLink',this.handleClick);
-        //appEvents.addListener('EOnPAgeChange',this.gotoPage);
-        //this.setState({currentPage: 1});
-        //this.props.dispatch(paginationStateAC(this.state.currentPage) );
+        appEvents.addListener('EcurrentPageToHandleClick',this.handleClick);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
         console.log(`componentWillReceiveProps - Pagination`);
-        //this.setCurrentPage();
+        console.log(nextProps.match.params.urlParams);
         console.log(nextProps.currentPage);
         console.log(this.props.currentPage);
         console.log(nextProps.location.pathname.replace(/[^0-9]/g, ""));
-
+        console.log(this.totalPages);
         const locationCurrentPage = +nextProps.location.pathname.replace(/[^0-9]/g, "");
 
             this.setState({
-                currentPage: locationCurrentPage,
+                currentPage: locationCurrentPage === 0 || locationCurrentPage > this.totalPages ? 1 : locationCurrentPage,
             });
 
-        //this.setState({currentPage: nextProps.currentPage});
-        //this.gotoPage(this.state.currentPage);
     }
 
     componentDidMount() {
@@ -91,27 +80,9 @@ class Pagination extends PureComponent {
     }
     componentWillUnmount() {
         console.log(`componentWillUnmount - Pagination`);
-        appEvents.removeListener('EOnClickCatalogLink',this.handleClick);
-        appEvents.removeListener('EOnPAgeChange',this.gotoPage);
-        //this.setState({currentPage: 1});
-        //this.props.dispatch(paginationStateAC(this.state.currentPage) );
+        appEvents.removeListener('EcurrentPageToHandleClick',this.handleClick);
     }
-/*
-    setCurrentPage =()=> {
 
-        const isPageCatalog = this.props.location.pathname.includes('page-');
-        console.log(isPageCatalog);
-        if (isPageCatalog) {
-            //let regex = /\d+/g;
-            //console.log(isPageCatalog.match(regex));
-            //let currentPage = isPageCatalog.match(regex);
-            let currentPage =this.props.location.pathname.replace(/[^0-9]/g, "");
-            console.log(currentPage); //
-            this.setState({currentPage:+currentPage});
-        }
-    };
-
- */
 
     gotoPage = (page) => {
         let nextPropsPageNumber = this.state.currentPage;

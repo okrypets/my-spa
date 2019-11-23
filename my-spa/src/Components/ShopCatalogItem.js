@@ -1,14 +1,10 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {Link,
-    //withRouter
-        } from "react-router-dom";
+import {Link } from "react-router-dom";
 import IconStar from './IconStar'
 import {appEvents} from "./events";
-//import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
 
 import './ShopCatalogItem.scss';
-//import {connect} from "react-redux";
 import {
     //CATALOG_ITEM,
     SINGLE_ITEM,
@@ -19,8 +15,6 @@ class  ShopCatalogItem extends PureComponent {
 
     static propTypes = {
         item:PropTypes.object,
-        //products: PropTypes.object,
-        //isFavorite: PropTypes.bool,
         showMode: PropTypes.string,
     };
 
@@ -39,13 +33,11 @@ class  ShopCatalogItem extends PureComponent {
             isFavorite: true,
         }, () => this.isFavoriteItem(this.state.isFavorite));
 
-        //this.props.dispatch( isProductFavoriteAC(this.props.item,true) );
     };
     favoriteDisable = () => {
         this.setState({
             isFavorite: false,
         }, () => this.isFavoriteItem(this.state.isFavorite))
-        //this.props.dispatch( isProductFavoriteAC(this.props.item,false) );
     };
 
     isFavoriteItem = () => {
@@ -59,8 +51,6 @@ class  ShopCatalogItem extends PureComponent {
         }
         console.log(item[IS_FAVORITE]);
         appEvents.emit('EisFavoriteItemOnChange', item);
-        //appEvents.emit('EfavoriteItemCount', e);
-        //this.props.dispatch( isProductFavoriteAC(item) );
     };
 
 
@@ -77,7 +67,7 @@ class  ShopCatalogItem extends PureComponent {
                     <img src={`/Images/Shop/${item.ImgSrc}`} alt=""/>
 
                     <h2>
-                        <Link to={`/catalog/${item.id}`} className="SingleItemName">{item.Name}</Link>
+                        <Link to={`/catalog/item-${item.id}`} className="SingleItemName">{item.Name}</Link>
                     </h2>
 
                     <div className="priceBlock">

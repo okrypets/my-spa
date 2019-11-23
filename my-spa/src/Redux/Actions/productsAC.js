@@ -7,27 +7,27 @@ const productsLoadingAC=function() {
     return {
         type: PRODUCTS_LOADING,
     };
-}
+};
 
 const productsErrorAC=function() {
     return {
         type: PRODUCTS_ERROR,
     };
-}
+};
 
 const productsSetAC=function(products) {
     return {
         type: PRODUCTS_SET,
         products:products,
     };
-}
+};
 
 const isProductFavoriteAC=function(item) {
     return {
         type: IS_PRODUCT_FAVORITE,
         item:item,
     };
-}
+};
 
 
 export {

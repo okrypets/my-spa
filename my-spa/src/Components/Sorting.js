@@ -1,6 +1,5 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {appEvents} from "./events";
 import {withRouter} from "react-router-dom";
 
 const NO_SORT = "NO_SORT";
@@ -10,47 +9,47 @@ const BY_NAME = "BY_NAME";
 class Sorting extends PureComponent {
     static propTypes = {
         products: PropTypes.array,
-        //match: PropTypes.object.isRequired,
+        match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
     };
 
     state = {
-       sortBy: NO_SORT,
+        sortBy: NO_SORT,
+        sortedArray: [],
     };
 
     componentDidMount() {
+        console.log(`componentDidMount - Sorting`);
         //appEvents.addListener('EOnClickCatalogLinkEvent', this.noSort);
     }
 
-    componentWillReceiveProps = (newProps) => {
+    componentWillReceiveProps (nextProps, nexContext) {
+        console.log(`componentWillReceiveProps - Sorting`);
+        const pageCatalogSortedBy = nextProps.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
+        //console.log(pageCatalogSortedBy);
         //appEvents.addListener('EOnClickCatalogLinkEvent', this.noSort);
-        //this.setState({sortBy:newProps.sortBy});
+        this.setState({sortBy:pageCatalogSortedBy}, this.getSortedProductsArray);
 
     };
     componentWillUnmount() {
-       //appEvents.removeListener('EOnClickCatalogLinkEvent', this.noSort);
+        console.log(`componentWillUnmount - Sorting`);
     }
-/*
-    handleChange = (event) => {
-        console.log(event.target.value);
-        this.props.history.push(`${this.props.location.pathname}?sort=${event.target.value.toLowerCase()}`);
-        this.setState({sortBy: event.target.value}, this.onHandleChangeSelect);
-    };
- */
+
 
     onHandleChangeSelect = (e) => {
-        //console.log(e);
+        console.log(`onHandleChangeSelect`);
+        const {location, history} = this.props;
         this.setState({sortBy: e.target.value});
-        this.props.history.push(`${this.props.location.pathname}?sort=${e.target.value.toLowerCase()}`);
-        appEvents.emit('ESortingOnChange', e.target.value);
+        history.push(`${location.pathname}?sort=${e.target.value.toLowerCase()}`);
     };
+
 
     render() {
         const  {location} = this.props;
         //console.log(location.search);
         const pageCatalogSortedBy = location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
-        console.log(pageCatalogSortedBy);
+        //console.log(pageCatalogSortedBy);
         return (
             <Fragment>
                 <select value={!location.search ? NO_SORT : pageCatalogSortedBy} onChange={this.onHandleChangeSelect}>

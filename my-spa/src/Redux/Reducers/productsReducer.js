@@ -13,30 +13,30 @@ export default function productsReducer(state=initState,action) {
     switch (action.type) {
 
         case PRODUCTS_LOADING: {
-            console.log('action:',action);
-            console.log('state до обработки редьюсером:',state);
+            //console.log('action:',action);
+            //console.log('state до обработки редьюсером:',state);
             let newState = {...state,
                 status:1,
                 data:null
             };
-            console.log('state после обработки редьюсером:',newState);
+            //console.log('state после обработки редьюсером:',newState);
             return newState;
         }
 
         case PRODUCTS_ERROR: {
-            console.log('action:',action);
-            console.log('state до обработки редьюсером:',state);
+            //console.log('action:',action);
+            //console.log('state до обработки редьюсером:',state);
             let newState = {...state,
                 status:2,
                 data:null,
             };
-            console.log('state после обработки редьюсером:',newState);
+            //console.log('state после обработки редьюсером:',newState);
             return newState;
         }
 
         case PRODUCTS_SET: {
-            console.log('action:',action);
-            console.log('state до обработки редьюсером:',state);
+            //console.log('action:',action);
+            //console.log('state до обработки редьюсером:',state);
             let newState = {...state,
                 status:3,
                 data:action.products,
@@ -46,15 +46,11 @@ export default function productsReducer(state=initState,action) {
         }
 
         case IS_PRODUCT_FAVORITE: {
-            console.log('action:',action);
-            console.log('state до обработки редьюсером:',state);
-            //console.log(state.data);
+            //console.log('action:',action);
+            //console.log('state до обработки редьюсером:',state);
+
 
             let itemIndex = state.data.findIndex(i => i.id === action.item.id);
-            //console.log(itemIndex);
-            //console.log(action.item.id);
-            //console.log(action.item.IS_FAVORITE);
-            //console.log(state.data.length);
             let newState;
             if (itemIndex === 0) {
                 newState = {...state,
@@ -64,8 +60,8 @@ export default function productsReducer(state=initState,action) {
                     ...state.data.slice(1),
                 ]
             };
-                console.log('state после обработки редьюсером:',newState);
-                //return newState;
+                //console.log('state после обработки редьюсером:',newState);
+
             } else if (itemIndex === state.data.length-1) {
                 newState = {...state,
                     status:state.status,
@@ -74,8 +70,8 @@ export default function productsReducer(state=initState,action) {
                         action.item
                     ]
                 };
-                console.log('state после обработки редьюсером:',newState);
-                //return newState;
+                //console.log('state после обработки редьюсером:',newState);
+
             } else {
                 newState = {...state,
                     status:state.status,
@@ -86,7 +82,7 @@ export default function productsReducer(state=initState,action) {
                         ...state.data.slice(itemIndex+1, state.data.length),
                     ]
                 };
-                console.log('state после обработки редьюсером:',newState);
+                //console.log('state после обработки редьюсером:',newState);
             }
             return newState;
         }

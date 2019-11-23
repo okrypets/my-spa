@@ -1,6 +1,6 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
-//import {appEvents} from "./events";
+import {appEvents} from "./events";
 //import { paginationStateAC } from "../Redux/Actions/paginationAC";
 import Sorting from "./Sorting"
 import Pagination from "./Pagination"
@@ -11,25 +11,20 @@ import ShopCatalogItem from './ShopCatalogItem';
 import FavoriteCount from '../Components/FavoriteCount'
 
 import {
-    NO_SORT,
-    //BY_PRICE,
-    //BY_NAME,
-    //FAVORITE_ONLY
-} from './Sorting';
-import {
     CATALOG_ITEM,
 } from '../pages/PageShop'
+//import {appEvents} from "./events";
 
 class ShopCatalog extends PureComponent {
 
     static propTypes = {
         //router:PropTypes.object, // REDUX
         //match:PropTypes.object.isRequired,
-        //location: PropTypes.object.isRequired,
+        location: PropTypes.object,
         //history: PropTypes.object.isRequired,
         products: PropTypes.array, // REDUX
         //catalogLink: PropTypes.object,
-        isSortBy: PropTypes.number,
+        isSortBy: PropTypes.string,
         currentPage:PropTypes.number.isRequired,
         //favoriteList:PropTypes.array,
         showMode: PropTypes.string,
@@ -38,7 +33,7 @@ class ShopCatalog extends PureComponent {
 
 
     state = {
-        isSortBy: NO_SORT,
+        isSortBy: this.props.isSortBy,
         allProducts: this.props.products,
         allSortedProducts: {},
         currentPageProducts: [],
@@ -49,9 +44,16 @@ class ShopCatalog extends PureComponent {
 
     componentWillReceiveProps(nextProps, nextContext) {
         console.log(`componentWillReceiveProps - ShopCatalog`);
-        console.log(nextProps.currentPage);
-        console.log(this.props.currentPage);
-        this.setState({currentPage: nextProps.currentPage,})
+        //console.log(nextProps.currentPage);
+        //console.log(this.props.currentPage);
+
+
+        this.setState({
+            currentPage: nextProps.currentPage,
+        }, () => appEvents.emit('EcurrentPageToHandleClick',this.state.currentPage))
+
+        //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
+
         //const currentPage = this.props.currentPage;
         //this.setState({ currentPage:currentPage });
         //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
@@ -59,13 +61,16 @@ class ShopCatalog extends PureComponent {
 
     componentWillMount() {
         console.log(`componentWillMount - ShopCatalog`);
+        appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
+        //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
         // создаем
        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
 
     }
     componentDidMount() {
         console.log(`componentDidMount - ShopCatalog`);
-        //appEvents.addListener('ESortingOnChange',this.sortingOnSelectChange);
+        //appEvents.addListener('ESortingOnChange',this.sortingOnSelectChange); // Передается BY_NAME или др.
+        //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
         //const allProducts = this.props.products.data;
         //this.setState({ allProducts });
 
@@ -78,6 +83,18 @@ class ShopCatalog extends PureComponent {
         //appEvents.removeListener('ESortingOnChange',this.sortingOnSelectChange);
         //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
     };
+
+    setSortedProductsArray = (sortedArray)=> {
+        console.log(`getSortedProductsArray`);
+        console.log(sortedArray);
+        this.setState({
+        //    allSortedProducts: sortedArray,
+        })
+    }
+
+
+
+
 
 
     onPageChanged = data => {
@@ -119,7 +136,7 @@ class ShopCatalog extends PureComponent {
         //let pageLink = `page-${currentPage}`;
 
 
-        console.log(currentPage);
+        //console.log(currentPage);
 
         return (
             <Fragment>

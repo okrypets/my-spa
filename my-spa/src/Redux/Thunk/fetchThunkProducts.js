@@ -53,22 +53,17 @@ export const productsThunkAC = () => async (dispatch) => {
 
         );
 
-        //const response = await isoFetch(fetchConfig.URL);
         if (!response.ok) {
             dispatch(productsErrorAC());
-            //throw new Error("fetch error " + response.status);
         }
         const data = await response.json();
-        //console.log("Products success", data);
         dispatch(productsSetAC(data));
     } catch (error) {
-        //this.fetchError(error.message);
-        //console.log("throwing Error", error);
-        //dispatch(productsErrorAC());
         throw error;
     }
 };
 
+/*
 export const postProductsThunkAC = () => async (dispatch) => {
     //dispatch(productsLoadingAC());
     try {
@@ -99,4 +94,6 @@ export const postProductsThunkAC = () => async (dispatch) => {
         throw error;
     }
 };
+
+ */
 
