@@ -1,7 +1,7 @@
 import React, {PureComponent, Fragment} from 'react';
 //import PropTypes from 'prop-types';
 import {appEvents} from "./events";
-import ReactTransitionGroup from 'react-addons-transition-group' // ES6
+import ReactCSSTransitionGroup from 'react-addons-transition-group' // ES6
 //import {GREEN, RED} from "../pages/PageShop";
 
 import './Alerts.scss'
@@ -42,7 +42,7 @@ class Alerts extends PureComponent {
         this.setState({
             color: color,
             shouldShow: true,
-        })
+        }, () => setTimeout(this.state.color, 3000))
         //setTimeout(this.state.color, 3000);
     }
 
@@ -66,7 +66,7 @@ class Alerts extends PureComponent {
             <Fragment>
 
                 <div className={`AlertsBlock`}>
-                    {shouldShow ? <ReactTransitionGroup
+                    {shouldShow ? <ReactCSSTransitionGroup
                             //component={FirstChild}
                             transitionName="example"
                             transitionEnterTimeout={500}
@@ -81,7 +81,7 @@ class Alerts extends PureComponent {
                             <h3>The product is already in the shopping cart</h3>
                             }
                         </span>
-                        </ReactTransitionGroup>
+                        </ReactCSSTransitionGroup>
                         :
                         null
                     }

@@ -25,7 +25,7 @@ class ShopCatalog extends PureComponent {
         products: PropTypes.array, // REDUX
         //catalogLink: PropTypes.object,
         isSortBy: PropTypes.string,
-        currentPage:PropTypes.number.isRequired,
+        currentPage:PropTypes.number,
         //favoriteList:PropTypes.array,
         showMode: PropTypes.string,
         //pagination:PropTypes.object, // REDUX
@@ -213,7 +213,7 @@ class ShopCatalog extends PureComponent {
 
                 <Pagination
                     totalRecords={totalProducts}
-                    pageLimit={5}
+                    pageLimit={50}
                     pageNeighbours={1}
                     onPageChanged={this.onPageChanged}
                     currentPage={currentPage}

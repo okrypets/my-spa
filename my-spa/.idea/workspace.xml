@@ -4,96 +4,25 @@
     <list default="true" id="04e43f5c-7c7d-4a78-921e-159840bfdf8f" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/my-spa.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Alerts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Alerts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/CheckOut.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/CheckOut.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ShoppingCart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ShoppingCart.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ShoppingCartItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ShoppingCartItem.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Success.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Redux/Actions/shoppingCartAC.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Redux/Reducers/shoppingCartReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Sorting.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkCart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0216-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0216-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0247-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0247-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0248-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0248-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0249-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0249-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0251-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0251-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0252-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0252-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0253-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0253-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0279-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0279-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0280-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0280-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0281-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0281-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0282-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0282-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0283-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0283-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0284-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0284-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0285-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0285-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0287-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0287-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0289-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0289-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0310-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0310-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0311-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0311-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0338-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0338-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0342-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0342-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0343-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0343-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0344-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0344-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0345-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0345-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0440-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0440-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0441-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0441-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0442-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0442-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0443-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0443-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0444-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0444-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0445-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0445-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0446-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0446-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0447-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0447-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0448-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0448-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0449-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0449-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0450-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0450-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0451-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0451-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0452-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0452-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0453-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0453-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0454-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0454-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0455-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0455-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0456-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0456-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0458-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0458-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0459-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0459-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0460-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0460-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0461-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0461-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0462-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0462-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0463-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0463-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0464-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0464-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0465-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0465-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0466-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0466-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0469-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0469-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0470-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0470-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0471-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0471-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0472-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0472-01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Images/Shop/0473-01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Images/Shop/0473-01.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/FavoriteCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/FavoriteCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Alerts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Alerts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalogItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalogItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalogItem.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/withDataLoad.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Actions/paginationAC.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/paginationReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkProducts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCart.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCart.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCartItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCartItem.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Success.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Success.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/Actions/shoppingCartAC.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Actions/shoppingCartAC.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/shoppingCartReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Reducers/shoppingCartReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/PageBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageBasket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/PageShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageShop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/PagesLinks.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PagesNavLinks.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/PagesNavLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PagesNavLinks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/index.js" beforeDir="false" />
@@ -111,12 +40,17 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Redux/Thunk" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\my-app\my-spa\src\Redux\Thunk" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -142,6 +76,8 @@
       <updated>1574493664265</updated>
       <workItem from="1574493667011" duration="50117000" />
       <workItem from="1574580436711" duration="33707000" />
+      <workItem from="1574655371923" duration="510000" />
+      <workItem from="1574696602099" duration="15353000" />
     </task>
     <task id="LOCAL-00001" summary="my-app">
       <created>1574516659049</created>
@@ -150,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574516659050</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="my-app -3">
+      <created>1574655584819</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574655584819</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="my-app" />
-    <option name="LAST_COMMIT_MESSAGE" value="my-app" />
+    <MESSAGE value="my-app -3" />
+    <option name="LAST_COMMIT_MESSAGE" value="my-app -3" />
   </component>
 </project>

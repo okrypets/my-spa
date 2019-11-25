@@ -7,10 +7,10 @@ import {
 import history from './history';
 import PagesNavLinks from './pages/PagesNavLinks'
 import PageMain from "./pages/PageMain";
-//import PageBasket from "./pages/PageBasket";
 import PageShop from "./pages/PageShop";
-import ShoppingCart from "./Components/ShoppingCart";
+//import ShoppingCart from "./Components/ShoppingCart";
 import Alerts from './Components/Alerts'
+import PageBasket from "./pages/PageBasket";
 
 class App extends PureComponent {
 
@@ -32,7 +32,7 @@ class App extends PureComponent {
                             <Switch>
                                 <Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
                                 <Route exact path="/" component = {PageMain} />
-                                <Route path="/basket" component = {ShoppingCart} />
+                                <Route path="/basket" component = {PageBasket} />
                                 <Route path="/:catalog/:urlParams?" component = {PageShop} className="PageCatalog" />
                             </Switch>
                         </div>

@@ -59,10 +59,10 @@ class  ShopCatalogItem extends PureComponent {
     };
 
 
-    handleClickBuyButton = () => {
-        console.log(`handleClickBuyButton`);
+    handleClickAddToCart = () => {
+        console.log(`handleClickAddToCart`);
         const {item} = this.props;
-        appEvents.emit('EhandleClickBuyButton', item);
+        appEvents.emit('EhandleClickAddToCart', item);
         this.setState({
             inCart: true,
         })
@@ -101,7 +101,7 @@ class  ShopCatalogItem extends PureComponent {
                                            className="inBasket"
                                            value={!item.Price && !isFavorite ? "can't Order" : 'Add to Sopping Cart'}
                                            disabled={!item.Price && !isFavorite}
-                                           onClick={this.handleClickBuyButton}
+                                           onClick={this.handleClickAddToCart}
                                     />
 
                             </div>

@@ -2,7 +2,7 @@
   position: relative;
   margin: 0.5em;
   //height: auto;
-  order: 1;
+  //order: 1;
   &>.block {
     position: relative;
     display: flex;
@@ -49,25 +49,27 @@
   }
 
   &.example-leave {
-    max-height: 1000px;
+    max-height: 100px;
     overflow: hidden;
-    order: 0;
+
+    //order: 0;
     &.example-leave-active {
       max-height: 0;
-      transition: max-height 100000ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      visibility: hidden;
+      transition: max-height 400ms cubic-bezier(0.46, 0.03, 0.52, 0.96);
+      //display: none;
     }
   }
-/*
-  &.example-enter {
 
+  &.example-enter {
     max-height: 0;
     &.example-enter-active {
       max-height: 1000px;
-      transition: max-height 120000ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      transition: max-height 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
     }
   }
 
- */
+
 
 
 }

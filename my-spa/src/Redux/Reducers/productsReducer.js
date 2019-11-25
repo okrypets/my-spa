@@ -2,7 +2,6 @@
 import {PRODUCTS_LOADING, PRODUCTS_ERROR, PRODUCTS_SET,
     IS_PRODUCT_FAVORITE
 } from '../Actions/productsAC';
-//import {IS_FAVORITE} from '../../Components/ShopCatalogItem'
 
 const initState={
     status: 0, // 0 - ничего не началось, 1 - идёт загрузка, 2 - была ошибка, 3 - данные загружены

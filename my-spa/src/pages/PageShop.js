@@ -10,10 +10,11 @@ import PropTypes from "prop-types";
 import {appEvents} from "../Components/events";
 import {productsThunkAC,
     //productsThunkPOSTAC,
-    //shoppingCartPOSTThunkAC
+    //shoppingCartThunkAC
 } from "../Redux/Thunk/fetchThunkProducts";
+import {shoppingCartThunkAC, shoppingCartAddThunkAC} from '../Redux/Thunk/fetchThunkCart'
 import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
-import {shoppingCartAddAC} from '../Redux/Actions/shoppingCartAC';
+//import {shoppingCartAddAC} from '../Redux/Actions/shoppingCartAC';
 //import {shoppingCartRemoveAC} from '../Redux/Actions/shoppingCartAC';
 import {connect} from "react-redux";
 import loaderIconGif from '../loader.gif';
@@ -49,7 +50,8 @@ class PageShop extends PureComponent {
 
     componentWillMount() {
         console.log(`componentWillMount - PageShop`);
-        this.props.dispatch( productsThunkAC(this.props.products));
+        this.props.dispatch( productsThunkAC(this.props.dispatch));
+        this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
         //this.props.dispatch( productsThunkPOSTAC(this.props.products));
         //this.props.dispatch( shoppingCartPOSTThunkAC (this.props.dispatch));
     }
@@ -79,7 +81,7 @@ class PageShop extends PureComponent {
         console.log(`componentDidMount - PageShop`);
         //this.props.dispatch( productsThunkAC(this.props.dispatch));
         appEvents.addListener('EisFavoriteItemOnChange',this.setFavoriteItem);
-        appEvents.addListener('EhandleClickBuyButton',this.addItemToShoppingCart);
+        appEvents.addListener('EhandleClickAddToCart',this.addItemToShoppingCart);
         //appEvents.addListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
 
     }
@@ -87,7 +89,7 @@ class PageShop extends PureComponent {
     componentWillUnmount() {
         console.log(`componentWillUnmount - PageShop`);
         appEvents.removeListener('EisFavoriteItemOnChange',this.setFavoriteItem);
-        appEvents.removeListener('EhandleClickBuyButton',this.addItemToShoppingCart);
+        appEvents.removeListener('EhandleClickAddToCart',this.addItemToShoppingCart);
         //appEvents.removeListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
     };
 
@@ -104,7 +106,8 @@ class PageShop extends PureComponent {
 
             if (!itemInCart) {
                 console.log(`shoppingCart.length > 0, itemInCart - false `);
-                this.props.dispatch(shoppingCartAddAC(item));
+                //this.props.dispatch(shoppingCartAddAC(item)); //отправляем просто в REDUX
+                this.props.dispatch(shoppingCartAddThunkAC(item));//отправляем в AJAX
                 appEvents.emit('EshowAlertCart', GREEN);
             } else {
                 console.log(`shoppingCart.length > 0, itemInCart - true`);
@@ -112,7 +115,8 @@ class PageShop extends PureComponent {
             }
         } else {
             console.log(`shoppingCart.length = 0`);
-            this.props.dispatch(shoppingCartAddAC(item));
+            //this.props.dispatch(shoppingCartAddAC(item));//отправляем просто в REDUX
+            this.props.dispatch(shoppingCartAddThunkAC(item));//отправляем в AJAX
             appEvents.emit('EshowAlertCart', GREEN);
         }
     };
@@ -129,12 +133,12 @@ class PageShop extends PureComponent {
         } = this.state;
  */
 
-        const {match, products, location} = this.props;
+        const {match, products, location, shoppingCart} = this.props;
 
-        if ( products.status<=1 )
+        if ( products.status<=1 || shoppingCart.status<=1)
             return <img src={loaderIconGif} alt={`Загрузка данных`} />;
 
-        if ( products.status===2 )
+        if ( products.status===2 || shoppingCart.status===2)
             return "ошибка загрузки данных";
 
         return (

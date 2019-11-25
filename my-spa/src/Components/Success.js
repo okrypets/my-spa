@@ -7,7 +7,7 @@ class Success extends PureComponent {
 
         return(
             <div>
-                <h1>Данные отправлены успешно</h1>
+                <h1>Success! Shopping Cart is empty. Thanks!</h1>
             </div>
         );
     }
