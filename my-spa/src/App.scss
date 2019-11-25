@@ -17,9 +17,17 @@
 .App-link {
   color: #09d3ac;
 }
-.ShopCatalogItem img {
-  width: 100px;
+.contentBlock {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  .sortingBlock {
+    >* {
+      margin: 0.5em;
+    }
+  }
 }
+
 button:active,
 input:active,
 textarea:active {

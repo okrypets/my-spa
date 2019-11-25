@@ -1,14 +1,16 @@
 import React, {PureComponent} from 'react';
 import './App.scss';
 import {
-    Router, Route, Switch,
+    Router, Route, Switch, Redirect,
    withRouter
 } from "react-router-dom";
 import history from './history';
 import PagesNavLinks from './pages/PagesNavLinks'
 import PageMain from "./pages/PageMain";
-import PageBasket from "./pages/PageBasket";
+//import PageBasket from "./pages/PageBasket";
 import PageShop from "./pages/PageShop";
+import ShoppingCart from "./Components/ShoppingCart";
+import Alerts from './Components/Alerts'
 
 class App extends PureComponent {
 
@@ -19,8 +21,6 @@ class App extends PureComponent {
 
         console.log(location.search);
 
-        //let PageCatalogWithData = this.PageCatalogWithData;
-
         return (
             <Router history={history}>
                 <div className="App">
@@ -30,15 +30,14 @@ class App extends PureComponent {
                     <main>
                         <div className="contentBlock">
                             <Switch>
+                                <Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
                                 <Route exact path="/" component = {PageMain} />
-                                <Route path="/cart" component = {PageBasket} />
-                                <Route path={"/:catalog/:urlParams?"} component = {PageShop} className="PageCatalog" />
+                                <Route path="/basket" component = {ShoppingCart} />
+                                <Route path="/:catalog/:urlParams?" component = {PageShop} className="PageCatalog" />
                             </Switch>
                         </div>
-                        <div className="RightSideBar">
-                            RightSideBar
-                        </div>
                     </main>
+                    <Alerts />
                 </div>
             </Router>
         );

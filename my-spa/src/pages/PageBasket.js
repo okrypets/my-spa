@@ -1,9 +1,31 @@
-import React from 'react';
+import React, {PureComponent, Fragment} from 'react';
+import ShoppingCart from '../Components/ShopCatalog'
+import Success from "../Components/Success";
+import {
+    //Router,
+    Route,
+    //Switch,
+    // Redirect,
+    withRouter
+} from "react-router-dom";
 
-export default function PageBasket() {
-    return (
-        <div className="Page_Basket">Page_Basket</div>
-    );
+class PageBasket extends PureComponent  {
+    render() {
+        return (
+            <Fragment>
+                <Route path = {`/basket`}>
+                    <ShoppingCart  />
+                </Route>
+            </Fragment>
+
+        );
+    }
+
 }
+
+const withRouterPageBasket = withRouter(PageBasket);
+export default withRouterPageBasket;
+
+//export default PageBasket;
 
     

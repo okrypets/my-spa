@@ -1,0 +1,18 @@
+.PagesLinks {
+    //
+    background-color: #333;
+    .PageLink {
+        color: #e8e8e8;
+        margin: 0 1em;
+        padding: 0.5em;
+        display: inline-block;
+    }
+
+    .ActivePageLink {
+
+        font-weight: bold;
+        background-color: #fff;
+        color: #333;
+    }
+}
+

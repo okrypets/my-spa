@@ -9,6 +9,7 @@ import {
     //CATALOG_ITEM,
     SINGLE_ITEM,
 } from '../pages/PageShop'
+
 const IS_FAVORITE = "IS_FAVORITE";
 
 class  ShopCatalogItem extends PureComponent {
@@ -16,14 +17,18 @@ class  ShopCatalogItem extends PureComponent {
     static propTypes = {
         item:PropTypes.object,
         showMode: PropTypes.string,
+        cartMode: PropTypes.string,
+
     };
 
     state = {
         isFavorite: this.props.item.IS_FAVORITE,
+        inCart: false,
     };
 
     isFavoriteItemHandleClick = () => {
-        this.state.isFavorite ? this.favoriteDisable()
+        this.state.isFavorite ?
+            this.favoriteDisable()
             :
             this.favoriteActive()
 
@@ -54,6 +59,16 @@ class  ShopCatalogItem extends PureComponent {
     };
 
 
+    handleClickBuyButton = () => {
+        console.log(`handleClickBuyButton`);
+        const {item} = this.props;
+        appEvents.emit('EhandleClickBuyButton', item);
+        this.setState({
+            inCart: true,
+        })
+    }
+
+
     render() {
         console.log("ShopCatalogItem - render");
         const {showMode} = this.props;
@@ -65,31 +80,31 @@ class  ShopCatalogItem extends PureComponent {
             <div className={`ShopCatalogItem ${isFavorite ? 'active' : ''}`} key={item.id}>
                 <div className={`block`}>
                     <img src={`/Images/Shop/${item.ImgSrc}`} alt=""/>
+                    <div className={`itemInfo`} >
+                        <h2>
+                            <Link to={`/catalog/item-${item.id}`} className="SingleItemName">{item.Name}</Link>
+                        </h2>
 
-                    <h2>
-                        <Link to={`/catalog/item-${item.id}`} className="SingleItemName">{item.Name}</Link>
-                    </h2>
+                        <div className="priceBlock">
+                            <span className='itemPrice'>
+                                {item.Price === 0 ?
+                                    <span>Available only if isFavorite</span>
+                                    :
+                                    <Fragment>
+                                        Price: <span>{item.Price}</span> $
+                                    </Fragment>
+                                }
+                            </span>
+                            <div className="buttonBlock">
 
-                    <div className="priceBlock">
-                    <span className='itemPrice'>
-                        {item.Price === 0 ?
-                            <span>Available only if isFavorite</span>
-                            :
-                            <Fragment>
-                                Price: <span>{item.Price}</span> $
-                            </Fragment>
-                        }
-                    </span>
-                        <div className="buttonBlock">
-                            <input type="number"
-                                   defaultValue={1}
-                                   disabled={!item.Price && !isFavorite}
-                            />
-                            <input  type="button"
-                                    className="inBasket"
-                                    value="Купить"
-                                    disabled={!item.Price && !isFavorite}
-                            />
+                                    <input type="button"
+                                           className="inBasket"
+                                           value={!item.Price && !isFavorite ? "can't Order" : 'Add to Sopping Cart'}
+                                           disabled={!item.Price && !isFavorite}
+                                           onClick={this.handleClickBuyButton}
+                                    />
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +133,6 @@ const mapStateToProps = function (store) {
     };
 };
 
-
 //const withRouterPageShop = withRouter(PageShop);
 export default connect(mapStateToProps)(ShopCatalogItem);
  */
@@ -126,6 +140,12 @@ export {IS_FAVORITE};
 export default ShopCatalogItem;
 
 /*
+
+<input type="number"
+                                   defaultValue={1}
+                                   disabled={!item.Price && !isFavorite}
+                                   onChange={this.setCountOnChange}
+                            />
 
     const mapDispatchToProps = dispatch => bindActionCreators({
        // changePage: () => push(`/SingleItem`)
@@ -140,7 +160,13 @@ export default ShopCatalogItem;
 /*
 <button onClick={() => props.changePage()}>Go to about page via redux</button>
 
+
+
+
+
 */
+
+
 
 
 //export default withRouter(ShopCatalogItem);

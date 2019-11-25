@@ -2,11 +2,11 @@ import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {appEvents} from "./events";
 //import { paginationStateAC } from "../Redux/Actions/paginationAC";
-import Sorting from "./Sorting"
+import Sorting, {BY_NAME, BY_PRICE, NO_SORT} from "./Sorting"
 import Pagination from "./Pagination"
 import ShopCatalogItem from './ShopCatalogItem';
 //import {connect} from "react-redux";
-//import {withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 //import SingleItem from "./SingleItem";
 import FavoriteCount from '../Components/FavoriteCount'
 
@@ -21,7 +21,7 @@ class ShopCatalog extends PureComponent {
         //router:PropTypes.object, // REDUX
         //match:PropTypes.object.isRequired,
         location: PropTypes.object,
-        //history: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired,
         products: PropTypes.array, // REDUX
         //catalogLink: PropTypes.object,
         isSortBy: PropTypes.string,
@@ -29,13 +29,14 @@ class ShopCatalog extends PureComponent {
         //favoriteList:PropTypes.array,
         showMode: PropTypes.string,
         //pagination:PropTypes.object, // REDUX
+        allSortedProducts: PropTypes.array,
     };
 
 
     state = {
         isSortBy: this.props.isSortBy,
         allProducts: this.props.products,
-        allSortedProducts: {},
+        allSortedProducts: [],
         currentPageProducts: [],
         currentPage: this.props.currentPage,
         totalPages: null,
@@ -52,6 +53,11 @@ class ShopCatalog extends PureComponent {
             currentPage: nextProps.currentPage,
         }, () => appEvents.emit('EcurrentPageToHandleClick',this.state.currentPage))
 
+
+        console.log(nextProps.location.search);
+        const pageCatalogSortedBy = nextProps.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
+        console.log(pageCatalogSortedBy);
+        this.setState({isSortBy:pageCatalogSortedBy}, this.getSortedProductsArray);
         //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
 
         //const currentPage = this.props.currentPage;
@@ -61,10 +67,13 @@ class ShopCatalog extends PureComponent {
 
     componentWillMount() {
         console.log(`componentWillMount - ShopCatalog`);
-        appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
         //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
         // создаем
        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+        console.log(this.props.location.search);
+        const pageCatalogSortedBy = this.props.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
+        console.log(pageCatalogSortedBy);
+        this.setState({isSortBy:pageCatalogSortedBy}, this.getSortedProductsArray);
 
     }
     componentDidMount() {
@@ -75,6 +84,7 @@ class ShopCatalog extends PureComponent {
         //this.setState({ allProducts });
 
         //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+
 
     };
 
@@ -88,32 +98,79 @@ class ShopCatalog extends PureComponent {
         console.log(`getSortedProductsArray`);
         console.log(sortedArray);
         this.setState({
-        //    allSortedProducts: sortedArray,
+            allSortedProducts: sortedArray,
         })
     }
-
-
-
-
 
 
     onPageChanged = data => {
         console.log(data);
         console.log(`onPageChanged - ShopCatalog`);
         const allProducts = this.props.products;
-        //const { isSortBy } = this.state;
-        //const allProducts = (isSortBy === BY_NAME) ? this.sortByName() : this.getAllProducts() ;
+        const { allSortedProducts, isSortBy } = this.state;
+        //const allProducts = (isSortBy !== NO_SORT) ? this.sortByName() : this.getAllProducts() ;
 
         const { currentPage, totalPages, pageLimit } = data;
         //const currentPage = this.state.currentPage;
         //const { totalPages, pageLimit } = data;
         const offset = (currentPage - 1) * pageLimit;
 
-        const currentPageProducts = allProducts.slice(offset, offset + pageLimit);
+        const currentPageProducts = (isSortBy !== NO_SORT ? allSortedProducts : allProducts).slice(offset, offset + pageLimit);
 
         //this.props.history.push(`/catalog/page-${currentPage}`);
         this.setState({ currentPage, currentPageProducts, totalPages });
         //this.props.dispatch(paginationStateAC(data.currentPage, currentProducts) );
+    };
+
+
+    getSortedProductsByName = () => {
+        console.log(`getSortedProductsByName`);
+        const {products} = this.props;
+        console.log(products.data);
+        let newProducts = products.slice();
+        let sortedByName;
+        sortedByName = newProducts.sort((a, b) => {
+            let nameA=a.Name.toLowerCase(),
+                nameB=b.Name.toLowerCase();
+            if (nameA < nameB) //сортируем строки по возрастанию
+                return -1;
+            if (nameA > nameB)
+                return 1;
+            return 0;
+        });
+        this.setState({
+            allSortedProducts: sortedByName,
+        });
+    };
+
+    getSortedProductsByPrice = () => {
+        const {products} = this.props;
+        console.log(products.data);
+        let newProducts = products.slice();
+        let sortedByPrice;
+        sortedByPrice = newProducts.sort((a, b) => {
+            return a.Price-b.Price;
+        });
+        this.setState({
+            allSortedProducts: sortedByPrice,
+        });
+    };
+
+    getSortedProductsArray =() => {
+        console.log(`getSortedProductsArray`);
+        const {isSortBy} = this.state;
+        //let sortedBy;
+        if (isSortBy === BY_NAME) {
+            this.getSortedProductsByName();
+        } else if (isSortBy === BY_PRICE) {
+            this.getSortedProductsByPrice();
+        } else {
+            this.setState({
+                allSortedProducts: [],
+                isSortBy:NO_SORT,
+            })
+        }
+
     };
 
 
@@ -140,8 +197,11 @@ class ShopCatalog extends PureComponent {
 
         return (
             <Fragment>
-                <Sorting products={allProducts}/>
-                <FavoriteCount products={allProducts}/>
+                <div className={`sortingBlock`}>
+                    <Sorting products={allProducts}/>
+                    <FavoriteCount products={allProducts}/>
+                </div>
+
                 {
                         //currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
                     currentPageProducts.map((item) => <ShopCatalogItem className={`CatalogItem`}
@@ -181,12 +241,11 @@ const mapStateToProps = function (store) {
 const withRouterShopCatalog = withRouter(ShopCatalog);
 export default connect(mapStateToProps)(withRouterShopCatalog);
  */
-/*
+
 const withRouterShopCatalog = withRouter(ShopCatalog);
 export default withRouterShopCatalog;
 
- */
-export default ShopCatalog;
+//export default ShopCatalog;
 /*
 <Route exact path={(totalPages>1 && currentPage!==1)?`/${this.props.catalogLink.catalog}/:page-${this.state.currentPage}`:`/${this.props.catalogLink.catalog}`}>
 

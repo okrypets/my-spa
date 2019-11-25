@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
 //import {Link} from "react-router-dom";
 
@@ -46,9 +46,16 @@ class FavoriteCount extends PureComponent {
     render() {
         const {allFavorite} = this.state;
         return(
-            <span>All Favorite {allFavorite > 0 ? - allFavorite : ""}</span>
-            //<Link to={`/catalog/?sort=favorite`} value={`All Favorite`} children ={`All Favorite ${allFavorite > 0 ? - allFavorite : ""}`}/>
+           <Fragment>
+                {allFavorite > 0 &&
+                <span>All Favorite: {allFavorite}</span>
+                }
+           </Fragment>
+
+
         );
     }
 }
 export default FavoriteCount;
+
+//<Link to={`/catalog/?sort=favorite`} value={`All Favorite`} children ={`All Favorite ${allFavorite > 0 ? - allFavorite : ""}`}/>

@@ -1,0 +1,9 @@
+.ShoppingCart {
+  &>span {
+    display: flex;
+    flex-direction: column;
+    &>.ShoppingCartItem {
+
+    }
+  }
+}

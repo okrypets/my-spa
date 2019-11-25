@@ -8,17 +8,25 @@ import {
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import {appEvents} from "../Components/events";
-import {productsThunkAC} from "../Redux/Thunk/fetchThunkProducts";
+import {productsThunkAC,
+    //productsThunkPOSTAC,
+    //shoppingCartPOSTThunkAC
+} from "../Redux/Thunk/fetchThunkProducts";
 import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
+import {shoppingCartAddAC} from '../Redux/Actions/shoppingCartAC';
+//import {shoppingCartRemoveAC} from '../Redux/Actions/shoppingCartAC';
 import {connect} from "react-redux";
 import loaderIconGif from '../loader.gif';
 import ShopCatalog from "../Components/ShopCatalog";
 
 import ShopCatalogItem from '../Components/ShopCatalogItem'
-import {NO_SORT, BY_PRICE, BY_NAME} from "../Components/Sorting";
+import Success from "../Components/Success";
+//import {NO_SORT} from "../Components/Sorting";
 
 const CATALOG_ITEM = 'CATALOG_ITEM';
 const SINGLE_ITEM = 'SINGLE_ITEM';
+const GREEN = 'GREEN';
+const RED = 'RED';
 
 class PageShop extends PureComponent {
 
@@ -28,38 +36,28 @@ class PageShop extends PureComponent {
         history: PropTypes.object.isRequired,
         products: PropTypes.object, //REDUX
         currentPage:PropTypes.number,
-        allSortedProducts: PropTypes.array,
+        shoppingCart: PropTypes.object,
+        //allSortedProducts: PropTypes.array,
     };
 
     state = {
         currentPage:1,
         products: this.props.products.data,
-        allSortedProducts: [],
-        //catalogLink: ,
-        isSortBy: NO_SORT,
+        shoppingCart: this.props.products.items,
+
     };
 
     componentWillMount() {
         console.log(`componentWillMount - PageShop`);
-
-        if (this.props.products.status === 3) {
-            this.setState({
-                products:this.props.products.data,
-            });
-        }
-
+        this.props.dispatch( productsThunkAC(this.props.products));
+        //this.props.dispatch( productsThunkPOSTAC(this.props.products));
+        //this.props.dispatch( shoppingCartPOSTThunkAC (this.props.dispatch));
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
         console.log(`componentWillReceiveProps - PageShop`);
 
         const locationCurrentPage = +nextProps.location.pathname.replace(/[^0-9]/g, "");
-
-
-        console.log(nextProps.location.search);
-        const pageCatalogSortedBy = nextProps.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
-        console.log(pageCatalogSortedBy);
-        this.setState({isSortBy:pageCatalogSortedBy});
 
 
         if (nextProps.match.params.urlParams !== undefined ) {
@@ -70,101 +68,66 @@ class PageShop extends PureComponent {
         if (this.props.products.status === 3) {
             this.setState({
                 products:this.props.products.data,
-            }, this.getSortedProductsArray);
+            }
+            );
         }
-        console.log(this.props.actions);
+
 
     }
 
     componentDidMount() {
         console.log(`componentDidMount - PageShop`);
-        this.props.dispatch( productsThunkAC(this.props.dispatch));
+        //this.props.dispatch( productsThunkAC(this.props.dispatch));
         appEvents.addListener('EisFavoriteItemOnChange',this.setFavoriteItem);
+        appEvents.addListener('EhandleClickBuyButton',this.addItemToShoppingCart);
+        //appEvents.addListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
 
     }
 
     componentWillUnmount() {
         console.log(`componentWillUnmount - PageShop`);
         appEvents.removeListener('EisFavoriteItemOnChange',this.setFavoriteItem);
+        appEvents.removeListener('EhandleClickBuyButton',this.addItemToShoppingCart);
+        //appEvents.removeListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
     };
 
     setFavoriteItem = (item) => {
         this.props.dispatch( isProductFavoriteAC(item));
     };
 
+    addItemToShoppingCart = (item) => {
+        console.log(`addItemToShoppingCart - PageShop`);
+        const {shoppingCart} = this.props;
+        let itemInCart;
+        if (shoppingCart.items.length > 0) {
+            itemInCart = shoppingCart.items.some(i => i.id === item.id); // товар уже есть в корзине ?
 
-    setSortedProductsArray = (sortedArray) => {
-        console.log(`getSortedProductsArray`);
-        console.log(sortedArray);
-        this.setState({
-            allSortedProducts: sortedArray,
-           //isSortBy: event.target.value,
-        })
-    };
-
-
-    getSortedProductsByName = () => {
-        console.log(`getSortedProductsByName`);
-        const {products} = this.props;
-        console.log(products.data);
-        let newProducts = products.data.slice();
-        let sortedByName;
-        sortedByName = newProducts.sort((a, b) => {
-            let nameA=a.Name.toLowerCase(),
-                nameB=b.Name.toLowerCase();
-            if (nameA < nameB) //сортируем строки по возрастанию
-                return -1;
-            if (nameA > nameB)
-                return 1;
-            return 0;
-        });
-        this.setState({
-            allSortedProducts: sortedByName,
-        });
-    };
-
-    getSortedProductsByPrice = () => {
-        const {products} = this.props;
-        console.log(products.data);
-        let newProducts = products.data.slice();
-        let sortedByPrice;
-        sortedByPrice = newProducts.sort((a, b) => {
-            return a.Price-b.Price;
-        });
-        this.setState({
-            allSortedProducts: sortedByPrice,
-        });
-    };
-
-    getSortedProductsArray =() => {
-        console.log(`getSortedProductsArray`);
-        const {isSortBy} = this.state;
-        //let sortedBy;
-        if (isSortBy === BY_NAME) {
-            this.getSortedProductsByName();
-        } else if (isSortBy === BY_PRICE) {
-            this.getSortedProductsByPrice();
+            if (!itemInCart) {
+                console.log(`shoppingCart.length > 0, itemInCart - false `);
+                this.props.dispatch(shoppingCartAddAC(item));
+                appEvents.emit('EshowAlertCart', GREEN);
+            } else {
+                console.log(`shoppingCart.length > 0, itemInCart - true`);
+                appEvents.emit('EshowAlertCart', RED);
+            }
         } else {
-            this.setState({
-                allSortedProducts: [],
-                isSortBy:NO_SORT,
-            })
+            console.log(`shoppingCart.length = 0`);
+            this.props.dispatch(shoppingCartAddAC(item));
+            appEvents.emit('EshowAlertCart', GREEN);
         }
-
     };
-
 
     render() {
-
+/*
        const {
             //currentPage,
             //products,
             //catalogLink,
-            isSortBy,
-            allSortedProducts,
+            //isSortBy,
+            //allSortedProducts,
             //favoriteList,
         } = this.state;
-
+ */
 
         const {match, products, location} = this.props;
 
@@ -181,12 +144,13 @@ class PageShop extends PureComponent {
                             <Route path={`/${match.params.catalog}/page-:pageNumber`} render={({match}) => {
                             return (
                                 <ShopCatalog currentPage={+match.params.pageNumber}
-                                             products={location.search && isSortBy !== NO_SORT ?
-                                                 allSortedProducts
-                                                 :
+                                             products={
+                                                 //location.search && isSortBy !== NO_SORT ?
+                                                 //allSortedProducts
+                                                 //:
                                                  products.data}
                                              showMode={CATALOG_ITEM}
-                                             isSortBy = {isSortBy}
+                                             //isSortBy = {isSortBy}
                                 />
                             )
                         }
@@ -204,7 +168,9 @@ class PageShop extends PureComponent {
                         }/>
                         }
                         }
-
+                        <Route path = {`/success`}>
+                            <Success  />
+                        </Route>
 
 
                     </Switch>
@@ -216,10 +182,13 @@ class PageShop extends PureComponent {
 export {
     CATALOG_ITEM,
     SINGLE_ITEM,
+    GREEN,
+    RED,
 }
 const mapStateToProps = function (state) {
     return {
         products: state.products,
+        shoppingCart: state.shoppingCart,
     };
 };
 const withRouterPageShop = withRouter(PageShop);

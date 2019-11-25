@@ -1,6 +1,7 @@
 import isoFetch from 'isomorphic-fetch';
 
 import { productsLoadingAC, productsErrorAC, productsSetAC } from "../Actions/productsAC";
+//import {shoppingCartAddAC} from '../Actions/shoppingCartAC'
 
 /*
 function productsThunkAC(dispatch) {
@@ -44,12 +45,12 @@ export const productsThunkAC = () => async (dispatch) => {
 
         const response = await isoFetch(`http://localhost:3004/posts`
             , {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    body: JSON.stringify(dispatch)
+                }
             }
-        }
 
         );
 
@@ -63,30 +64,33 @@ export const productsThunkAC = () => async (dispatch) => {
     }
 };
 
+
 /*
-export const postProductsThunkAC = () => async (dispatch) => {
+export const shoppingCartPOSTThunkAC = (shoppingCart) => async (dispatch) => {
     //dispatch(productsLoadingAC());
     try {
 
-        const response = await isoFetch(`http://localhost:3004/posts`
+        const response = await isoFetch(`http://localhost:3004/shoppingCart`
             , {
-                method: "POST",
+                method: "post",
                 headers: {
-                    Accept: "application/json",
+                    //Accept: "application/json",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(dispatch)
+                body: JSON.stringify(shoppingCart)
             }
 
         );
 
         if (!response.ok) {
-            dispatch(productsErrorAC());
+            console.log("throwing Error");
+            //dispatch(productsErrorAC());
             //throw new Error("fetch error " + response.status);
         }
-        const data = await response.json();
-        console.log("Products success post", data);
-        //dispatch(productsSetAC(data));
+        //const shoppingCart = await response.json();
+
+        console.log("Products success post", shoppingCart);
+        dispatch(shoppingCartAddAC(shoppingCart));
     } catch (error) {
         //this.fetchError(error.message);
         console.log("throwing Error", error);
@@ -95,5 +99,6 @@ export const postProductsThunkAC = () => async (dispatch) => {
     }
 };
 
- */
 
+
+ */

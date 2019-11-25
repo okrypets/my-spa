@@ -12,38 +12,49 @@
       width: 100px;
       height: auto;
     }
-    h2 {
-      &>a {
-        text-decoration: none;
-        color: #333333;
+    &>.itemInfo {
+      h2 {
+        text-align: left;
+        margin: 0.5em 1em;
+        &>a {
+          text-decoration: none;
+          color: #333333;
+        }
       }
-    }
-    .priceBlock {
-      display: flex;
-      flex-direction: column;
-      .buttonBlock {
+      .priceBlock {
         display: flex;
-        input {
-          &[type='button'] {
-            cursor: pointer;
-            &.inBasket {
-              background: #333;
-              border: none;
-              padding: 0.5em 1em;
-              color: #fff;
-              text-transform: uppercase;
-              &:disabled {
-                background: #888;
-                cursor: unset;
+        align-items: center;
+        margin: 0 1em;
+        .buttonBlock {
+          display: flex;
+          margin: 0 1em;
+          input {
+            &[type='button'] {
+              cursor: pointer;
+              &.inBasket {
+                background: #333;
+                border: none;
+                padding: 0.5em 1em;
+                color: #fff;
+                text-transform: uppercase;
+                &:disabled {
+                  background: #888;
+                  cursor: unset;
+                }
+                &:active {
+                   background: #666;
+                 }
               }
+
             }
-          }
-          &[type="number"] {
-            width: 50px;
+            &[type="number"] {
+              width: 50px;
+            }
           }
         }
       }
     }
+
   }
 
   .favorite {
