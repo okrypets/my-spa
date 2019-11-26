@@ -1,7 +1,8 @@
 import React, {PureComponent} from 'react';
 import './App.scss';
 import {
-    Router, Route, Switch, Redirect,
+    Router, Route, Switch, 
+    //Redirect,
    withRouter
 } from "react-router-dom";
 import history from './history';
@@ -30,7 +31,7 @@ class App extends PureComponent {
                     <main>
                         <div className="contentBlock">
                             <Switch>
-                                <Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
+                                                            
                                 <Route exact path="/" component = {PageMain} />
                                 <Route path="/basket" component = {PageBasket} />
                                 <Route path="/:catalog/:urlParams?" component = {PageShop} className="PageCatalog" />
@@ -63,6 +64,9 @@ export default withRouterApp;
 
 
 /*
+
+<Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
+
 {!location.search && <Redirect from ='/catalog/page-1' to='/catalog' />}
                                 {location.search && <Redirect from ={'/catalog/page-1'+location.search} to={'/catalog'+location.search} />}
 

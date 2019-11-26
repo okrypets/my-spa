@@ -78,7 +78,7 @@ class Alerts extends PureComponent {
                                 <h3>Product successfully added to shopping cart</h3>
                             }
                             {color === 'RED' &&
-                            <h3>The product is already in the shopping cart</h3>
+                            <h3>The product is already in your shopping cart</h3>
                             }
                         </span>
                         </ReactCSSTransitionGroup>

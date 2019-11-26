@@ -5,7 +5,8 @@ import ShoppingCartItem from "./ShoppingCartItem";
 import CheckOut from './CheckOut';
 import {appEvents} from "./events";
 import './ShoppingCart.scss'
-import {shoppingCartRemoveAC, shoppingCartRemoveAllAC } from "../Redux/Actions/shoppingCartAC";
+//import {shoppingCartRemoveAC, shoppingCartRemoveAllAC } from "../Redux/Actions/shoppingCartAC";
+//import {shoppingCartRemoveThunkAC} from '../Redux/Thunk/fetchThunkCart'
 //import ReactTransitionGroup from 'react-addons-transition-group' // ES6
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //import loaderIconGif from "../loader.gif";
@@ -47,18 +48,21 @@ class ShoppingCart extends PureComponent {
     }
 
     deleteItemFromShoppingCart = (delItem) => {
-        console.log(`deleteItemFromShoppingCart - PageShop`);
-        this.props.dispatch( shoppingCartRemoveAC(delItem));
-        const {shoppingCartProducts} = this.state;
-        let newshoppingCartProducts = [...shoppingCartProducts].filter(i => i.id !== delItem.id);
-        this.setState({
-            shoppingCartProducts: newshoppingCartProducts,
-        })
+        console.log(`deleteItemFromShoppingCart - ShoppingCart`);
+        //this.props.dispatch( shoppingCartRemoveAC(delItem)); //отправка в REDUX
+        //const {shoppingCartProducts} = this.state;
+        //let newshoppingCartProducts = [...shoppingCartProducts].filter(i => i.id !== delItem.id);
+        //this.setState({
+        //    shoppingCartProducts: newshoppingCartProducts,
+        //},         
+        //this.props.dispatch( shoppingCartRemoveThunkAC(shoppingCartProducts)) //отправлка в AJAX
+        //)
+        appEvents.emit('EdeleteItemFromShoppingCart', delItem)
     }
 
     deleteAllFromShoppingCartAfterSubmit =() => {
         console.log(`deleteAllFromShoppingCartAfterSubmit`);
-        this.props.dispatch( shoppingCartRemoveAllAC());
+        //this.props.dispatch( shoppingCartRemoveAllAC());
         this.setState({
             shoppingCartProducts: [],
             success:true,

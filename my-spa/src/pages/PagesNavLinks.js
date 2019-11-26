@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 
 import './PagesNavLinks.scss';
 //import {appEvents} from "../Components/events";
@@ -13,6 +13,7 @@ class PagesNavLinks extends PureComponent {
 
     handleClick = (e) => {
         console.log(`handleClick -  PagesNavLinks`);
+        this.props.history.push(`/catalog/page-1`);
         //appEvents.emit('EcurrentPageToHandleClickCatalog',1);
         //appEvents.emit('EOnClickCatalogLinkEvent',e);
     };
@@ -35,6 +36,6 @@ class PagesNavLinks extends PureComponent {
 }
 
 
-//const withRouterPagesNavLinks = withRouter(PagesNavLinks);
-//export default withRouterPagesNavLinks;
-export default PagesNavLinks;
+const withRouterPagesNavLinks = withRouter(PagesNavLinks);
+export default withRouterPagesNavLinks;
+//export default PagesNavLinks;

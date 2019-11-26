@@ -77,6 +77,41 @@ export {shoppingCartAddThunkAC};
 
 
 
+function shoppingCartRemoveThunkAC(delItem) {
+////let items = cartSetAC();
+    return function() {
+        //dispatch(cartSetAC());
+        isoFetch("http://localhost:3004/shoppingCart/"+delItem.id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            //param: {item}
+            //body: JSON.stringify(items)
+        })
+            .then( (response) => { // response - HTTP-ответ
+                if (!response.ok) {
+                    let Err=new Error("fetch error " + response.status);
+                    Err.userMessage="Ошибка связи";
+                    throw Err;
+                }
+                else
+                    return response.json();
+            })
+            //.then( (item) => {
+            //    dispatch( shoppingCartAddAC(item) );
+            //})
+            .catch( (error) => {
+                console.error(error);
+                //dispatch( cartErrorAC() );
+            })
+        ;
+    }
+
+}
+
+export {shoppingCartRemoveThunkAC};
+
 /*
 export const shoppingCartPOSTThunkAC = (shoppingCart) => async (dispatch) => {
     //dispatch(productsLoadingAC());

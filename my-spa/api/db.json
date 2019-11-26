@@ -381,24 +381,10 @@
   ],
   "shoppingCart": [
     {
-      "Name": "Товар 4",
-      "id": 249,
-      "Price": 45,
-      "ImgSrc": "0249-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
-      "Name": "Californication",
-      "id": 247,
-      "Price": 57,
-      "ImgSrc": "0247-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
-      "Name": "Товар 7",
-      "id": 253,
+      "Name": "NewYork Red",
+      "id": 216,
       "Price": 123,
-      "ImgSrc": "0253-01.jpg",
+      "ImgSrc": "0216-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
@@ -408,13 +394,6 @@
       "ImgSrc": "0248-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "IS_FAVORITE": true
-    },
-    {
-      "Name": "NewYork Red",
-      "id": 216,
-      "Price": 123,
-      "ImgSrc": "0216-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
   ]
 }
