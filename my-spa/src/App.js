@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import './App.scss';
 import {
     Router, Route, Switch, 
-    //Redirect,
+    Redirect,
    withRouter
 } from "react-router-dom";
 import history from './history';
@@ -14,7 +14,6 @@ import Alerts from './Components/Alerts'
 import PageBasket from "./pages/PageBasket";
 
 class App extends PureComponent {
-
 
     render() {
         console.log(`App - RENDER`);
@@ -31,7 +30,7 @@ class App extends PureComponent {
                     <main>
                         <div className="contentBlock">
                             <Switch>
-                                                            
+                                <Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
                                 <Route exact path="/" component = {PageMain} />
                                 <Route path="/basket" component = {PageBasket} />
                                 <Route path="/:catalog/:urlParams?" component = {PageShop} className="PageCatalog" />

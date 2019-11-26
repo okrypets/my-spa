@@ -1,8 +1,7 @@
 import React, {PureComponent, Fragment} from 'react';
 //import PropTypes from 'prop-types';
 import {appEvents} from "./events";
-import ReactCSSTransitionGroup from 'react-addons-transition-group' // ES6
-//import {GREEN, RED} from "../pages/PageShop";
+import {GREEN, RED} from "../pages/PageShop";
 
 import './Alerts.scss'
 
@@ -21,17 +20,19 @@ class Alerts extends PureComponent {
         console.log(`componentDidMount - Alerts`);
         appEvents.addListener('EshowAlertCart',this.showAlert);
         //this.timer();
+        this.clearTimeout();
     }
 
     componentWillUnmount() {
         console.log(`componentWillUnmount - Alerts`);
         appEvents.removeListener('EshowAlertCart',this.showAlert);
+        this.clearTimeout();
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log(`componentDidUpdate - Alerts`);
-        //this.clearTimeout();
+        this.timer();
     }
 
 
@@ -42,17 +43,18 @@ class Alerts extends PureComponent {
         this.setState({
             color: color,
             shouldShow: true,
-        }, () => setTimeout(this.state.color, 3000))
+        })
+        //this.timer();
         //setTimeout(this.state.color, 3000);
     }
 
     timer =() => {
-        //setTimeout(this.showAlert, 3000);
-        //this.clearTimeout();
+        setTimeout(this.showAlert, 1000);
+        this.clearTimeout();
     }
 
     clearTimeout = () => {
-        //clearInterval(this.timer);
+        clearInterval(this.timer);
     }
 
 
@@ -66,25 +68,19 @@ class Alerts extends PureComponent {
             <Fragment>
 
                 <div className={`AlertsBlock`}>
-                    {shouldShow ? <ReactCSSTransitionGroup
-                            //component={FirstChild}
-                            transitionName="example"
-                            transitionEnterTimeout={500}
-                            transitionLeaveTimeout={300}
-                        >
+                        {shouldShow ?
                         <span className={color}>
                             {
-                                color === 'GREEN' &&
+                                color === GREEN &&
                                 <h3>Product successfully added to shopping cart</h3>
                             }
-                            {color === 'RED' &&
+                            {color === RED &&
                             <h3>The product is already in your shopping cart</h3>
                             }
                         </span>
-                        </ReactCSSTransitionGroup>
-                        :
-                        null
-                    }
+                            :
+                            null
+                        }
                 </div>
 
             </Fragment>

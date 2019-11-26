@@ -379,21 +379,5 @@
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
   ],
-  "shoppingCart": [
-    {
-      "Name": "NewYork Red",
-      "id": 216,
-      "Price": 123,
-      "ImgSrc": "0216-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
-      "Name": "Товар 3",
-      "id": 248,
-      "Price": 0,
-      "ImgSrc": "0248-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "IS_FAVORITE": true
-    }
-  ]
+  "shoppingCart": []
 }

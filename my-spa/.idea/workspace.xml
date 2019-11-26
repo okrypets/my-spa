@@ -4,23 +4,17 @@
     <list default="true" id="04e43f5c-7c7d-4a78-921e-159840bfdf8f" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Sorting.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkCart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Alerts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Alerts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalogItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalogItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalogItem.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Alerts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Alerts.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCart.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCart.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCartItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCartItem.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Success.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Success.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Actions/shoppingCartAC.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Actions/shoppingCartAC.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/shoppingCartReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Reducers/shoppingCartReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCartItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCartItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkCart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/PageBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageBasket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/PageShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageShop.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.css" beforeDir="false" />
@@ -39,6 +33,7 @@
   <component name="ProjectId" id="1U0VnFlng5dWBLHHTLjsrN90n5r" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Redux/Thunk" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -78,6 +73,7 @@
       <workItem from="1574580436711" duration="33707000" />
       <workItem from="1574655371923" duration="510000" />
       <workItem from="1574696602099" duration="15353000" />
+      <workItem from="1574794297504" duration="14560000" />
     </task>
     <task id="LOCAL-00001" summary="my-app">
       <created>1574516659049</created>

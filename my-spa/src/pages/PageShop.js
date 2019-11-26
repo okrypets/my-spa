@@ -12,7 +12,10 @@ import {productsThunkAC,
     //productsThunkPOSTAC,
     //shoppingCartThunkAC
 } from "../Redux/Thunk/fetchThunkProducts";
-import {shoppingCartThunkAC, shoppingCartAddThunkAC, shoppingCartRemoveThunkAC} from '../Redux/Thunk/fetchThunkCart'
+import {shoppingCartThunkAC,
+    shoppingCartAddThunkAC,
+    //shoppingCartRemoveThunkAC
+} from '../Redux/Thunk/fetchThunkCart'
 import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
 //import {shoppingCartAddAC} from '../Redux/Actions/shoppingCartAC';
 //import {shoppingCartRemoveAC} from '../Redux/Actions/shoppingCartAC';
@@ -82,7 +85,7 @@ class PageShop extends PureComponent {
         //this.props.dispatch( productsThunkAC(this.props.dispatch));
         appEvents.addListener('EisFavoriteItemOnChange',this.setFavoriteItem);
         appEvents.addListener('EhandleClickAddToCart',this.addItemToShoppingCart);
-        appEvents.addListener('EdeleteItemFromShoppingCart',this.deleteItemFromShoppingCart);
+        //appEvents.addListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
 
     }
 
@@ -90,7 +93,7 @@ class PageShop extends PureComponent {
         console.log(`componentWillUnmount - PageShop`);
         appEvents.removeListener('EisFavoriteItemOnChange',this.setFavoriteItem);
         appEvents.removeListener('EhandleClickAddToCart',this.addItemToShoppingCart);
-        appEvents.removeListener('EdeleteItemFromShoppingCart',this.deleteItemFromShoppingCart);
+        //appEvents.removeListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
     };
 
     setFavoriteItem = (item) => {
@@ -121,17 +124,7 @@ class PageShop extends PureComponent {
         }
     };
 
-    deleteItemFromShoppingCart = (delItem) => {
-        console.log(`deleteItemFromShoppingCart - PageShop`);
-        //const {shoppingCart} = this.props;
-        //let newshoppingCartProducts = [...shoppingCart].filter(i => i.id !== delItem.id);
-        //this.setState({
-        //    shoppingCartProducts: newshoppingCartProducts,
-        //}, 
-        
-        this.props.dispatch( shoppingCartRemoveThunkAC(delItem)) //отправка в AJAX
-        //)
-    }
+
 
     render() {
 /*

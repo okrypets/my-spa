@@ -22,7 +22,7 @@ class ShoppingCartItem extends PureComponent {
     }
 
     handleClickRemove = () => {
-        console.log(`handleClickRemove`);
+        console.log(`handleClickRemove - ShoppingCartItem`);
         const {item} = this.props;
         appEvents.emit('EhandleClickDeleteItem', item);
     }

@@ -2,7 +2,8 @@ import isoFetch from 'isomorphic-fetch';
 
 import { cartLoadingAC, cartErrorAC, cartSetAC,
     //shoppingCartAddAC,
-    //shoppingCartRemoveAC, shoppingCartRemoveAllAC
+    //shoppingCartRemoveAC,
+    //shoppingCartRemoveAllAC
 } from "../Actions/shoppingCartAC";
 
 
@@ -37,9 +38,10 @@ function shoppingCartThunkAC(dispatch) {
     }
 
 }
-
 export {shoppingCartThunkAC};
 
+
+ // Добравление товара в корзину
 function shoppingCartAddThunkAC(item) {
     //let item = shoppingCartAddAC();
     return function() {
@@ -61,7 +63,7 @@ function shoppingCartAddThunkAC(item) {
                     return response.json();
             })
             //.then( (item) => {
-            //    dispatch( shoppingCartAddAC(item) );
+            //    shoppingCartAddAC(item);
             //})
             .catch( (error) => {
                 console.error(error);
@@ -75,12 +77,12 @@ function shoppingCartAddThunkAC(item) {
 export {shoppingCartAddThunkAC};
 
 
-
-
-function shoppingCartRemoveThunkAC(delItem) {
-////let items = cartSetAC();
+// Удаление товара из корзины
+function shoppingCartDELETEThunkAC(delItem) {
+    //let delItem = delItem.id;
     return function() {
         //dispatch(cartSetAC());
+
         isoFetch("http://localhost:3004/shoppingCart/"+delItem.id, {
             method: 'DELETE',
             headers: {
@@ -98,8 +100,9 @@ function shoppingCartRemoveThunkAC(delItem) {
                 else
                     return response.json();
             })
-            //.then( (item) => {
-            //    dispatch( shoppingCartAddAC(item) );
+            //.then( (delItem) => {
+                //dispatch( shoppingCartAddAC(item) );
+              //  shoppingCartRemoveAC(delItem);
             //})
             .catch( (error) => {
                 console.error(error);
@@ -110,42 +113,37 @@ function shoppingCartRemoveThunkAC(delItem) {
 
 }
 
-export {shoppingCartRemoveThunkAC};
+export {shoppingCartDELETEThunkAC};
 
-/*
-export const shoppingCartPOSTThunkAC = (shoppingCart) => async (dispatch) => {
-    //dispatch(productsLoadingAC());
-    try {
-
-        const response = await isoFetch(`http://localhost:3004/shoppingCart`
-            , {
-                method: "post",
+// Удаление товара из корзины
+function shoppingCartPUTThunkAC(shoppingCart) {
+    console.log(shoppingCart);
+    //let amptyShoppingCart = [];
+    return function() {
+        for (let i = 0; i <shoppingCart.items.length; i++ ) {
+            isoFetch("http://localhost:3004/shoppingCart/" + shoppingCart.items[i].id, {
+                method: 'DELETE',
                 headers: {
-                    //Accept: "application/json",
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify(shoppingCart)
-            }
-
-        );
-
-        if (!response.ok) {
-            console.log("throwing Error");
-            //dispatch(productsErrorAC());
-            //throw new Error("fetch error " + response.status);
+            })
+                .then( (response) => { // response - HTTP-ответ
+                    if (!response.ok) {
+                        let Err=new Error("fetch error " + response.status);
+                        Err.userMessage="Ошибка связи";
+                        throw Err;
+                    }
+                    else
+                        return response.json();
+                })
+                .catch( (error) => {
+                    console.error(error);
+                })
+            ;
         }
-        //const shoppingCart = await response.json();
 
-        console.log("Products success post", shoppingCart);
-        dispatch(shoppingCartAddAC(shoppingCart));
-    } catch (error) {
-        //this.fetchError(error.message);
-        console.log("throwing Error", error);
-        //dispatch(productsErrorAC());
-        throw error;
     }
-};
 
+}
 
-
- */
+export {shoppingCartPUTThunkAC};

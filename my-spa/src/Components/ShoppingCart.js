@@ -6,9 +6,11 @@ import CheckOut from './CheckOut';
 import {appEvents} from "./events";
 import './ShoppingCart.scss'
 //import {shoppingCartRemoveAC, shoppingCartRemoveAllAC } from "../Redux/Actions/shoppingCartAC";
-//import {shoppingCartRemoveThunkAC} from '../Redux/Thunk/fetchThunkCart'
+//import {shoppingCartRemoveThunkAC} from '../Redux/Thunk/fetchThunkCart';
 //import ReactTransitionGroup from 'react-addons-transition-group' // ES6
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+//import {shoppingCartAddThunkAC} from "../Redux/Thunk/fetchThunkCart";
+//import {GREEN, RED} from "../pages/PageShop";
 //import loaderIconGif from "../loader.gif";
 //import {shoppingCartThunkAC} from "../Redux/Thunk/fetchThunkCart";
 
@@ -27,7 +29,7 @@ class ShoppingCart extends PureComponent {
 
     componentWillMount() {
         console.log(`componentWillMount - ShoppingCart`);
-        //this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
+       //this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
     }
     componentDidMount() {
         console.log(`componentDidMount - ShoppingCart`);
@@ -47,17 +49,14 @@ class ShoppingCart extends PureComponent {
 
     }
 
+
     deleteItemFromShoppingCart = (delItem) => {
         console.log(`deleteItemFromShoppingCart - ShoppingCart`);
-        //this.props.dispatch( shoppingCartRemoveAC(delItem)); //отправка в REDUX
-        //const {shoppingCartProducts} = this.state;
-        //let newshoppingCartProducts = [...shoppingCartProducts].filter(i => i.id !== delItem.id);
-        //this.setState({
-        //    shoppingCartProducts: newshoppingCartProducts,
-        //},         
-        //this.props.dispatch( shoppingCartRemoveThunkAC(shoppingCartProducts)) //отправлка в AJAX
-        //)
-        appEvents.emit('EdeleteItemFromShoppingCart', delItem)
+        const {shoppingCartProducts} = this.state;
+        let newshoppingCartProducts = [...shoppingCartProducts].filter(i => i.id !== delItem.id);
+        this.setState({
+            shoppingCartProducts: newshoppingCartProducts,
+        });
     }
 
     deleteAllFromShoppingCartAfterSubmit =() => {
@@ -125,7 +124,9 @@ const mapStateToProps = function (state) {
     };
 };
 
+
  */
+
 //const withRouterPageShop = withRouter(PageShop);
 //export default connect(mapStateToProps)(ShoppingCart);
 export default ShoppingCart
