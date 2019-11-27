@@ -18,12 +18,24 @@ class  ShopCatalogItem extends PureComponent {
         item:PropTypes.object,
         showMode: PropTypes.string,
         cartMode: PropTypes.string,
-
+        colorFavorite: PropTypes.string,
     };
 
     state = {
         isFavorite: this.props.item.IS_FAVORITE,
         inCart: false,
+        colorFavorite: this.props.colorFavorite,
+    };
+
+    componentDidMount() {
+        //console.log(`componentDidMount - ShopCatalogItem`);
+        //this.props.item.IS_FAVORITE &&
+        //appEvents.addListener('EcolorAllFavoriteByClick', this.colorAllFavoriteProducts);
+    }
+    componentWillUnmount() {
+        //console.log(`componentWillUnmount - ShopCatalogItem`);
+        //this.props.item.IS_FAVORITE &&
+        //appEvents.removeListener('EcolorAllFavoriteByClick',this.colorAllFavoriteProducts);
     };
 
     isFavoriteItemHandleClick = () => {
@@ -54,13 +66,21 @@ class  ShopCatalogItem extends PureComponent {
         } else {
             delete item[IS_FAVORITE];
         }
-        console.log(item[IS_FAVORITE]);
+        //console.log(item[IS_FAVORITE]);
         appEvents.emit('EisFavoriteItemOnChange', item);
     };
+/*
+    colorAllFavoriteProducts =() => {
+        console.log(`colorAllFavoriteProducts`);
+        this.setState({
+            colored: true,
+        })
+    }
 
+ */
 
     handleClickAddToCart = () => {
-        console.log(`handleClickAddToCart`);
+        //console.log(`handleClickAddToCart`);
         const {item} = this.props;
         appEvents.emit('EhandleClickAddToCart', item);
         this.setState({
@@ -71,14 +91,14 @@ class  ShopCatalogItem extends PureComponent {
 
     render() {
         console.log("ShopCatalogItem - render");
-        const {showMode} = this.props;
+        const {showMode, colorFavorite} = this.props;
         //console.log(this.props.match);
         let item = this.props.item;
         const {isFavorite} = this.state;
 
         return (
-            <div className={`ShopCatalogItem ${isFavorite ? 'active' : ''}`} key={item.id}>
-                <div className={`block`}>
+            <div className={`ShopCatalogItem ${isFavorite ? 'active' : ''} ${showMode === SINGLE_ITEM ? 'single' : ''} `} key={item.id} >
+                <div className={`block`} style={ isFavorite && colorFavorite ? {backgroundColor: '#ff4b46'} : {}}>
                     <img src={`/Images/Shop/${item.ImgSrc}`} alt=""/>
                     <div className={`itemInfo`} >
                         <h2>

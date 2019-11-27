@@ -1,29 +1,30 @@
-import React, {PureComponent, Fragment} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {appEvents} from "./events";
 //import {Link} from "react-router-dom";
 
 class FavoriteCount extends PureComponent {
     static propTypes = {
         products: PropTypes.array,
-        allFavorite: PropTypes.number,
+        allFavoriteCount: PropTypes.number,
     };
     state = {
         products: this.props.products,
-        allFavorite: 0,
+        allFavoriteCount: 0,
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
-        console.log(`componentWillReceiveProps - FavoriteCount`);
+        //console.log(`componentWillReceiveProps - FavoriteCount`);
         this.getFavoriteCount();
     }
 
     componentDidMount() {
-        console.log(`componentDidMount - FavoriteCount`);
+        //console.log(`componentDidMount - FavoriteCount`);
         //this.getfavoriteCount();
     };
 
     componentWillUnmount() {
-        console.log(`componentWillUnmount - FavoriteCount`);
+        //console.log(`componentWillUnmount - FavoriteCount`);
     };
 
     getFavoriteCount = () => {
@@ -36,21 +37,29 @@ class FavoriteCount extends PureComponent {
             }
         }
         this.setState({
-            allFavorite: sumOfFavorite,
+            allFavoriteCount: sumOfFavorite,
         });
         return sumOfFavorite;
     };
 
+    showAllFavorite = (e) => {
+        //console.log(e);
+        appEvents.emit('EcolorAllFavoriteByClick', e);
+    }
 
 
     render() {
-        const {allFavorite} = this.state;
+        console.log(`FavoriteCount - RENDER`);
+        const {allFavoriteCount} = this.state;
         return(
-           <Fragment>
-                {allFavorite > 0 &&
-                <span>All Favorite: {allFavorite}</span>
+           <div>
+                {allFavoriteCount > 0 &&
+                    <label>
+                        <input type={`checkbox`} onChange={this.showAllFavorite} value={`Color all Favorite: ${allFavoriteCount} products`}/>
+                        Color all Favorite: {allFavoriteCount} products
+                    </label>
                 }
-           </Fragment>
+           </div>
 
 
         );

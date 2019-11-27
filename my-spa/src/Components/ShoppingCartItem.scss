@@ -8,11 +8,19 @@
     display: flex;
     background: #eee;
     border: 1px solid #d8d8d8;
-    justify-content: space-between;
-    padding: 0;
+    //padding: 0 30px 0 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    @media screen and (min-width: 480px) {
+      justify-content: space-between;
+    }
     >img {
-      width: 100px;
+      width: 100%;
       height: auto;
+      @media screen and (min-width: 480px) {
+        width: 100px;
+        height: 100px;
+      }
     }
     h2 {
       text-align: left;

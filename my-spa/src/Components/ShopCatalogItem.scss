@@ -1,4 +1,15 @@
 .ShopCatalogItem {
+  &.single {
+    &>.block {
+      img {
+        width: 100%;
+        height: auto;
+        @media screen and (min-width: 600px) {
+          width: 50%;
+        }
+      }
+    }
+  }
   position: relative;
   margin: 0.5em;
   &>.block {

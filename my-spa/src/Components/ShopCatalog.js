@@ -18,17 +18,12 @@ import {
 class ShopCatalog extends PureComponent {
 
     static propTypes = {
-        //router:PropTypes.object, // REDUX
-        //match:PropTypes.object.isRequired,
         location: PropTypes.object,
         history: PropTypes.object.isRequired,
         products: PropTypes.array, // REDUX
-        //catalogLink: PropTypes.object,
         isSortBy: PropTypes.string,
         currentPage:PropTypes.number,
-        //favoriteList:PropTypes.array,
         showMode: PropTypes.string,
-        //pagination:PropTypes.object, // REDUX
         allSortedProducts: PropTypes.array,
     };
 
@@ -37,14 +32,14 @@ class ShopCatalog extends PureComponent {
         isSortBy: this.props.isSortBy,
         allProducts: this.props.products,
         allSortedProducts: [],
+        colorFavorite:false,
         currentPageProducts: [],
         currentPage: this.props.currentPage,
         totalPages: null,
-        //favoriteList:[],
     };
 
     componentWillReceiveProps(nextProps, nextContext) {
-        console.log(`componentWillReceiveProps - ShopCatalog`);
+        //console.log(`componentWillReceiveProps - ShopCatalog`);
         //console.log(nextProps.currentPage);
         //console.log(this.props.currentPage);
 
@@ -54,9 +49,9 @@ class ShopCatalog extends PureComponent {
         }, () => appEvents.emit('EcurrentPageToHandleClick',this.state.currentPage))
 
 
-        console.log(nextProps.location.search);
+        //console.log(nextProps.location.search);
         const pageCatalogSortedBy = nextProps.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
-        console.log(pageCatalogSortedBy);
+        //console.log(pageCatalogSortedBy);
         this.setState({isSortBy:pageCatalogSortedBy}, this.getSortedProductsArray);
         //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
 
@@ -66,20 +61,21 @@ class ShopCatalog extends PureComponent {
     }
 
     componentWillMount() {
-        console.log(`componentWillMount - ShopCatalog`);
+        //console.log(`componentWillMount - ShopCatalog`);
         //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
         // создаем
        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
-        console.log(this.props.location.search);
+        //console.log(this.props.location.search);
         const pageCatalogSortedBy = this.props.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
-        console.log(pageCatalogSortedBy);
+        //console.log(pageCatalogSortedBy);
         this.setState({isSortBy:pageCatalogSortedBy}, this.getSortedProductsArray);
 
     }
     componentDidMount() {
-        console.log(`componentDidMount - ShopCatalog`);
+        //console.log(`componentDidMount - ShopCatalog`);
         //appEvents.addListener('ESortingOnChange',this.sortingOnSelectChange); // Передается BY_NAME или др.
         //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
+        appEvents.addListener('EcolorAllFavoriteByClick',this.colorAllFavoriteProducts);
         //const allProducts = this.props.products.data;
         //this.setState({ allProducts });
 
@@ -89,11 +85,12 @@ class ShopCatalog extends PureComponent {
     };
 
     componentWillUnmount() {
-        console.log(`componentWillUnmount - ShopCatalog`);
+        //console.log(`componentWillUnmount - ShopCatalog`);
+        appEvents.removeListener('EcolorAllFavoriteByClick',this.colorAllFavoriteProducts);
         //appEvents.removeListener('ESortingOnChange',this.sortingOnSelectChange);
         //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
     };
-
+/*
     setSortedProductsArray = (sortedArray)=> {
         console.log(`getSortedProductsArray`);
         console.log(sortedArray);
@@ -102,12 +99,24 @@ class ShopCatalog extends PureComponent {
         })
     }
 
+ */
+
+    colorAllFavoriteProducts = () => {
+        const {colorFavorite} = this.state;
+        //let newAllProducts = allProducts.slice();
+        //let allFavoriteProducts = newAllProducts.filter(item => item.IS_FAVORITE === true);
+        this.setState({
+            //allFavoriteProducts: allFavoriteProducts,
+            colorFavorite: !colorFavorite,
+        });
+    }
+
 
     onPageChanged = data => {
-        console.log(data);
-        console.log(`onPageChanged - ShopCatalog`);
+        //console.log(data);
+        //console.log(`onPageChanged - ShopCatalog`);
         const allProducts = this.props.products;
-        const { allSortedProducts, isSortBy } = this.state;
+        const { allSortedProducts, isSortBy} = this.state;
         //const allProducts = (isSortBy !== NO_SORT) ? this.sortByName() : this.getAllProducts() ;
 
         const { currentPage, totalPages, pageLimit } = data;
@@ -124,9 +133,9 @@ class ShopCatalog extends PureComponent {
 
 
     getSortedProductsByName = () => {
-        console.log(`getSortedProductsByName`);
+        //console.log(`getSortedProductsByName`);
         const {products} = this.props;
-        console.log(products.data);
+        //console.log(products.data);
         let newProducts = products.slice();
         let sortedByName;
         sortedByName = newProducts.sort((a, b) => {
@@ -145,7 +154,7 @@ class ShopCatalog extends PureComponent {
 
     getSortedProductsByPrice = () => {
         const {products} = this.props;
-        console.log(products.data);
+        //console.log(products.data);
         let newProducts = products.slice();
         let sortedByPrice;
         sortedByPrice = newProducts.sort((a, b) => {
@@ -157,7 +166,7 @@ class ShopCatalog extends PureComponent {
     };
 
     getSortedProductsArray =() => {
-        console.log(`getSortedProductsArray`);
+        //console.log(`getSortedProductsArray`);
         const {isSortBy} = this.state;
         //let sortedBy;
         if (isSortBy === BY_NAME) {
@@ -176,7 +185,7 @@ class ShopCatalog extends PureComponent {
 
 
     render() {
-        console.log("ShopCatalog - render");
+        console.log("ShopCatalog - RENDER");
 
         //console.log(this.props.products);
         //let productsArr = this.props.products.data;
@@ -185,7 +194,10 @@ class ShopCatalog extends PureComponent {
             allProducts,
             currentPageProducts,
             currentPage,
-            totalPages
+            totalPages,
+            colorFavorite,
+            //allFavoriteProducts,
+            //showAllFavorite,
         } = this.state;
         const totalProducts = allProducts.length;
         if (totalProducts === 0) return null;
@@ -199,32 +211,33 @@ class ShopCatalog extends PureComponent {
             <Fragment>
                 <div className={`sortingBlock`}>
                     <Sorting products={allProducts}/>
-                    <FavoriteCount products={allProducts}/>
+                    <FavoriteCount products={allProducts} />
                 </div>
 
                 {
                         //currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
-                    currentPageProducts.map((item) => <ShopCatalogItem className={`CatalogItem`}
-                                                               key={item.id}
-                                                               item={item}
-                                                               showMode = {CATALOG_ITEM}
-                    />)
+                    currentPageProducts.map((item) =>
+                        <ShopCatalogItem className={`CatalogItem`}
+                                                            key={item.id}
+                                                                   item={item}
+                                                                   showMode = {CATALOG_ITEM}
+                                             colorFavorite={item.IS_FAVORITE && colorFavorite ? 'colored' : ''}
+                        />)
                 }
 
-                <Pagination
-                    totalRecords={totalProducts}
-                    pageLimit={50}
-                    pageNeighbours={1}
-                    onPageChanged={this.onPageChanged}
-                    currentPage={currentPage}
-                />
-                {currentPage && (
-                    <div >
-                  Page <span className="current-page">{currentPage}</span> /{" "}
-                        <span className="total-page">{totalPages}</span>
-                </div>
-                )}
-
+                        <Pagination
+                            totalRecords={totalProducts}
+                            pageLimit={50}
+                            pageNeighbours={1}
+                            onPageChanged={this.onPageChanged}
+                            currentPage={currentPage}
+                        />
+                        {currentPage && (
+                            <div >
+                            Page <span className="current-page">{currentPage}</span> /{" "}
+                            <span className="total-page">{totalPages}</span>
+                            </div>
+                            )}
             </Fragment>
         )
     }

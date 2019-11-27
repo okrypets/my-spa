@@ -53,17 +53,17 @@ class Pagination extends PureComponent {
     };
 
     componentWillMount() {
-        console.log(`componentWillMount - Pagination`);
+        //console.log(`componentWillMount - Pagination`);
         appEvents.addListener('EcurrentPageToHandleClick',this.handleClick);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        console.log(`componentWillReceiveProps - Pagination`);
-        console.log(nextProps.match.params.urlParams);
-        console.log(nextProps.currentPage);
-        console.log(this.props.currentPage);
-        console.log(nextProps.location.pathname.replace(/[^0-9]/g, ""));
-        console.log(this.totalPages);
+        //console.log(`componentWillReceiveProps - Pagination`);
+        //console.log(nextProps.match.params.urlParams);
+        //console.log(nextProps.currentPage);
+        //console.log(this.props.currentPage);
+        //console.log(nextProps.location.pathname.replace(/[^0-9]/g, ""));
+        //console.log(this.totalPages);
         const locationCurrentPage = +nextProps.location.pathname.replace(/[^0-9]/g, "");
 
             this.setState({
@@ -73,25 +73,22 @@ class Pagination extends PureComponent {
     }
 
     componentDidMount() {
-        console.log(`componentDidMount - Pagination`);
+        //console.log(`componentDidMount - Pagination`);
         //this.gotoPage(1);
         //console.log(this.state.currentPage);
         this.gotoPage(this.state.currentPage);
     }
     componentWillUnmount() {
-        console.log(`componentWillUnmount - Pagination`);
+        //console.log(`componentWillUnmount - Pagination`);
         appEvents.removeListener('EcurrentPageToHandleClick',this.handleClick);
     }
 
 
     gotoPage = (page) => {
-        let nextPropsPageNumber = this.state.currentPage;
-        console.log(`gotoCurrentPage - run`);
-        console.log(page);
 
-        if(nextPropsPageNumber !== page) {
-            console.log(`${nextPropsPageNumber}, ${page}`)
-        }
+        //console.log(`gotoCurrentPage - run`);
+        //console.log(page);
+
 
 
         const { onPageChanged = f => f } = this.props;
@@ -174,7 +171,7 @@ class Pagination extends PureComponent {
     };
 
     render() {
-        console.log(`Pagination - render`);
+        console.log(`Pagination - RENDER`);
         if (!this.totalRecords) return null;
 
         if (this.totalPages === 1) return null;

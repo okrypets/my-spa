@@ -28,30 +28,30 @@ class ShoppingCart extends PureComponent {
     }
 
     componentWillMount() {
-        console.log(`componentWillMount - ShoppingCart`);
+        //console.log(`componentWillMount - ShoppingCart`);
        //this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
     }
     componentDidMount() {
-        console.log(`componentDidMount - ShoppingCart`);
+        //console.log(`componentDidMount - ShoppingCart`);
         //this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
         appEvents.addListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
         appEvents.addListener('EdeleteAllFromShoppingCart',this.deleteAllFromShoppingCartAfterSubmit);
     }
 
     componentWillUnmount() {
-        console.log(`componentWillUnmount - ShoppingCart`);
+        //console.log(`componentWillUnmount - ShoppingCart`);
         appEvents.removeListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
         appEvents.removeListener('EdeleteAllFromShoppingCart',this.deleteAllFromShoppingCartAfterSubmit);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        console.log(`componentWillReceiveProps - ShoppingCart`);
+        //console.log(`componentWillReceiveProps - ShoppingCart`);
 
     }
 
 
     deleteItemFromShoppingCart = (delItem) => {
-        console.log(`deleteItemFromShoppingCart - ShoppingCart`);
+        //console.log(`deleteItemFromShoppingCart - ShoppingCart`);
         const {shoppingCartProducts} = this.state;
         let newshoppingCartProducts = [...shoppingCartProducts].filter(i => i.id !== delItem.id);
         this.setState({
@@ -60,18 +60,18 @@ class ShoppingCart extends PureComponent {
     }
 
     deleteAllFromShoppingCartAfterSubmit =() => {
-        console.log(`deleteAllFromShoppingCartAfterSubmit`);
+        //console.log(`deleteAllFromShoppingCartAfterSubmit`);
         //this.props.dispatch( shoppingCartRemoveAllAC());
         this.setState({
             shoppingCartProducts: [],
             success:true,
         }, () => this.successSubmit());
-        console.log(this.state.shoppingCartProducts);
-        console.log(this.state.success);
+        //console.log(this.state.shoppingCartProducts);
+        //console.log(this.state.success);
     }
 
     successSubmit = () => {
-        console.log(`successSubmit`);
+        //console.log(`successSubmit`);
         const {success} = this.state;
         const {history} = this.props;
         success &&
@@ -81,9 +81,9 @@ class ShoppingCart extends PureComponent {
     render() {
         console.log(`ShoppingCart - RENDER`);
         const {shoppingCartProducts} = this.state;
-        const {shoppingCart} = this.props;
-        console.log(shoppingCartProducts);
-        console.log(shoppingCart);
+        //const {shoppingCart} = this.props;
+        //console.log(shoppingCartProducts);
+        //console.log(shoppingCart);
 
         return(
 

@@ -41,7 +41,7 @@ export default function shoppingCartReducer(state=initState, action) {
                 status:3,
                 items:action.shoppingCart,
             };
-            console.log('state после обработки редьюсером:',newState);
+            //console.log('state после обработки редьюсером:',newState);
             return newState;
         }
 

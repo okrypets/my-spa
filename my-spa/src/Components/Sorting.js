@@ -1,7 +1,7 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from "react-router-dom";
-
+import './Sorting.scss'
 const NO_SORT = "NO_SORT";
 const BY_PRICE = "BY_PRICE";
 const BY_NAME = "BY_NAME";
@@ -20,12 +20,12 @@ class Sorting extends PureComponent {
     };
 
     componentDidMount() {
-        console.log(`componentDidMount - Sorting`);
+        //console.log(`componentDidMount - Sorting`);
         //appEvents.addListener('EOnClickCatalogLinkEvent', this.noSort);
     }
 
     componentWillReceiveProps (nextProps, nexContext) {
-        console.log(`componentWillReceiveProps - Sorting`);
+        //console.log(`componentWillReceiveProps - Sorting`);
         const pageCatalogSortedBy = nextProps.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
         //console.log(pageCatalogSortedBy);
         //appEvents.addListener('EOnClickCatalogLinkEvent', this.noSort);
@@ -33,12 +33,12 @@ class Sorting extends PureComponent {
 
     };
     componentWillUnmount() {
-        console.log(`componentWillUnmount - Sorting`);
+        //console.log(`componentWillUnmount - Sorting`);
     }
 
 
     onHandleChangeSelect = (e) => {
-        console.log(`onHandleChangeSelect`);
+        //console.log(`onHandleChangeSelect`);
         const {location, history} = this.props;
         this.setState({sortBy: e.target.value});
         history.push(`${location.pathname}?sort=${e.target.value.toLowerCase()}`);
@@ -46,6 +46,7 @@ class Sorting extends PureComponent {
 
 
     render() {
+        console.log(`Sorting - RENDER`);
         const  {location} = this.props;
         //console.log(location.search);
         const pageCatalogSortedBy = location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
@@ -53,7 +54,7 @@ class Sorting extends PureComponent {
         return (
             <Fragment>
                 <select value={!location.search ? NO_SORT : pageCatalogSortedBy} onChange={this.onHandleChangeSelect}>
-                    <option defaultValue={NO_SORT} value={NO_SORT}>Без сортировки:</option>
+                    <option defaultValue={NO_SORT} value={NO_SORT}>No Sorting:</option>
                     <option value={BY_NAME}>Name A-Z</option>
                     <option value={BY_PRICE}>Price 0-9</option>
                 </select>

@@ -40,7 +40,7 @@ export default function productsReducer(state=initState,action) {
                 status:3,
                 data:action.products,
             };
-            console.log('state после обработки редьюсером:',newState);
+            //console.log('state после обработки редьюсером:',newState);
             return newState;
         }
 

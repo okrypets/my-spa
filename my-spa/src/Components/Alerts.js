@@ -17,28 +17,28 @@ class Alerts extends PureComponent {
     };
 
     componentDidMount() {
-        console.log(`componentDidMount - Alerts`);
+        //console.log(`componentDidMount - Alerts`);
         appEvents.addListener('EshowAlertCart',this.showAlert);
         //this.timer();
         this.clearTimeout();
     }
 
     componentWillUnmount() {
-        console.log(`componentWillUnmount - Alerts`);
+        //console.log(`componentWillUnmount - Alerts`);
         appEvents.removeListener('EshowAlertCart',this.showAlert);
         this.clearTimeout();
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(`componentDidUpdate - Alerts`);
+        //console.log(`componentDidUpdate - Alerts`);
         this.timer();
     }
 
 
 
     showAlert = (color) => {
-        console.log(`Alerts - RENDER`);
+        //console.log(`showAlert`);
 
         this.setState({
             color: color,
@@ -62,7 +62,7 @@ class Alerts extends PureComponent {
 
 
     render() {
-        console.log(`showAlert - ShoppingCart`);
+        console.log(`Alerts - RENDER`);
         const  {color, shouldShow} = this.state;
         return (
             <Fragment>

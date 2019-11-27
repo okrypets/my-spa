@@ -17,7 +17,7 @@ import {shoppingCartThunkAC,
     //shoppingCartRemoveThunkAC
 } from '../Redux/Thunk/fetchThunkCart'
 import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
-//import {shoppingCartAddAC} from '../Redux/Actions/shoppingCartAC';
+import {shoppingCartAddAC} from '../Redux/Actions/shoppingCartAC';
 //import {shoppingCartRemoveAC} from '../Redux/Actions/shoppingCartAC';
 import {connect} from "react-redux";
 import loaderIconGif from '../loader.gif';
@@ -40,19 +40,18 @@ class PageShop extends PureComponent {
         history: PropTypes.object.isRequired,
         products: PropTypes.object, //REDUX
         currentPage:PropTypes.number,
-        shoppingCart: PropTypes.object,
+        shoppingCart: PropTypes.object, //REDUX
         //allSortedProducts: PropTypes.array,
     };
 
     state = {
         currentPage:1,
         products: this.props.products.data,
-        shoppingCart: this.props.products.items,
-
+        shoppingCart: null,
     };
 
     componentWillMount() {
-        console.log(`componentWillMount - PageShop`);
+        //console.log(`componentWillMount - PageShop`);
         this.props.dispatch( productsThunkAC(this.props.dispatch));
         this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
         //this.props.dispatch( productsThunkPOSTAC(this.props.products));
@@ -60,28 +59,31 @@ class PageShop extends PureComponent {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        console.log(`componentWillReceiveProps - PageShop`);
+        //console.log(`componentWillReceiveProps - PageShop`);
 
         const locationCurrentPage = +nextProps.location.pathname.replace(/[^0-9]/g, "");
 
-
+        //console.log(nextProps.shoppingCart);
+        //console.log(this.props.shoppingCart);
         if (nextProps.match.params.urlParams !== undefined ) {
             this.setState({
                 currentPage: locationCurrentPage,
             });
         }
-        if (this.props.products.status === 3) {
+        //if (this.props.products.status === 3) {
             this.setState({
                 products:this.props.products.data,
             }
             );
-        }
-
+        //}
+        this.setState({
+            shoppingCart:nextProps.shoppingCart.items,
+        })
 
     }
 
     componentDidMount() {
-        console.log(`componentDidMount - PageShop`);
+        //console.log(`componentDidMount - PageShop`);
         //this.props.dispatch( productsThunkAC(this.props.dispatch));
         appEvents.addListener('EisFavoriteItemOnChange',this.setFavoriteItem);
         appEvents.addListener('EhandleClickAddToCart',this.addItemToShoppingCart);
@@ -90,7 +92,7 @@ class PageShop extends PureComponent {
     }
 
     componentWillUnmount() {
-        console.log(`componentWillUnmount - PageShop`);
+        //console.log(`componentWillUnmount - PageShop`);
         appEvents.removeListener('EisFavoriteItemOnChange',this.setFavoriteItem);
         appEvents.removeListener('EhandleClickAddToCart',this.addItemToShoppingCart);
         //appEvents.removeListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
@@ -101,24 +103,23 @@ class PageShop extends PureComponent {
     };
 
     addItemToShoppingCart = (item) => {
-        console.log(`addItemToShoppingCart - PageShop`);
-        const {shoppingCart} = this.props;
+        //console.log(`addItemToShoppingCart - PageShop`);
+        const {shoppingCart} = this.state;
         let itemInCart;
-        if (shoppingCart.items.length > 0) {
-            itemInCart = shoppingCart.items.some(i => i.id === item.id); // товар уже есть в корзине ?
-
+        if (shoppingCart.length > 0) {
+            itemInCart = shoppingCart.some(i => i.id === item.id); // товар уже есть в корзине ?
             if (!itemInCart) {
-                console.log(`shoppingCart.length > 0, itemInCart - false `);
-                //this.props.dispatch(shoppingCartAddAC(item)); //отправляем просто в REDUX
+                //console.log(`shoppingCart.length > 0, itemInCart - false `);
+                this.props.dispatch(shoppingCartAddAC(item)); //отправляем просто в REDUX
                 this.props.dispatch(shoppingCartAddThunkAC(item));//отправляем в AJAX
                 appEvents.emit('EshowAlertCart', GREEN);
             } else {
-                console.log(`shoppingCart.length > 0, itemInCart - true`);
+                //console.log(`shoppingCart.length > 0, itemInCart - true`);
                 appEvents.emit('EshowAlertCart', RED);
             }
         } else {
-            console.log(`shoppingCart.length = 0`);
-            //this.props.dispatch(shoppingCartAddAC(item));//отправляем просто в REDUX
+            //console.log(`shoppingCart.length = 0`);
+            this.props.dispatch(shoppingCartAddAC(item));//отправляем просто в REDUX
             this.props.dispatch(shoppingCartAddThunkAC(item));//отправляем в AJAX
             appEvents.emit('EshowAlertCart', GREEN);
         }
@@ -127,17 +128,7 @@ class PageShop extends PureComponent {
 
 
     render() {
-/*
-       const {
-            //currentPage,
-            //products,
-            //catalogLink,
-            //isSortBy,
-            //allSortedProducts,
-            //favoriteList,
-        } = this.state;
- */
-
+        console.log(`PageShop - RENDER`);
         const {match, products, location, shoppingCart} = this.props;
 
         if ( products.status<=1 || shoppingCart.status<=1)
@@ -153,11 +144,7 @@ class PageShop extends PureComponent {
                             <Route path={`/${match.params.catalog}/page-:pageNumber`} render={({match}) => {
                             return (
                                 <ShopCatalog currentPage={+match.params.pageNumber}
-                                             products={
-                                                 //location.search && isSortBy !== NO_SORT ?
-                                                 //allSortedProducts
-                                                 //:
-                                                 products.data}
+                                             products={products.data}
                                              showMode={CATALOG_ITEM}
                                              //isSortBy = {isSortBy}
                                 />

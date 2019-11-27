@@ -7,21 +7,14 @@ import './PagesNavLinks.scss';
 
 class PagesNavLinks extends PureComponent {
 
-    state = {
-        currentPage:1,
-    };
-
-    handleClick = (e) => {
-        console.log(`handleClick -  PagesNavLinks`);
+    handleClick = () => {
+        //console.log(`handleClick -  PagesNavLinks`);
         this.props.history.push(`/catalog/page-1`);
-        //appEvents.emit('EcurrentPageToHandleClickCatalog',1);
-        //appEvents.emit('EOnClickCatalogLinkEvent',e);
     };
-
 
 
     render() {
-        //console.log(this.props.location.pathname);
+        console.log(`PagesNavLinks - RENDER`);
         return (
             <div className="PagesLinks">
                 <NavLink to="/" exact className="PageLink" activeClassName="ActivePageLink">Main Page</NavLink>
