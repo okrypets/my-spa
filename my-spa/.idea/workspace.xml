@@ -4,31 +4,25 @@
     <list default="true" id="04e43f5c-7c7d-4a78-921e-159840bfdf8f" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Pagination.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/PageShop.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tempPolyfills.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Alerts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Alerts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/FavoriteCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/FavoriteCount.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Pagination.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Actions/productsAC.spec.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalogItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShopCatalogItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShopCatalogItem.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCartItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCartItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ShoppingCartItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShoppingCartItem.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Sorting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SortingSelect.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Reducers/shoppingCartReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Reducers/shoppingCartReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Redux/Thunk/fetchThunkProducts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/basket.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/PageBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageBasket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/PageShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageShop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/PageSingleItem.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/PagesNavLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PagesNavLinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/PagesRouter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shopItemArrAll.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/index.js" beforeDir="false" />
@@ -51,11 +45,13 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\my-app\my-spa\src\__tests__" />
       <recent name="F:\my-app\my-spa\src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -74,6 +70,87 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="Jest.products thunk action">
+    <configuration name="products reducer.IS_PRODUCT_FAVORITE when itemIndex = 0" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.spec.js" />
+      <test-names>
+        <test-name value="products reducer" />
+        <test-name value="IS_PRODUCT_FAVORITE when itemIndex = 0" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="products reducer.PRODUCTS_ERROR with error" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.spec.js" />
+      <test-names>
+        <test-name value="products reducer" />
+        <test-name value="PRODUCTS_ERROR with error" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="products reducer.is item === data[0]" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/Redux/Reducers/productsReducer.spec.js" />
+      <test-names>
+        <test-name value="products reducer" />
+        <test-name value="is item === data[0]" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="products thunk action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/Redux/Actions/productsAC.spec.js" />
+      <test-names>
+        <test-name value="products thunk action" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="products thunk action.async actions.creates PRODUCTS_SET when fetching prodycts has been done" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/Redux/Actions/productsAC.spec.js" />
+      <test-names>
+        <test-name value="products thunk action" />
+        <test-name value="async actions" />
+        <test-name value="creates PRODUCTS_SET when fetching prodycts has been done" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.products thunk action" />
+        <item itemvalue="Jest.products thunk action.async actions.creates PRODUCTS_SET when fetching prodycts has been done" />
+        <item itemvalue="Jest.products reducer.IS_PRODUCT_FAVORITE when itemIndex = 0" />
+        <item itemvalue="Jest.products reducer.is item === data[0]" />
+        <item itemvalue="Jest.products reducer.PRODUCTS_ERROR with error" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -89,7 +166,7 @@
       <workItem from="1574655371923" duration="510000" />
       <workItem from="1574696602099" duration="15353000" />
       <workItem from="1574794297504" duration="14851000" />
-      <workItem from="1574837930537" duration="22807000" />
+      <workItem from="1574837930537" duration="40851000" />
     </task>
     <task id="LOCAL-00001" summary="my-app">
       <created>1574516659049</created>
@@ -112,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574810880018</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="my-app -fwt">
+      <created>1574872676429</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574872676430</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,6 +219,7 @@
     <MESSAGE value="my-app" />
     <MESSAGE value="my-app -3" />
     <MESSAGE value="my-app -5" />
-    <option name="LAST_COMMIT_MESSAGE" value="my-app -5" />
+    <MESSAGE value="my-app -fwt" />
+    <option name="LAST_COMMIT_MESSAGE" value="my-app -fwt" />
   </component>
 </project>

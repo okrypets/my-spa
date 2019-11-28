@@ -759,31 +759,39 @@
   ],
   "shoppingCart": [
     {
-      "Name": "Mesa",
-      "id": 34,
-      "Price": 45,
-      "ImgSrc": "0450-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
-      "Name": "San Antonio",
-      "id": 7,
+      "Name": "NewYork Red",
+      "id": 1,
       "Price": 123,
-      "ImgSrc": "0253-01.jpg",
+      "ImgSrc": "0216-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
-      "Name": "Austin",
-      "id": 11,
-      "Price": 455,
-      "ImgSrc": "0280-01.jpg",
+      "Name": "Californication",
+      "id": 2,
+      "Price": 57,
+      "ImgSrc": "0247-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
-      "Name": "San Jose",
-      "id": 10,
+      "Name": "Los Angeles",
+      "id": 3,
+      "Price": 0,
+      "ImgSrc": "0248-01.jpg",
+      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "IS_FAVORITE": true
+    },
+    {
+      "Name": "Chicago",
+      "id": 4,
       "Price": 45,
-      "ImgSrc": "0279-01.jpg",
+      "ImgSrc": "0249-01.jpg",
+      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      "Name": "Houston",
+      "id": 5,
+      "Price": 455,
+      "ImgSrc": "0251-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
   ]

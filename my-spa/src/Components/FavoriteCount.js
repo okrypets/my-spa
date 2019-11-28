@@ -43,7 +43,6 @@ class FavoriteCount extends PureComponent {
     };
 
     showAllFavorite = (e) => {
-        //console.log(e);
         appEvents.emit('EcolorAllFavoriteByClick', e);
     }
 

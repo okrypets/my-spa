@@ -47,9 +47,10 @@ export default function shoppingCartReducer(state=initState, action) {
 
         case SHOPPING_CART_ADD: {
             //console.log(action.item.id);
-            let isInBasket = state.items.some(i => i.id === action.item.id);
+            //let isInBasket = state.items.some(i => i.id === action.item.id);
             //console.log(isInBasket);
             let newState;
+            /*
             if (!isInBasket || state.items.length === 0) {
                 newState = {...state,
                     items: [...state.items,
@@ -57,10 +58,14 @@ export default function shoppingCartReducer(state=initState, action) {
                     ]
                 };
             } else {
-                newState = {...state,
-                    items: [...state.items]
-                };
-            }
+
+             */
+            newState = {...state,
+                items: [...state.items,
+                    action.item
+                ]
+            };
+
             return newState;
         }
 
@@ -73,6 +78,7 @@ export default function shoppingCartReducer(state=initState, action) {
             };
             return newState;
         }
+
         case SHOPPING_CART_REMOVE_ALL: {
             console.log(SHOPPING_CART_REMOVE_ALL);
             //let deletedItem = state.items.filter(i => i.id !== action.item.id);

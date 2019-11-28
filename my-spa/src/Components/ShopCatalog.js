@@ -1,8 +1,8 @@
-import React, {PureComponent, Fragment} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {appEvents} from "./events";
 //import { paginationStateAC } from "../Redux/Actions/paginationAC";
-import Sorting, {BY_NAME, BY_PRICE, NO_SORT} from "./Sorting"
+import Sorting, {BY_NAME, BY_PRICE, NO_SORT} from "./SortingSelect"
 import Pagination from "./Pagination"
 import ShopCatalogItem from './ShopCatalogItem';
 //import {connect} from "react-redux";
@@ -15,11 +15,11 @@ import {
 } from '../pages/PageShop'
 //import {appEvents} from "./events";
 
-class ShopCatalog extends PureComponent {
+export class ShopCatalog extends PureComponent {
 
     static propTypes = {
         location: PropTypes.object,
-        history: PropTypes.object.isRequired,
+        history: PropTypes.object,
         products: PropTypes.array, // REDUX
         isSortBy: PropTypes.string,
         currentPage:PropTypes.number,
@@ -208,7 +208,7 @@ class ShopCatalog extends PureComponent {
         //console.log(currentPage);
 
         return (
-            <Fragment>
+            <div className={`ShopCatalog`}>
                 <div className={`sortingBlock`}>
                     <Sorting products={allProducts}/>
                     <FavoriteCount products={allProducts} />
@@ -238,7 +238,7 @@ class ShopCatalog extends PureComponent {
                             <span className="total-page">{totalPages}</span>
                             </div>
                             )}
-            </Fragment>
+            </div>
         )
     }
 

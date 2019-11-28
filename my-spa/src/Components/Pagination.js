@@ -85,43 +85,29 @@ class Pagination extends PureComponent {
 
 
     gotoPage = (page) => {
-
         //console.log(`gotoCurrentPage - run`);
         //console.log(page);
-
-
-
         const { onPageChanged = f => f } = this.props;
-
         const currentPage = Math.max(0, Math.min(page, this.totalPages));
-
         const paginationData = {
             currentPage,
             totalPages: this.totalPages,
             pageLimit: this.pageLimit,
             totalRecords: this.totalRecords
         };
-        //this.props.dispatch(paginationStateAC(currentPage));
-
         this.setState({ currentPage }, () => onPageChanged(paginationData));
-        //return currentPage;
     };
 
 
     handleClick = (page) => {
-        //evt.preventDefault();
         this.gotoPage(page);
     };
 
     handleMoveLeft = () => {
-        //evt.preventDefault();
-        //this.setState();
-        //this.gotoPage(this.props.pagination.currentPage - this.pageNeighbours * 2 - 1);
         this.gotoPage(this.state.currentPage - 1);
     };
 
     handleMoveRight = () => {
-        //evt.preventDefault();
         this.gotoPage(this.state.currentPage + 1);
     };
 
@@ -241,27 +227,6 @@ class Pagination extends PureComponent {
         );
     }
 }
-/*
-Pagination.propTypes = {
-    totalRecords: PropTypes.number.isRequired,
-    pageLimit: PropTypes.number,
-    pageNeighbours: PropTypes.number,
-    onPageChanged: PropTypes.func
-};
-
- */
-/*
-const mapStateToProps = function (state) {
-    return {
-        //pagination: state.pagination.pagination,
-    };
-};
-
-
-
-export default connect(mapStateToProps)(Pagination);
-
- */
 
 
 export default withRouter(Pagination);

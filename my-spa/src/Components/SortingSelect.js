@@ -6,7 +6,7 @@ const NO_SORT = "NO_SORT";
 const BY_PRICE = "BY_PRICE";
 const BY_NAME = "BY_NAME";
 
-class Sorting extends PureComponent {
+class SortingSelect extends PureComponent {
     static propTypes = {
         products: PropTypes.array,
         match: PropTypes.object.isRequired,
@@ -20,12 +20,12 @@ class Sorting extends PureComponent {
     };
 
     componentDidMount() {
-        //console.log(`componentDidMount - Sorting`);
+        //console.log(`componentDidMount - SortingSelect`);
         //appEvents.addListener('EOnClickCatalogLinkEvent', this.noSort);
     }
 
     componentWillReceiveProps (nextProps, nexContext) {
-        //console.log(`componentWillReceiveProps - Sorting`);
+        //console.log(`componentWillReceiveProps - SortingSelect`);
         const pageCatalogSortedBy = nextProps.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
         //console.log(pageCatalogSortedBy);
         //appEvents.addListener('EOnClickCatalogLinkEvent', this.noSort);
@@ -33,7 +33,7 @@ class Sorting extends PureComponent {
 
     };
     componentWillUnmount() {
-        //console.log(`componentWillUnmount - Sorting`);
+        //console.log(`componentWillUnmount - SortingSelect`);
     }
 
 
@@ -63,5 +63,5 @@ class Sorting extends PureComponent {
     }
 }
 export {NO_SORT, BY_PRICE, BY_NAME};
-const withRouterSorting = withRouter(Sorting);
+const withRouterSorting = withRouter(SortingSelect);
 export default withRouterSorting;

@@ -32,7 +32,7 @@ const SINGLE_ITEM = 'SINGLE_ITEM';
 const GREEN = 'GREEN';
 const RED = 'RED';
 
-class PageShop extends PureComponent {
+export class PageShop extends PureComponent {
 
     static propTypes = {
         match:PropTypes.object.isRequired,
@@ -99,7 +99,9 @@ class PageShop extends PureComponent {
     };
 
     setFavoriteItem = (item) => {
-        this.props.dispatch( isProductFavoriteAC(item));
+        const {products} = this.props;
+        let itemIndex = products.data.findIndex(i => i.id === item.id);
+        this.props.dispatch( isProductFavoriteAC(item, itemIndex));
     };
 
     addItemToShoppingCart = (item) => {
@@ -129,25 +131,26 @@ class PageShop extends PureComponent {
 
     render() {
         console.log(`PageShop - RENDER`);
-        const {match, products, location, shoppingCart} = this.props;
+        const {match, products, location} = this.props;
 
-        if ( products.status<=1 || shoppingCart.status<=1)
-            return <img src={loaderIconGif} alt={`Загрузка данных`} />;
-
-        if ( products.status===2 || shoppingCart.status===2)
-            return "ошибка загрузки данных";
 
         return (
-                <Fragment>
+                <div className={`PageShop`}>
                     <Switch>
                         { location.pathname.includes('page-') ?
                             <Route path={`/${match.params.catalog}/page-:pageNumber`} render={({match}) => {
                             return (
-                                <ShopCatalog currentPage={+match.params.pageNumber}
-                                             products={products.data}
-                                             showMode={CATALOG_ITEM}
-                                             //isSortBy = {isSortBy}
-                                />
+                                <Fragment>
+                                    {products.status<=1 && <img src={loaderIconGif} alt={`Загрузка данных`} />}
+                                    {products.status===2 && <p>Ошибка загрузки данных</p>}
+                                    {products.data &&
+                                        <ShopCatalog currentPage={+match.params.pageNumber}
+                                                products={products.data}
+                                                showMode={CATALOG_ITEM}
+                                                //isSortBy = {isSortBy}
+                                        />
+                                    }
+                                </Fragment>
                             )
                         }
                         } />
@@ -170,7 +173,7 @@ class PageShop extends PureComponent {
 
 
                     </Switch>
-                </Fragment>
+                </div>
         );
     }
 }

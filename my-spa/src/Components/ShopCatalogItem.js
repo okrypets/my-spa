@@ -126,14 +126,13 @@ class  ShopCatalogItem extends PureComponent {
 
                             </div>
                         </div>
+                        {showMode === SINGLE_ITEM &&
+                        <div>
+                            <span>{item.excerpt}</span>
+                        </div>
+                        }
                     </div>
                 </div>
-
-                {showMode === SINGLE_ITEM &&
-                    <div>
-                        <span>{item.excerpt}</span>
-                    </div>
-                }
                 <div className="favorite">
                     <button className={`favoriteButton ${isFavorite ? 'active' : ''}`} onClick={this.isFavoriteItemHandleClick}>
                         <IconStar

@@ -33,7 +33,7 @@ class App extends PureComponent {
                                 <Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
                                 <Route exact path="/" component = {PageMain} />
                                 <Route path="/basket" component = {PageBasket} />
-                                <Route path="/:catalog/:urlParams?" component = {PageShop} className="PageCatalog" />
+                                <Route path="/:catalog/:urlParams?" component = {PageShop} />
                             </Switch>
                         </div>
                     </main>

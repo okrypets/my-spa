@@ -9,14 +9,15 @@ const initState={
 }
 
 export default function productsReducer(state=initState,action) {
+
     switch (action.type) {
 
         case PRODUCTS_LOADING: {
             //console.log('action:',action);
             //console.log('state до обработки редьюсером:',state);
             let newState = {...state,
-                status:1,
-                data:null
+                ...state.data,
+                status: 1
             };
             //console.log('state после обработки редьюсером:',newState);
             return newState;
@@ -27,7 +28,6 @@ export default function productsReducer(state=initState,action) {
             //console.log('state до обработки редьюсером:',state);
             let newState = {...state,
                 status:2,
-                data:null,
             };
             //console.log('state после обработки редьюсером:',newState);
             return newState;
@@ -48,10 +48,8 @@ export default function productsReducer(state=initState,action) {
             //console.log('action:',action);
             //console.log('state до обработки редьюсером:',state);
 
-
-            let itemIndex = state.data.findIndex(i => i.id === action.item.id);
             let newState;
-            if (itemIndex === 0) {
+            if (action.index === 0) {
                 newState = {...state,
                 status:state.status,
                 data: [
@@ -61,7 +59,7 @@ export default function productsReducer(state=initState,action) {
             };
                 //console.log('state после обработки редьюсером:',newState);
 
-            } else if (itemIndex === state.data.length-1) {
+            } else if (action.index === state.data.length-1) {
                 newState = {...state,
                     status:state.status,
                     data: [
@@ -76,9 +74,9 @@ export default function productsReducer(state=initState,action) {
                     status:state.status,
                     data: [
                         //...state.data,
-                        ...state.data.slice(0,itemIndex),
+                        ...state.data.slice(0,action.index),
                         action.item,
-                        ...state.data.slice(itemIndex+1, state.data.length),
+                        ...state.data.slice(action.index+1, state.data.length),
                     ]
                 };
                 //console.log('state после обработки редьюсером:',newState);

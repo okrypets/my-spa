@@ -1,7 +1,293 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4af17e44-7edf-474e-8a08-510d9d9cbe13" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/api/posts.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/api/shoppingCart.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/Components/Success.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/Redux/Actions/productsAC.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/Redux/Actions/shoppingCartAC.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/productsReducer.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/fileTransformer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/pages/PageShop.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-spa/src/tempPolyfills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/api/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/api/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/FavoriteCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/FavoriteCount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/Pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Pagination.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/SortingSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Success.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/Success.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Redux/Actions/productsAC.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Redux/Actions/productsAC.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/productsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/productsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/shoppingCartReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/shoppingCartReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/pages/PageShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/pages/PageShop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/shopItemArrAll.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1SsVNoPQ2Nkk19gwFCUl3l4owBr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/my-spa/api" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/my-spa/node_modules/react-scripts" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\my-app\my-spa\api" />
+      <recent name="F:\my-app\my-spa" />
+      <recent name="F:\my-app\my-spa\src\Components" />
+      <recent name="F:\my-app\my-spa\src\Redux\Reducers" />
+      <recent name="F:\my-app\my-spa\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\my-app\my-spa\src\Components" />
+      <recent name="F:\my-app\my-spa\api" />
+      <recent name="F:\my-app\my-spa\src" />
+      <recent name="F:\my-app\my-spa\src\Redux\Reducers" />
+      <recent name="F:\my-app\my-spa\src\Redux" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Jest.shoppingCart thunk action.actions.creates CART_SET when fetching products has been done">
+    <configuration name="ShopCatalog container" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/my-spa/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$/my-spa" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.spec.js" />
+      <test-names>
+        <test-name value="ShopCatalog container" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="ShopCatalog container.ShopCatalog container init.renders only one div.ShopCatalog" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/my-spa/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$/my-spa" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.spec.js" />
+      <test-names>
+        <test-name value="ShopCatalog container" />
+        <test-name value="ShopCatalog container init" />
+        <test-name value="renders only one div.ShopCatalog" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="ShopCatalog container.ShopCatalog container init.renders only one div.sortingBlock" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/my-spa/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$/my-spa" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.spec.js" />
+      <test-names>
+        <test-name value="ShopCatalog container" />
+        <test-name value="ShopCatalog container init" />
+        <test-name value="renders only one div.sortingBlock" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="shoppingCart thunk action" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/my-spa/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$/my-spa" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/my-spa/src/Redux/Actions/shoppingCartAC.spec.js" />
+      <test-names>
+        <test-name value="shoppingCart thunk action" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="shoppingCart thunk action.actions.creates CART_SET when fetching products has been done" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/my-spa/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$/my-spa" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/my-spa/src/Redux/Actions/shoppingCartAC.spec.js" />
+      <test-names>
+        <test-name value="shoppingCart thunk action" />
+        <test-name value="actions" />
+        <test-name value="creates CART_SET when fetching products has been done" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.shoppingCart thunk action.actions.creates CART_SET when fetching products has been done" />
+        <item itemvalue="Jest.shoppingCart thunk action" />
+        <item itemvalue="Jest.ShopCatalog container.ShopCatalog container init.renders only one div.sortingBlock" />
+        <item itemvalue="Jest.ShopCatalog container" />
+        <item itemvalue="Jest.ShopCatalog container.ShopCatalog container init.renders only one div.ShopCatalog" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4af17e44-7edf-474e-8a08-510d9d9cbe13" name="Default Changelist" comment="" />
+      <created>1572352252225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572352252225</updated>
+      <workItem from="1572352253418" duration="3627000" />
+      <workItem from="1572377426548" duration="5617000" />
+      <workItem from="1572416566466" duration="15862000" />
+      <workItem from="1572453356390" duration="593000" />
+      <workItem from="1572504025275" duration="9642000" />
+      <workItem from="1572518756008" duration="7952000" />
+      <workItem from="1572551394318" duration="9157000" />
+      <workItem from="1572590628684" duration="30632000" />
+      <workItem from="1572701022655" duration="9744000" />
+      <workItem from="1572770015346" duration="532000" />
+      <workItem from="1573048095308" duration="1426000" />
+      <workItem from="1573589146562" duration="7970000" />
+      <workItem from="1573633909595" duration="8266000" />
+      <workItem from="1573668411120" duration="14782000" />
+      <workItem from="1573711789193" duration="46831000" />
+      <workItem from="1573798689637" duration="47314000" />
+      <workItem from="1573892859150" duration="22530000" />
+      <workItem from="1573994175864" duration="20950000" />
+      <workItem from="1574060122663" duration="23054000" />
+      <workItem from="1574098304277" duration="11251000" />
+      <workItem from="1574144786320" duration="10742000" />
+      <workItem from="1574189857037" duration="11108000" />
+      <workItem from="1574239930721" duration="34146000" />
+      <workItem from="1574310254618" duration="8918000" />
+      <workItem from="1574341902223" duration="1584000" />
+      <workItem from="1574346095135" duration="26019000" />
+      <workItem from="1574403158863" duration="48019000" />
+      <workItem from="1574924406014" duration="20084000" />
+    </task>
+    <task id="LOCAL-00001" summary="my-spa">
+      <created>1573048341863</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573048341863</updated>
+    </task>
+    <task id="LOCAL-00002" summary="my-spa">
+      <created>1574360165567</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574360165567</updated>
+    </task>
+    <task id="LOCAL-00003" summary="my-spa - 2">
+      <created>1574430263543</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574430263543</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="my-spa" />
+    <MESSAGE value="my-spa - 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="my-spa - 2" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="JavaScriptTestRunnerJest">
+        <watch expression="store.dispatch" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/my_app$shoppingCart_thunk_action_actions_creates_CART_SET_when_fetching_products_has_been_done.info" NAME="shoppingCart thunk action.actions.creates CART_SET when fetching products has been done Coverage Results" MODIFIED="1574930141784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/my_app$shoppingCart_thunk_action.info" NAME="shoppingCart thunk action Coverage Results" MODIFIED="1574929731262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
