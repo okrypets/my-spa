@@ -60,14 +60,14 @@ class  ShopCatalogItem extends PureComponent {
     isFavoriteItem = () => {
         const {item} = this.props;
         const {isFavorite} = this.state;
-        //let newItem = {...item};
+        let newItem = {...item};
         if (isFavorite) {
-            item[IS_FAVORITE] = isFavorite;
+            newItem[IS_FAVORITE] = isFavorite;
         } else {
-            delete item[IS_FAVORITE];
+            delete newItem[IS_FAVORITE];
         }
-        //console.log(item[IS_FAVORITE]);
-        appEvents.emit('EisFavoriteItemOnChange', item);
+        //console.log(newItem);
+        appEvents.emit('EisFavoriteItemOnChange', newItem);
     };
 /*
     colorAllFavoriteProducts =() => {

@@ -9,6 +9,7 @@ import ShopCatalogItem from './ShopCatalogItem';
 import {withRouter} from "react-router-dom";
 //import SingleItem from "./SingleItem";
 import FavoriteCount from '../Components/FavoriteCount'
+//import PageLimitButtons from '../Components/PageLimitButtons'
 
 import {
     CATALOG_ITEM,
@@ -56,7 +57,7 @@ export class ShopCatalog extends PureComponent {
         //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
 
         //const currentPage = this.props.currentPage;
-        //this.setState({ currentPage:currentPage });
+        this.setState({ allProducts:nextProps.products });
         //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
     }
 
@@ -90,16 +91,7 @@ export class ShopCatalog extends PureComponent {
         //appEvents.removeListener('ESortingOnChange',this.sortingOnSelectChange);
         //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
     };
-/*
-    setSortedProductsArray = (sortedArray)=> {
-        console.log(`getSortedProductsArray`);
-        console.log(sortedArray);
-        this.setState({
-            allSortedProducts: sortedArray,
-        })
-    }
 
- */
 
     colorAllFavoriteProducts = () => {
         const {colorFavorite} = this.state;
@@ -117,11 +109,9 @@ export class ShopCatalog extends PureComponent {
         //console.log(`onPageChanged - ShopCatalog`);
         const allProducts = this.props.products;
         const { allSortedProducts, isSortBy} = this.state;
-        //const allProducts = (isSortBy !== NO_SORT) ? this.sortByName() : this.getAllProducts() ;
 
+        //console.log(data.pageLimit);
         const { currentPage, totalPages, pageLimit } = data;
-        //const currentPage = this.state.currentPage;
-        //const { totalPages, pageLimit } = data;
         const offset = (currentPage - 1) * pageLimit;
 
         const currentPageProducts = (isSortBy !== NO_SORT ? allSortedProducts : allProducts).slice(offset, offset + pageLimit);
@@ -184,6 +174,7 @@ export class ShopCatalog extends PureComponent {
 
 
 
+
     render() {
         console.log("ShopCatalog - RENDER");
 
@@ -196,6 +187,7 @@ export class ShopCatalog extends PureComponent {
             currentPage,
             totalPages,
             colorFavorite,
+            pageLimit,
             //allFavoriteProducts,
             //showAllFavorite,
         } = this.state;
@@ -227,7 +219,8 @@ export class ShopCatalog extends PureComponent {
 
                         <Pagination
                             totalRecords={totalProducts}
-                            pageLimit={50}
+                            //pageLimit={10}
+                            //pageLimit={pageLimit}
                             pageNeighbours={1}
                             onPageChanged={this.onPageChanged}
                             currentPage={currentPage}

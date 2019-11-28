@@ -72,7 +72,7 @@ export class PageShop extends PureComponent {
         }
         //if (this.props.products.status === 3) {
             this.setState({
-                products:this.props.products.data,
+                products:nextProps.products.data,
             }
             );
         //}
@@ -99,9 +99,8 @@ export class PageShop extends PureComponent {
     };
 
     setFavoriteItem = (item) => {
-        const {products} = this.props;
-        let itemIndex = products.data.findIndex(i => i.id === item.id);
-        this.props.dispatch( isProductFavoriteAC(item, itemIndex));
+        //const {products} = this.props;
+        this.props.dispatch( isProductFavoriteAC(item));
     };
 
     addItemToShoppingCart = (item) => {
@@ -132,8 +131,8 @@ export class PageShop extends PureComponent {
     render() {
         console.log(`PageShop - RENDER`);
         const {match, products, location} = this.props;
-
-
+        if (products.status<=1) {return  <img src={loaderIconGif} alt={`Загрузка данных`} />}
+        if (products.status===2) {return <p>Ошибка загрузки данных</p>}
         return (
                 <div className={`PageShop`}>
                     <Switch>
@@ -141,8 +140,6 @@ export class PageShop extends PureComponent {
                             <Route path={`/${match.params.catalog}/page-:pageNumber`} render={({match}) => {
                             return (
                                 <Fragment>
-                                    {products.status<=1 && <img src={loaderIconGif} alt={`Загрузка данных`} />}
-                                    {products.status===2 && <p>Ошибка загрузки данных</p>}
                                     {products.data &&
                                         <ShopCatalog currentPage={+match.params.pageNumber}
                                                 products={products.data}

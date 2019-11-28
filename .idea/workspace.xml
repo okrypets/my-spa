@@ -2,41 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4af17e44-7edf-474e-8a08-510d9d9cbe13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/api/posts.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/api/shoppingCart.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/Components/Success.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/Redux/Actions/productsAC.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/Redux/Actions/shoppingCartAC.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/productsReducer.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/fileTransformer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/pages/PageShop.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/setupTests.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-spa/src/tempPolyfills.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/api/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/api/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/src/Components/FavoriteCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/FavoriteCount.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/Pagination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Pagination.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/Pagination.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/ShopCatalogItem.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/SortingSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/src/Components/Success.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Components/Success.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/src/Redux/Actions/productsAC.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Redux/Actions/productsAC.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/productsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/productsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/shoppingCartReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/Redux/Reducers/shoppingCartReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-spa/src/pages/PageShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-spa/src/pages/PageShop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spa/src/shopItemArrAll.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +36,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/my-spa/api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -232,7 +207,8 @@
       <workItem from="1574341902223" duration="1584000" />
       <workItem from="1574346095135" duration="26019000" />
       <workItem from="1574403158863" duration="48019000" />
-      <workItem from="1574924406014" duration="20084000" />
+      <workItem from="1574924406014" duration="24415000" />
+      <workItem from="1574971410074" duration="11063000" />
     </task>
     <task id="LOCAL-00001" summary="my-spa">
       <created>1573048341863</created>
@@ -255,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574430263543</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="my-spa - fwt2">
+      <created>1574953202610</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574953202610</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +260,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="my-spa" />
     <MESSAGE value="my-spa - 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="my-spa - 2" />
+    <MESSAGE value="my-spa - fwt2" />
+    <option name="LAST_COMMIT_MESSAGE" value="my-spa - fwt2" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

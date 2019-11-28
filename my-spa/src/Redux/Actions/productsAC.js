@@ -22,11 +22,10 @@ const productsSetAC=function(products) {
     };
 };
 
-const isProductFavoriteAC=function(item, index) {
+const isProductFavoriteAC=function(item) {
     return {
         type: IS_PRODUCT_FAVORITE,
         item:item,
-        index: index,
     };
 };
 

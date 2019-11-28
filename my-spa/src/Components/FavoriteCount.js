@@ -15,12 +15,16 @@ class FavoriteCount extends PureComponent {
 
     componentWillReceiveProps(nextProps, nextContext) {
         //console.log(`componentWillReceiveProps - FavoriteCount`);
+        //console.log(nextProps.products);
+        this.setState({
+            products: nextProps.products,
+        })
         this.getFavoriteCount();
     }
 
     componentDidMount() {
         //console.log(`componentDidMount - FavoriteCount`);
-        //this.getfavoriteCount();
+        this.getFavoriteCount();
     };
 
     componentWillUnmount() {
