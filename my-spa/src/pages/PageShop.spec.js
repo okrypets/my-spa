@@ -3,10 +3,6 @@ import PageShop from './PageShop'
 import { shallow, mount } from 'enzyme'
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
-//import loaderIconGif from '../loader.gif';
-//import PropTypes from "prop-types";
-//import {productsThunkAC} from "../Redux/Thunk/fetchThunkProducts";
-//import Success from "../Components/Success";
 
 const mockStore = configureMockStore();
 const store = mockStore({});

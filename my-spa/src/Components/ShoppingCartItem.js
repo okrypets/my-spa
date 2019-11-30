@@ -13,16 +13,7 @@ class ShoppingCartItem extends PureComponent {
         item:PropTypes.object,
     };
 
-    state = {
-    };
-
-    componentWillUnmount() {
-        //console.log(`componentWillUnmount - ShoppingCartItem`);
-
-    }
-
     handleClickRemove = () => {
-        //console.log(`handleClickRemove - ShoppingCartItem`);
         const {item} = this.props;
         appEvents.emit('EhandleClickDeleteItem', item);
     }

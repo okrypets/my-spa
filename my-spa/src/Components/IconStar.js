@@ -15,10 +15,6 @@ class IconStar extends PureComponent {
         isActive: false,
     };
 
-    state = {
-
-    };
-
     render() {
         const {isActive, fill} = this.props;
         return (

@@ -759,38 +759,45 @@
   ],
   "shoppingCart": [
     {
-      "Name": "NewYork Red",
-      "id": 1,
+      "Name": "Californication",
+      "id": 2,
+      "Price": 57,
+      "ImgSrc": "0247-01.jpg",
+      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      "Name": "Fontana",
+      "id": 104,
+      "Price": 57,
+      "ImgSrc": "0469-01.jpg",
+      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      "Name": "Modesto",
+      "id": 103,
       "Price": 123,
-      "ImgSrc": "0216-01.jpg",
+      "ImgSrc": "0466-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
-      "Name": "Raleigh",
-      "id": 40,
+      "Name": "San Bernardino",
+      "id": 102,
+      "Price": 77,
+      "ImgSrc": "0465-01.jpg",
+      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      "Name": "Chicago",
+      "id": 4,
       "Price": 45,
-      "ImgSrc": "0456-01.jpg",
+      "ImgSrc": "0249-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
-      "Name": "Miami",
-      "id": 39,
-      "Price": 6464,
-      "ImgSrc": "0455-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
-      "Name": "Minneapolis",
-      "id": 45,
-      "Price": 6464,
-      "ImgSrc": "0462-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
-      "Name": "Tulsa",
-      "id": 46,
-      "Price": 45,
-      "ImgSrc": "0463-01.jpg",
+      "Name": "Houston",
+      "id": 5,
+      "Price": 455,
+      "ImgSrc": "0251-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
@@ -798,6 +805,13 @@
       "id": 50,
       "Price": 57,
       "ImgSrc": "0469-01.jpg",
+      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      "Name": "NewYork Red",
+      "id": 1,
+      "Price": 123,
+      "ImgSrc": "0216-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
   ]

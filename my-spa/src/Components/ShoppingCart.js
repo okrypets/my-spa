@@ -1,18 +1,10 @@
 import React, {PureComponent, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import ShoppingCartItem from "./ShoppingCartItem";
-//import {connect} from "react-redux";
 import CheckOut from './CheckOut';
 import {appEvents} from "./events";
 import './ShoppingCart.scss'
-//import {shoppingCartRemoveAC, shoppingCartRemoveAllAC } from "../Redux/Actions/shoppingCartAC";
-//import {shoppingCartRemoveThunkAC} from '../Redux/Thunk/fetchThunkCart';
-//import ReactTransitionGroup from 'react-addons-transition-group' // ES6
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-//import {shoppingCartAddThunkAC} from "../Redux/Thunk/fetchThunkCart";
-//import {GREEN, RED} from "../pages/PageShop";
-//import loaderIconGif from "../loader.gif";
-//import {shoppingCartThunkAC} from "../Redux/Thunk/fetchThunkCart";
 
 class ShoppingCart extends PureComponent {
 
@@ -27,31 +19,18 @@ class ShoppingCart extends PureComponent {
         success:true,
     }
 
-    componentWillMount() {
-        //console.log(`componentWillMount - ShoppingCart`);
-       //this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
-    }
     componentDidMount() {
-        //console.log(`componentDidMount - ShoppingCart`);
-        //this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
         appEvents.addListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
         appEvents.addListener('EdeleteAllFromShoppingCart',this.deleteAllFromShoppingCartAfterSubmit);
     }
 
     componentWillUnmount() {
-        //console.log(`componentWillUnmount - ShoppingCart`);
         appEvents.removeListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
         appEvents.removeListener('EdeleteAllFromShoppingCart',this.deleteAllFromShoppingCartAfterSubmit);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        //console.log(`componentWillReceiveProps - ShoppingCart`);
-
-    }
-
 
     deleteItemFromShoppingCart = (delItem) => {
-        //console.log(`deleteItemFromShoppingCart - ShoppingCart`);
         const {shoppingCartProducts} = this.state;
         let newshoppingCartProducts = [...shoppingCartProducts].filter(i => i.id !== delItem.id);
         this.setState({
@@ -60,18 +39,13 @@ class ShoppingCart extends PureComponent {
     }
 
     deleteAllFromShoppingCartAfterSubmit =() => {
-        //console.log(`deleteAllFromShoppingCartAfterSubmit`);
-        //this.props.dispatch( shoppingCartRemoveAllAC());
         this.setState({
             shoppingCartProducts: [],
             success:true,
         }, () => this.successSubmit());
-        //console.log(this.state.shoppingCartProducts);
-        //console.log(this.state.success);
     }
 
     successSubmit = () => {
-        //console.log(`successSubmit`);
         const {success} = this.state;
         const {history} = this.props;
         success &&
@@ -81,9 +55,6 @@ class ShoppingCart extends PureComponent {
     render() {
         console.log(`ShoppingCart - RENDER`);
         const {shoppingCartProducts} = this.state;
-        //const {shoppingCart} = this.props;
-        //console.log(shoppingCartProducts);
-        //console.log(shoppingCart);
 
         return(
 
@@ -117,19 +88,5 @@ class ShoppingCart extends PureComponent {
     }
 
 }
-/*
-const mapStateToProps = function (state) {
-    return {
-        shoppingCart: state.shoppingCart,
-    };
-};
 
-
- */
-
-//const withRouterPageShop = withRouter(PageShop);
-//export default connect(mapStateToProps)(ShoppingCart);
-export default ShoppingCart
-
-
-///{shoppingCartProducts.length > 0 && <CheckOut />}
+export default ShoppingCart;

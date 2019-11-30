@@ -33,8 +33,6 @@ class CheckOut extends PureComponent {
                 }
             )
         }
-
-
     }
 
     render() {
@@ -58,4 +56,3 @@ class CheckOut extends PureComponent {
 }
 const withRouterCheckOut = withRouter(CheckOut);
 export default withRouterCheckOut;
-//export default  CheckOut;

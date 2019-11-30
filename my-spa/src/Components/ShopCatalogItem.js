@@ -6,7 +6,7 @@ import {appEvents} from "./events";
 
 import './ShopCatalogItem.scss';
 import {
-    //CATALOG_ITEM,
+    CATALOG_ITEM,
     SINGLE_ITEM,
 } from '../pages/PageShop'
 
@@ -27,16 +27,10 @@ class  ShopCatalogItem extends PureComponent {
         colorFavorite: this.props.colorFavorite,
     };
 
-    componentDidMount() {
-        //console.log(`componentDidMount - ShopCatalogItem`);
-        //this.props.item.IS_FAVORITE &&
-        //appEvents.addListener('EcolorAllFavoriteByClick', this.colorAllFavoriteProducts);
+    componentDidUpdate(prevProps) {
+        console.log(this.props.colorFavorite)
+        console.log(prevProps.colorFavorite)
     }
-    componentWillUnmount() {
-        //console.log(`componentWillUnmount - ShopCatalogItem`);
-        //this.props.item.IS_FAVORITE &&
-        //appEvents.removeListener('EcolorAllFavoriteByClick',this.colorAllFavoriteProducts);
-    };
 
     isFavoriteItemHandleClick = () => {
         this.state.isFavorite ?
@@ -66,21 +60,11 @@ class  ShopCatalogItem extends PureComponent {
         } else {
             delete newItem[IS_FAVORITE];
         }
-        //console.log(newItem);
+
         appEvents.emit('EisFavoriteItemOnChange', newItem);
     };
-/*
-    colorAllFavoriteProducts =() => {
-        console.log(`colorAllFavoriteProducts`);
-        this.setState({
-            colored: true,
-        })
-    }
-
- */
 
     handleClickAddToCart = () => {
-        //console.log(`handleClickAddToCart`);
         const {item} = this.props;
         appEvents.emit('EhandleClickAddToCart', item);
         this.setState({
@@ -92,7 +76,6 @@ class  ShopCatalogItem extends PureComponent {
     render() {
         console.log("ShopCatalogItem - render");
         const {showMode, colorFavorite} = this.props;
-        //console.log(this.props.match);
         let item = this.props.item;
         const {isFavorite} = this.state;
 
@@ -133,59 +116,18 @@ class  ShopCatalogItem extends PureComponent {
                         }
                     </div>
                 </div>
-                <div className="favorite">
-                    <button className={`favoriteButton ${isFavorite ? 'active' : ''}`} onClick={this.isFavoriteItemHandleClick}>
-                        <IconStar
-                                  isActive = {isFavorite}/>
-                    </button>
-                </div>
+                {showMode === CATALOG_ITEM &&
+                    <div className="favorite">
+                        <button className={`favoriteButton ${isFavorite ? 'active' : ''}`} onClick={this.isFavoriteItemHandleClick}>
+                            <IconStar
+                                isActive = {isFavorite}/>
+                        </button>
+                    </div>
+                }
+
             </div>
         )
     }
 }
-/*
-const mapStateToProps = function (store) {
-    return {
-        //isFavorite:store.isFavorite,
-        //item:store.item,
-        products: store.products,
-    };
-};
-
-//const withRouterPageShop = withRouter(PageShop);
-export default connect(mapStateToProps)(ShopCatalogItem);
- */
 export {IS_FAVORITE};
 export default ShopCatalogItem;
-
-/*
-
-<input type="number"
-                                   defaultValue={1}
-                                   disabled={!item.Price && !isFavorite}
-                                   onChange={this.setCountOnChange}
-                            />
-
-    const mapDispatchToProps = dispatch => bindActionCreators({
-       // changePage: () => push(`/SingleItem`)
-    }, dispatch);
-
-    export default connect(
-        null,
-        mapDispatchToProps
-    )(ShopCatalogItem)
-*/
-
-/*
-<button onClick={() => props.changePage()}>Go to about page via redux</button>
-
-
-
-
-
-*/
-
-
-
-
-//export default withRouter(ShopCatalogItem);

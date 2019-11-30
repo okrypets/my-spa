@@ -27,21 +27,14 @@ class Pagination extends PureComponent {
         super(props);
         const {
             totalRecords = null,
-            //pageLimit = 10,
             pageNeighbours = 0
         } = props;
-        //this.pageLimit = typeof pageLimit === "number" ? pageLimit : 10;
-        //this.pageLimit = typeof this.getPageLimit() === "number" ? this.getPageLimit() : 10;
-        //this.pageLimit = typeof this.state.pageLimit === "number" ? this.state.pageLimit : 10;
         this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
 
         this.pageNeighbours =
             typeof pageNeighbours === "number"
                 ? Math.max(0, Math.min(pageNeighbours, 2))
                 : 0;
-
-        //this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
-
     }
 
     static propTypes = {
@@ -57,22 +50,17 @@ class Pagination extends PureComponent {
 
     state = {
         currentPage: this.props.currentPage,
-        pageLimit:10,
-        totalPages:Math.ceil(this.props.totalRecords / 10),
+        pageLimit:50,
+        totalPages:Math.ceil(this.props.totalRecords / 50),
     };
 
-    componentWillMount() {
-        //console.log(`componentWillMount - Pagination`);
+    UNSAFE_componentWillMount() {
         appEvents.addListener('EcurrentPageToHandleClick',this.handleClick);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        //console.log(`componentWillReceiveProps - Pagination`);
-        //console.log(nextProps.match.params.urlParams);
-
-        //console.log(nextProps.location.pathname.replace(/[^0-9]/g, ""));
-        //console.log(this.totalPages);
-        const locationCurrentPage = +nextProps.location.pathname.replace(/[^0-9]/g, "");
+    //componentWillReceiveProps(nextProps, nextContext) {
+    componentDidUpdate(prevProps, prevState, Snapshot) {
+        const locationCurrentPage = +this.props.location.pathname.replace(/[^0-9]/g, "");
 
             this.setState({
                 currentPage: locationCurrentPage === 0 || locationCurrentPage > this.totalPages ? 1 : locationCurrentPage,
@@ -82,48 +70,29 @@ class Pagination extends PureComponent {
     }
 
     componentDidMount() {
-        //console.log(`componentDidMount - Pagination`);
-        //this.gotoPage(1);
-        //console.log(this.state.currentPage);
         this.gotoPage(this.state.currentPage);
     }
     componentWillUnmount() {
-        //console.log(`componentWillUnmount - Pagination`);
         appEvents.removeListener('EcurrentPageToHandleClick',this.handleClick);
     }
 
 
     gotoPage = (page) => {
-        //console.log(`gotoCurrentPage - run`);
-        //console.log(page);
-        //console.log(this.totalPages);
-        //console.log(this.pageLimit);
         const { onPageChanged = f => f} = this.props;
         const currentPage = Math.max(0, Math.min(page, this.state.totalPages));
         const {pageLimit,  totalPages} = this.state;
-        //const totalPages =
-        //console.log(pageLimit);
         const paginationData = {
             currentPage,
-            //totalPages: this.totalPages,
             totalPages: totalPages,
-            //pageLimit: this.pageLimit,
             pageLimit: pageLimit ,
             totalRecords: this.totalRecords
         };
-        //console.log(paginationData);
         this.setState({ currentPage }, () => onPageChanged(paginationData));
-
+        //console.log(paginationData)
     };
 
     pageLimitChange10 = () => {
         console.log(`pageLimitChange10`);
-        //const { cbPageLimitChange = f => f } = this.props;
-        //cbPageLimitChange(10);
-        //this.pageLimit = 10;
-        //this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
-        //console.log(this.totalPages);
-        //console.log(this.pageLimit);
         const totalPages = Math.ceil(this.totalRecords / 10);
         this.setState({
             pageLimit:10,
@@ -135,12 +104,6 @@ class Pagination extends PureComponent {
 
     pageLimitChange50 = () => {
         console.log(`pageLimitChange50`);
-        //const { cbPageLimitChange = f => f } = this.props;
-        //cbPageLimitChange(50);
-        //this.pageLimit = 50;
-        //this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
-        //console.log(this.totalPages);
-        //console.log(this.pageLimit);
         const totalPages = Math.ceil(this.totalRecords / 50);
         this.setState({
             pageLimit:50,
@@ -162,7 +125,6 @@ class Pagination extends PureComponent {
     };
 
     fetchPageNumbers = () => {
-        //const totalPages = this.totalPages;
         const totalPages = this.state.totalPages;
         const currentPage = this.state.currentPage;
         const pageNeighbours = this.pageNeighbours;
@@ -216,7 +178,6 @@ class Pagination extends PureComponent {
         const { currentPage } = this.state;
         const pages = this.fetchPageNumbers();
         const { location } = this.props;
-        //console.log(pages);
 
         return (
             <Fragment>
@@ -233,7 +194,6 @@ class Pagination extends PureComponent {
                                 return (
                                     <li key={index} className="page-item">
                                         <Link to={`/catalog/page-${this.state.currentPage - 1}`}
-                                            //to={location => ({ ...location, pathname: `/catalog/page-${this.state.currentPage - 1}` })}
                                             className="page-link"
                                             aria-label="Previous"
                                             onClick={this.handleMoveLeft}
@@ -247,7 +207,6 @@ class Pagination extends PureComponent {
                                 return (
                                     <li key={index} className="page-item">
                                         <Link to ={`/catalog/page-${this.state.currentPage  + 1}`}
-                                            //to={location => ({ ...location, pathname: `/catalog/page-${this.state.currentPage + 1}` })}
                                             className="page-link"
                                             aria-label="Next"
                                             onClick={this.handleMoveRight}
@@ -266,11 +225,8 @@ class Pagination extends PureComponent {
                                     }`}
                                 >
                                     <Link  to ={`/catalog/page-${page + location.search}`}
-                                            //to ={location => ({ ...location, pathname: `/catalog/page-${page}` })}
-                                            //pathname = {`/catalog/page-${page}`}
                                             className="page-link"
                                             onClick={e => this.handleClick(page, e)}
-                                            //replace
                                     >
                                         {page}
                                     </Link>
@@ -283,6 +239,5 @@ class Pagination extends PureComponent {
         );
     }
 }
-
 
 export default withRouter(Pagination);

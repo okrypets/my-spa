@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {appEvents} from "./events";
-//import {Link} from "react-router-dom";
 
 class FavoriteCount extends PureComponent {
     static propTypes = {
@@ -13,23 +12,20 @@ class FavoriteCount extends PureComponent {
         allFavoriteCount: 0,
     };
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        //console.log(`componentWillReceiveProps - FavoriteCount`);
-        //console.log(nextProps.products);
-        this.setState({
-            products: nextProps.products,
-        })
+    //componentWillReceiveProps(nextProps, nextContext) {
+    componentDidUpdate(prevProps, prevState, Snapshot) {
+        if (this.props.products !== prevProps.products) {
+            this.setState({
+                products:this.props.products,
+            })
+        }
         this.getFavoriteCount();
     }
 
     componentDidMount() {
-        //console.log(`componentDidMount - FavoriteCount`);
         this.getFavoriteCount();
     };
 
-    componentWillUnmount() {
-        //console.log(`componentWillUnmount - FavoriteCount`);
-    };
 
     getFavoriteCount = () => {
         const {products} = this.state;
@@ -46,7 +42,7 @@ class FavoriteCount extends PureComponent {
         return sumOfFavorite;
     };
 
-    showAllFavorite = (e) => {
+    colorAllFavorite = (e) => {
         appEvents.emit('EcolorAllFavoriteByClick', e);
     }
 
@@ -58,7 +54,7 @@ class FavoriteCount extends PureComponent {
            <div>
                 {allFavoriteCount > 0 &&
                     <label>
-                        <input type={`checkbox`} onChange={this.showAllFavorite} value={`Color all Favorite: ${allFavoriteCount} products`}/>
+                        <input type={`checkbox`} onChange={this.colorAllFavorite} value={`Color all Favorite: ${allFavoriteCount} products`}/>
                         Color all Favorite: {allFavoriteCount} products
                     </label>
                 }
@@ -69,5 +65,3 @@ class FavoriteCount extends PureComponent {
     }
 }
 export default FavoriteCount;
-
-//<Link to={`/catalog/?sort=favorite`} value={`All Favorite`} children ={`All Favorite ${allFavorite > 0 ? - allFavorite : ""}`}/>

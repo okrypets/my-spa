@@ -41,7 +41,6 @@ export class PageShop extends PureComponent {
         products: PropTypes.object, //REDUX
         currentPage:PropTypes.number,
         shoppingCart: PropTypes.object, //REDUX
-        //allSortedProducts: PropTypes.array,
     };
 
     state = {
@@ -50,76 +49,59 @@ export class PageShop extends PureComponent {
         shoppingCart: null,
     };
 
-    componentWillMount() {
-        //console.log(`componentWillMount - PageShop`);
+    UNSAFE_componentWillMount() {
         this.props.dispatch( productsThunkAC(this.props.dispatch));
         this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
-        //this.props.dispatch( productsThunkPOSTAC(this.props.products));
-        //this.props.dispatch( shoppingCartPOSTThunkAC (this.props.dispatch));
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        //console.log(`componentWillReceiveProps - PageShop`);
+    //componentWillReceiveProps(nextProps, nextContext) {
+    componentDidUpdate(prevProps, prevState, Snapshot) {
+        const locationCurrentPage = +this.props.location.pathname.replace(/[^0-9]/g, "");
 
-        const locationCurrentPage = +nextProps.location.pathname.replace(/[^0-9]/g, "");
-
-        //console.log(nextProps.shoppingCart);
-        //console.log(this.props.shoppingCart);
-        if (nextProps.match.params.urlParams !== undefined ) {
+        if (this.props.match.params.urlParams !== undefined ) {
             this.setState({
                 currentPage: locationCurrentPage,
             });
         }
-        //if (this.props.products.status === 3) {
             this.setState({
-                products:nextProps.products.data,
-            }
+                products:this.props.products.data,
+                }
             );
-        //}
+
         this.setState({
-            shoppingCart:nextProps.shoppingCart.items,
+            shoppingCart:this.props.shoppingCart.items,
         })
 
     }
 
     componentDidMount() {
-        //console.log(`componentDidMount - PageShop`);
-        //this.props.dispatch( productsThunkAC(this.props.dispatch));
         appEvents.addListener('EisFavoriteItemOnChange',this.setFavoriteItem);
         appEvents.addListener('EhandleClickAddToCart',this.addItemToShoppingCart);
-        //appEvents.addListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
 
     }
 
     componentWillUnmount() {
-        //console.log(`componentWillUnmount - PageShop`);
         appEvents.removeListener('EisFavoriteItemOnChange',this.setFavoriteItem);
         appEvents.removeListener('EhandleClickAddToCart',this.addItemToShoppingCart);
-        //appEvents.removeListener('EhandleClickDeleteItem',this.deleteItemFromShoppingCart);
     };
 
     setFavoriteItem = (item) => {
-        //const {products} = this.props;
         this.props.dispatch( isProductFavoriteAC(item));
     };
 
     addItemToShoppingCart = (item) => {
-        //console.log(`addItemToShoppingCart - PageShop`);
         const {shoppingCart} = this.state;
         let itemInCart;
         if (shoppingCart.length > 0) {
-            itemInCart = shoppingCart.some(i => i.id === item.id); // товар уже есть в корзине ?
+            itemInCart = shoppingCart.some(i => i.id === item.id);
             if (!itemInCart) {
-                //console.log(`shoppingCart.length > 0, itemInCart - false `);
                 this.props.dispatch(shoppingCartAddAC(item)); //отправляем просто в REDUX
                 this.props.dispatch(shoppingCartAddThunkAC(item));//отправляем в AJAX
                 appEvents.emit('EshowAlertCart', GREEN);
             } else {
-                //console.log(`shoppingCart.length > 0, itemInCart - true`);
                 appEvents.emit('EshowAlertCart', RED);
             }
         } else {
-            //console.log(`shoppingCart.length = 0`);
             this.props.dispatch(shoppingCartAddAC(item));//отправляем просто в REDUX
             this.props.dispatch(shoppingCartAddThunkAC(item));//отправляем в AJAX
             appEvents.emit('EshowAlertCart', GREEN);
@@ -144,7 +126,6 @@ export class PageShop extends PureComponent {
                                         <ShopCatalog currentPage={+match.params.pageNumber}
                                                 products={products.data}
                                                 showMode={CATALOG_ITEM}
-                                                //isSortBy = {isSortBy}
                                         />
                                     }
                                 </Fragment>
@@ -189,16 +170,3 @@ const mapStateToProps = function (state) {
 };
 const withRouterPageShop = withRouter(PageShop);
 export default connect(mapStateToProps)(withRouterPageShop);
-
-
-/*
-const withRouterPageShop = withRouter(PageShop);
-export default withRouterPageShop;
-
-<ShopCatalog currentPage={currentPage}
-                                     products={products}
-                        />
-
-
-
- */

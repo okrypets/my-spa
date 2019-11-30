@@ -10,56 +10,34 @@ export default function shoppingCartReducer(state=initState, action) {
     switch (action.type) {
 
         case CART_LOADING: {
-            //console.log('action:',action);
-            //console.log('state до обработки редьюсером:',state);
             let newState;
             newState = {...state,
                 status:1,
                 items:null
             };
-            //console.log('state после обработки редьюсером:',newState);
             return newState;
         }
 
         case CART_ERROR: {
-            //console.log('action:',action);
-            //console.log('state до обработки редьюсером:',state);
             let newState;
             newState = {...state,
                 status:2,
                 items:null,
             };
-            //console.log('state после обработки редьюсером:',newState);
             return newState;
         }
 
         case CART_SET: {
-            //console.log('action:',action);
-            //console.log('state до обработки редьюсером:',state);
             let newState;
             newState = {...state,
                 status:3,
                 items:action.shoppingCart,
             };
-            //console.log('state после обработки редьюсером:',newState);
             return newState;
         }
 
         case SHOPPING_CART_ADD: {
-            //console.log(action.item.id);
-            //let isInBasket = state.items.some(i => i.id === action.item.id);
-            //console.log(isInBasket);
             let newState;
-            /*
-            if (!isInBasket || state.items.length === 0) {
-                newState = {...state,
-                    items: [...state.items,
-                        action.item
-                    ]
-                };
-            } else {
-
-             */
             newState = {...state,
                 items: [...state.items,
                     action.item
@@ -81,7 +59,6 @@ export default function shoppingCartReducer(state=initState, action) {
 
         case SHOPPING_CART_REMOVE_ALL: {
             console.log(SHOPPING_CART_REMOVE_ALL);
-            //let deletedItem = state.items.filter(i => i.id !== action.item.id);
             let newState;
             newState = {...state,
                 items: null

@@ -1,28 +1,22 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {appEvents} from "./events";
-//import { paginationStateAC } from "../Redux/Actions/paginationAC";
 import Sorting, {BY_NAME, BY_PRICE, NO_SORT} from "./SortingSelect"
 import Pagination from "./Pagination"
 import ShopCatalogItem from './ShopCatalogItem';
-//import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-//import SingleItem from "./SingleItem";
 import FavoriteCount from '../Components/FavoriteCount'
-//import PageLimitButtons from '../Components/PageLimitButtons'
-
 import {
     CATALOG_ITEM,
 } from '../pages/PageShop'
-//import {appEvents} from "./events";
 
 export class ShopCatalog extends PureComponent {
 
     static propTypes = {
         location: PropTypes.object,
         history: PropTypes.object,
-        products: PropTypes.array, // REDUX
-        isSortBy: PropTypes.string,
+        products: PropTypes.array,
+        //isSortBy: PropTypes.string,
         currentPage:PropTypes.number,
         showMode: PropTypes.string,
         allSortedProducts: PropTypes.array,
@@ -30,121 +24,109 @@ export class ShopCatalog extends PureComponent {
 
 
     state = {
-        isSortBy: this.props.isSortBy,
+        isSortBy: NO_SORT,
         allProducts: this.props.products,
         allSortedProducts: [],
         colorFavorite:false,
         currentPageProducts: [],
         currentPage: this.props.currentPage,
         totalPages: null,
+        onPageChangedData:{}
     };
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        //console.log(`componentWillReceiveProps - ShopCatalog`);
-        //console.log(nextProps.currentPage);
-        //console.log(this.props.currentPage);
-
-
-        this.setState({
-            currentPage: nextProps.currentPage,
-        }, () => appEvents.emit('EcurrentPageToHandleClick',this.state.currentPage))
-
-
-        //console.log(nextProps.location.search);
-        const pageCatalogSortedBy = nextProps.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
-        //console.log(pageCatalogSortedBy);
-        this.setState({isSortBy:pageCatalogSortedBy}, this.getSortedProductsArray);
-        //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
-
-        //const currentPage = this.props.currentPage;
-        this.setState({ allProducts:nextProps.products });
-        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+    //componentWillReceiveProps(nextProps, nextContext) {
+    componentDidUpdate(prevProps, prevState, Snapshot) {
+        console.log(`componentDidUpdate`);
+        console.log(this.props.products[0])
+        console.log(prevProps.products[0])
+        console.log(this.state.isSortBy)
+        console.log(prevState.isSortBy)
+        if (this.props.products !== prevProps.products) {
+            this.setState({
+                allProducts:this.props.products,
+            })
+        }
     }
 
-    componentWillMount() {
-        //console.log(`componentWillMount - ShopCatalog`);
-        //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
-        // создаем
-       //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
-        //console.log(this.props.location.search);
+    UNSAFE_componentWillMount() {
+        console.log(`componentWillMount`);
         const pageCatalogSortedBy = this.props.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
-        //console.log(pageCatalogSortedBy);
-        this.setState({isSortBy:pageCatalogSortedBy}, this.getSortedProductsArray);
+        this.setState({isSortBy:pageCatalogSortedBy}, () => this.getSortedProductsArray(this.state.isSortBy));
 
     }
     componentDidMount() {
-        //console.log(`componentDidMount - ShopCatalog`);
-        //appEvents.addListener('ESortingOnChange',this.sortingOnSelectChange); // Передается BY_NAME или др.
-        //appEvents.addListener('EgetSortedProductsArray',this.setSortedProductsArray); //передается отсоритированный массив товаров
+        console.log(`componentDidMount`);
         appEvents.addListener('EcolorAllFavoriteByClick',this.colorAllFavoriteProducts);
-        //const allProducts = this.props.products.data;
-        //this.setState({ allProducts });
-
-        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
-
-
+        appEvents.addListener('EonHandleChangeSelectSorting',this.getSortedProductsArray);
     };
 
     componentWillUnmount() {
-        //console.log(`componentWillUnmount - ShopCatalog`);
         appEvents.removeListener('EcolorAllFavoriteByClick',this.colorAllFavoriteProducts);
-        //appEvents.removeListener('ESortingOnChange',this.sortingOnSelectChange);
-        //this.props.dispatch(paginationStateAC(this.state.currentPage, this.state.currentProducts) );
+        appEvents.removeListener('EonHandleChangeSelectSorting',this.getSortedProductsArray);
     };
 
 
     colorAllFavoriteProducts = () => {
+        console.log(`colorAllFavoriteProducts`)
         const {colorFavorite} = this.state;
-        //let newAllProducts = allProducts.slice();
-        //let allFavoriteProducts = newAllProducts.filter(item => item.IS_FAVORITE === true);
         this.setState({
-            //allFavoriteProducts: allFavoriteProducts,
             colorFavorite: !colorFavorite,
         });
+        this.currentPageToHandleClick();
+        //this.onPageChanged(this.state.onPageChangedData)
+    }
+
+    currentPageToHandleClick =() => {
+        appEvents.emit('EcurrentPageToHandleClick', this.state.currentPage)
     }
 
 
     onPageChanged = data => {
+        console.log(`onPageChanged`)
+        this.setState({
+            onPageChangedData:data,
+        })
         //console.log(data);
-        //console.log(`onPageChanged - ShopCatalog`);
-        const allProducts = this.props.products;
-        const { allSortedProducts, isSortBy} = this.state;
+        //const allProducts = this.props.products;
+        const { allSortedProducts, isSortBy, allProducts} = this.state;
 
-        //console.log(data.pageLimit);
         const { currentPage, totalPages, pageLimit } = data;
         const offset = (currentPage - 1) * pageLimit;
-
+        console.log(isSortBy)
+        console.log(isSortBy !== NO_SORT )
+        console.log(allProducts)
         const currentPageProducts = (isSortBy !== NO_SORT ? allSortedProducts : allProducts).slice(offset, offset + pageLimit);
+        //const currentPageProducts = allProducts.slice(offset, offset + pageLimit);
 
-        //this.props.history.push(`/catalog/page-${currentPage}`);
+        console.log(currentPageProducts);
         this.setState({ currentPage, currentPageProducts, totalPages });
-        //this.props.dispatch(paginationStateAC(data.currentPage, currentProducts) );
     };
 
 
     getSortedProductsByName = () => {
-        //console.log(`getSortedProductsByName`);
+        console.log(`getSortedProductsByName`)
         const {products} = this.props;
-        //console.log(products.data);
         let newProducts = products.slice();
         let sortedByName;
         sortedByName = newProducts.sort((a, b) => {
             let nameA=a.Name.toLowerCase(),
                 nameB=b.Name.toLowerCase();
-            if (nameA < nameB) //сортируем строки по возрастанию
+            if (nameA < nameB)
                 return -1;
             if (nameA > nameB)
                 return 1;
             return 0;
         });
+        //console.log(sortedByName)
         this.setState({
             allSortedProducts: sortedByName,
         });
+
     };
 
     getSortedProductsByPrice = () => {
+        console.log(`getSortedProductsByPrice`)
         const {products} = this.props;
-        //console.log(products.data);
         let newProducts = products.slice();
         let sortedByPrice;
         sortedByPrice = newProducts.sort((a, b) => {
@@ -152,52 +134,45 @@ export class ShopCatalog extends PureComponent {
         });
         this.setState({
             allSortedProducts: sortedByPrice,
-        });
+        }, () => this.onPageChanged);
+
     };
 
-    getSortedProductsArray =() => {
-        //console.log(`getSortedProductsArray`);
-        const {isSortBy} = this.state;
-        //let sortedBy;
-        if (isSortBy === BY_NAME) {
+    getSortedProductsArray =(sortingSelected) => {
+        console.log(`getSortedProductsArray`)
+        //const {isSortBy} = this.state;
+        this.setState({
+            isSortBy:sortingSelected,
+        });
+        if (sortingSelected === BY_NAME) {
+            console.log(`isSortBy === 'BY_NAME'`);
             this.getSortedProductsByName();
-        } else if (isSortBy === BY_PRICE) {
+        } else if (sortingSelected === BY_PRICE) {
+            console.log(`isSortBy === 'BY_PRICE'`);
             this.getSortedProductsByPrice();
         } else {
+            console.log(`isSortBy === NO_SORT`);
             this.setState({
                 allSortedProducts: [],
                 isSortBy:NO_SORT,
             })
         }
+        this.currentPageToHandleClick();
 
+        //this.onPageChanged(this.state.onPageChangedData)
     };
-
-
-
 
     render() {
         console.log("ShopCatalog - RENDER");
-
-        //console.log(this.props.products);
-        //let productsArr = this.props.products.data;
-
         const {
             allProducts,
             currentPageProducts,
             currentPage,
             totalPages,
             colorFavorite,
-            pageLimit,
-            //allFavoriteProducts,
-            //showAllFavorite,
         } = this.state;
         const totalProducts = allProducts.length;
         if (totalProducts === 0) return null;
-
-        //let pageLink = `page-${currentPage}`;
-
-
-        //console.log(currentPage);
 
         return (
             <div className={`ShopCatalog`}>
@@ -207,20 +182,23 @@ export class ShopCatalog extends PureComponent {
                 </div>
 
                 {
-                        //currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
-                    currentPageProducts.map((item) =>
-                        <ShopCatalogItem className={`CatalogItem`}
-                                                            key={item.id}
-                                                                   item={item}
-                                                                   showMode = {CATALOG_ITEM}
-                                             colorFavorite={item.IS_FAVORITE && colorFavorite ? 'colored' : ''}
-                        />)
+                    currentPageProducts.map((item) => {
+                            //console.log(`${item.id} - ${item.IS_FAVORITE}`);
+                            //console.log(colorFavorite);
+                            return <ShopCatalogItem className={`CatalogItem`}
+                                                    key={item.id}
+                                                    item={item}
+                                                    showMode={CATALOG_ITEM}
+                                                    colorFavorite={item.IS_FAVORITE && colorFavorite ? 'colored' : ''}
+                            />
+                        }
+                        )
+
+
                 }
 
                         <Pagination
                             totalRecords={totalProducts}
-                            //pageLimit={10}
-                            //pageLimit={pageLimit}
                             pageNeighbours={1}
                             onPageChanged={this.onPageChanged}
                             currentPage={currentPage}
@@ -236,51 +214,5 @@ export class ShopCatalog extends PureComponent {
     }
 
 }
-/*
-const mapStateToProps = function (store) {
-    return {
-        //router:state.router.location,
-        products: store.products,
-        //pagination: state.pagination.pagination,
-    };
-};
-const withRouterShopCatalog = withRouter(ShopCatalog);
-export default connect(mapStateToProps)(withRouterShopCatalog);
- */
-
 const withRouterShopCatalog = withRouter(ShopCatalog);
 export default withRouterShopCatalog;
-
-//export default ShopCatalog;
-/*
-<Route exact path={(totalPages>1 && currentPage!==1)?`/${this.props.catalogLink.catalog}/:page-${this.state.currentPage}`:`/${this.props.catalogLink.catalog}`}>
-
-
-<Switch>
-                        <Route path={`/${this.props.match.match.params.catalog}/:page-${currentPage}?`}>
-{
-    currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
-}
-</Route>
-</Switch>*/
-
-/*
-{
-                            currentProducts.map((item) => <ShopCatalogItem key={item.id} item={item} />)
-                        }
-*/
-
-/*
-render = {({match}) => {
-                               console.log({match});
-                        return (
-
-                            (totalPages === null ? allProducts : currentProducts).map((item) => <ShopCatalogItem key={item.id} item={item} />)
-
-                        )
-
-                    }
-                           }
- */
-
-

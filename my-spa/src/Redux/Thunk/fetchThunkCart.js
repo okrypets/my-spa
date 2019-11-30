@@ -1,10 +1,5 @@
 import isoFetch from 'isomorphic-fetch';
-
-import { cartLoadingAC, cartErrorAC, cartSetAC,
-    //shoppingCartAddAC,
-    //shoppingCartRemoveAC,
-    //shoppingCartRemoveAllAC
-} from "../Actions/shoppingCartAC";
+import { cartLoadingAC, cartErrorAC, cartSetAC} from "../Actions/shoppingCartAC";
 
 
 
@@ -43,9 +38,7 @@ export {shoppingCartThunkAC};
 
  // Добравление товара в корзину
 function shoppingCartAddThunkAC(item) {
-    //let item = shoppingCartAddAC();
     return function() {
-        //dispatch( cartLoadingAC() );
         isoFetch("http://localhost:3004/shoppingCart", {
             method: 'POST',
             headers: {
@@ -67,11 +60,8 @@ function shoppingCartAddThunkAC(item) {
             //})
             .catch( (error) => {
                 console.error(error);
-                //dispatch( cartErrorAC() );
-            })
-        ;
+            });
     }
-
 }
 
 export {shoppingCartAddThunkAC};
@@ -79,17 +69,12 @@ export {shoppingCartAddThunkAC};
 
 // Удаление товара из корзины
 function shoppingCartDELETEThunkAC(delItem) {
-    //let delItem = delItem.id;
     return function() {
-        //dispatch(cartSetAC());
-
         isoFetch("http://localhost:3004/shoppingCart/"+delItem.id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            //param: {item}
-            //body: JSON.stringify(items)
         })
             .then( (response) => { // response - HTTP-ответ
                 if (!response.ok) {
@@ -100,13 +85,8 @@ function shoppingCartDELETEThunkAC(delItem) {
                 else
                     return response.json();
             })
-            //.then( (delItem) => {
-                //dispatch( shoppingCartAddAC(item) );
-              //  shoppingCartRemoveAC(delItem);
-            //})
             .catch( (error) => {
                 console.error(error);
-                //dispatch( cartErrorAC() );
             })
         ;
     }
@@ -115,10 +95,9 @@ function shoppingCartDELETEThunkAC(delItem) {
 
 export {shoppingCartDELETEThunkAC};
 
-// Удаление товара из корзины
-function shoppingCartPUTThunkAC(shoppingCart) {
+
+function shoppingCartDELETEALLThunkAC(shoppingCart) {
     console.log(shoppingCart);
-    //let amptyShoppingCart = [];
     return function() {
         for (let i = 0; i <shoppingCart.items.length; i++ ) {
             isoFetch("http://localhost:3004/shoppingCart/" + shoppingCart.items[i].id, {
@@ -146,4 +125,4 @@ function shoppingCartPUTThunkAC(shoppingCart) {
 
 }
 
-export {shoppingCartPUTThunkAC};
+export {shoppingCartDELETEALLThunkAC};
