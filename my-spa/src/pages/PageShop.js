@@ -1,31 +1,24 @@
 import React, {PureComponent, Fragment} from 'react';
 import {
-    //Router,
     Route,
     Switch,
-    // Redirect,
     withRouter
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import {appEvents} from "../Components/events";
 import {productsThunkAC,
-    //productsThunkPOSTAC,
-    //shoppingCartThunkAC
 } from "../Redux/Thunk/fetchThunkProducts";
 import {shoppingCartThunkAC,
     shoppingCartAddThunkAC,
-    //shoppingCartRemoveThunkAC
 } from '../Redux/Thunk/fetchThunkCart'
 import {isProductFavoriteAC} from "../Redux/Actions/productsAC";
 import {shoppingCartAddAC} from '../Redux/Actions/shoppingCartAC';
-//import {shoppingCartRemoveAC} from '../Redux/Actions/shoppingCartAC';
 import {connect} from "react-redux";
 import loaderIconGif from '../loader.gif';
 import ShopCatalog from "../Components/ShopCatalog";
 
 import ShopCatalogItem from '../Components/ShopCatalogItem'
 import Success from "../Components/Success";
-//import {NO_SORT} from "../Components/Sorting";
 
 const CATALOG_ITEM = 'CATALOG_ITEM';
 const SINGLE_ITEM = 'SINGLE_ITEM';
@@ -54,7 +47,6 @@ export class PageShop extends PureComponent {
         this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
     }
 
-    //componentWillReceiveProps(nextProps, nextContext) {
     componentDidUpdate(prevProps, prevState, Snapshot) {
         const locationCurrentPage = +this.props.location.pathname.replace(/[^0-9]/g, "");
 
@@ -87,6 +79,7 @@ export class PageShop extends PureComponent {
 
     setFavoriteItem = (item) => {
         this.props.dispatch( isProductFavoriteAC(item));
+
     };
 
     addItemToShoppingCart = (item) => {

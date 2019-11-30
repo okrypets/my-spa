@@ -17,10 +17,8 @@ class SortingSelect extends PureComponent {
 
     state = {
         sortBy: NO_SORT,
-        //sortedArray: [],
     };
 
-   //componentWillReceiveProps (nextProps, nexContext) {
     componentDidUpdate(prevProps, prevState, Snapshot) {
         const pageCatalogSortedBy = this.props.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
         this.setState({sortBy:pageCatalogSortedBy}, this.getSortedProductsArray);

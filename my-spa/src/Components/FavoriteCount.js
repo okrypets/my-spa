@@ -12,7 +12,6 @@ class FavoriteCount extends PureComponent {
         allFavoriteCount: 0,
     };
 
-    //componentWillReceiveProps(nextProps, nextContext) {
     componentDidUpdate(prevProps, prevState, Snapshot) {
         if (this.props.products !== prevProps.products) {
             this.setState({

@@ -41,7 +41,7 @@ class Pagination extends PureComponent {
         totalRecords: PropTypes.number.isRequired,
         pageLimit: PropTypes.number,
         pageNeighbours: PropTypes.number,
-        onPageChanged: PropTypes.func,
+        cbOnPageChanged: PropTypes.func,
         currentPage: PropTypes.number.isRequired,
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
@@ -58,7 +58,6 @@ class Pagination extends PureComponent {
         appEvents.addListener('EcurrentPageToHandleClick',this.handleClick);
     }
 
-    //componentWillReceiveProps(nextProps, nextContext) {
     componentDidUpdate(prevProps, prevState, Snapshot) {
         const locationCurrentPage = +this.props.location.pathname.replace(/[^0-9]/g, "");
 
@@ -78,7 +77,7 @@ class Pagination extends PureComponent {
 
 
     gotoPage = (page) => {
-        const { onPageChanged = f => f} = this.props;
+        const { cbOnPageChanged = f => f} = this.props;
         const currentPage = Math.max(0, Math.min(page, this.state.totalPages));
         const {pageLimit,  totalPages} = this.state;
         const paginationData = {
@@ -87,8 +86,8 @@ class Pagination extends PureComponent {
             pageLimit: pageLimit ,
             totalRecords: this.totalRecords
         };
-        this.setState({ currentPage }, () => onPageChanged(paginationData));
-        //console.log(paginationData)
+        this.setState({ currentPage }, () => cbOnPageChanged(paginationData));
+        console.log(paginationData)
     };
 
     pageLimitChange10 = () => {
@@ -175,7 +174,7 @@ class Pagination extends PureComponent {
 
         if (this.totalPages === 1) return null;
 
-        const { currentPage } = this.state;
+        const { currentPage, totalPages } = this.state;
         const pages = this.fetchPageNumbers();
         const { location } = this.props;
 
@@ -235,6 +234,12 @@ class Pagination extends PureComponent {
                         })}
                     </ul>
                 </nav>
+                {currentPage && (
+                    <div >
+                        Page <span className="current-page">{currentPage}</span> /{" "}
+                        <span className="total-page">{totalPages}</span>
+                    </div>
+                )}
             </Fragment>
         );
     }

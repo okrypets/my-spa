@@ -759,20 +759,6 @@
   ],
   "shoppingCart": [
     {
-      "Name": "Californication",
-      "id": 2,
-      "Price": 57,
-      "ImgSrc": "0247-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
-      "Name": "Fontana",
-      "id": 104,
-      "Price": 57,
-      "ImgSrc": "0469-01.jpg",
-      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-    },
-    {
       "Name": "Modesto",
       "id": 103,
       "Price": 123,
@@ -812,6 +798,13 @@
       "id": 1,
       "Price": 123,
       "ImgSrc": "0216-01.jpg",
+      "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      "Name": "Los Angeles",
+      "id": 3,
+      "Price": 0,
+      "ImgSrc": "0248-01.jpg",
       "excerpt": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
   ]

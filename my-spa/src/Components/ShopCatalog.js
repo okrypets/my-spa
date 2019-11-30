@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {appEvents} from "./events";
-import Sorting, {BY_NAME, BY_PRICE, NO_SORT} from "./SortingSelect"
+import SortingSelect, {BY_NAME, BY_PRICE, NO_SORT} from "./SortingSelect"
 import Pagination from "./Pagination"
 import ShopCatalogItem from './ShopCatalogItem';
 import {withRouter} from "react-router-dom";
@@ -16,7 +16,6 @@ export class ShopCatalog extends PureComponent {
         location: PropTypes.object,
         history: PropTypes.object,
         products: PropTypes.array,
-        //isSortBy: PropTypes.string,
         currentPage:PropTypes.number,
         showMode: PropTypes.string,
         allSortedProducts: PropTypes.array,
@@ -34,13 +33,8 @@ export class ShopCatalog extends PureComponent {
         onPageChangedData:{}
     };
 
-    //componentWillReceiveProps(nextProps, nextContext) {
     componentDidUpdate(prevProps, prevState, Snapshot) {
         console.log(`componentDidUpdate`);
-        console.log(this.props.products[0])
-        console.log(prevProps.products[0])
-        console.log(this.state.isSortBy)
-        console.log(prevState.isSortBy)
         if (this.props.products !== prevProps.products) {
             this.setState({
                 allProducts:this.props.products,
@@ -73,7 +67,6 @@ export class ShopCatalog extends PureComponent {
             colorFavorite: !colorFavorite,
         });
         this.currentPageToHandleClick();
-        //this.onPageChanged(this.state.onPageChangedData)
     }
 
     currentPageToHandleClick =() => {
@@ -86,19 +79,11 @@ export class ShopCatalog extends PureComponent {
         this.setState({
             onPageChangedData:data,
         })
-        //console.log(data);
-        //const allProducts = this.props.products;
         const { allSortedProducts, isSortBy, allProducts} = this.state;
 
         const { currentPage, totalPages, pageLimit } = data;
         const offset = (currentPage - 1) * pageLimit;
-        console.log(isSortBy)
-        console.log(isSortBy !== NO_SORT )
-        console.log(allProducts)
         const currentPageProducts = (isSortBy !== NO_SORT ? allSortedProducts : allProducts).slice(offset, offset + pageLimit);
-        //const currentPageProducts = allProducts.slice(offset, offset + pageLimit);
-
-        console.log(currentPageProducts);
         this.setState({ currentPage, currentPageProducts, totalPages });
     };
 
@@ -117,7 +102,6 @@ export class ShopCatalog extends PureComponent {
                 return 1;
             return 0;
         });
-        //console.log(sortedByName)
         this.setState({
             allSortedProducts: sortedByName,
         });
@@ -140,18 +124,14 @@ export class ShopCatalog extends PureComponent {
 
     getSortedProductsArray =(sortingSelected) => {
         console.log(`getSortedProductsArray`)
-        //const {isSortBy} = this.state;
         this.setState({
             isSortBy:sortingSelected,
         });
         if (sortingSelected === BY_NAME) {
-            console.log(`isSortBy === 'BY_NAME'`);
             this.getSortedProductsByName();
         } else if (sortingSelected === BY_PRICE) {
-            console.log(`isSortBy === 'BY_PRICE'`);
             this.getSortedProductsByPrice();
         } else {
-            console.log(`isSortBy === NO_SORT`);
             this.setState({
                 allSortedProducts: [],
                 isSortBy:NO_SORT,
@@ -159,7 +139,6 @@ export class ShopCatalog extends PureComponent {
         }
         this.currentPageToHandleClick();
 
-        //this.onPageChanged(this.state.onPageChangedData)
     };
 
     render() {
@@ -168,7 +147,6 @@ export class ShopCatalog extends PureComponent {
             allProducts,
             currentPageProducts,
             currentPage,
-            totalPages,
             colorFavorite,
         } = this.state;
         const totalProducts = allProducts.length;
@@ -177,38 +155,29 @@ export class ShopCatalog extends PureComponent {
         return (
             <div className={`ShopCatalog`}>
                 <div className={`sortingBlock`}>
-                    <Sorting products={allProducts}/>
+                    <SortingSelect products={allProducts}/>
                     <FavoriteCount products={allProducts} />
                 </div>
 
                 {
                     currentPageProducts.map((item) => {
-                            //console.log(`${item.id} - ${item.IS_FAVORITE}`);
-                            //console.log(colorFavorite);
                             return <ShopCatalogItem className={`CatalogItem`}
                                                     key={item.id}
                                                     item={item}
                                                     showMode={CATALOG_ITEM}
-                                                    colorFavorite={item.IS_FAVORITE && colorFavorite ? 'colored' : ''}
+                                                    colorFavorite={colorFavorite}
                             />
                         }
                         )
 
 
                 }
-
                         <Pagination
                             totalRecords={totalProducts}
                             pageNeighbours={1}
-                            onPageChanged={this.onPageChanged}
+                            cbOnPageChanged={this.onPageChanged}
                             currentPage={currentPage}
                         />
-                        {currentPage && (
-                            <div >
-                            Page <span className="current-page">{currentPage}</span> /{" "}
-                            <span className="total-page">{totalPages}</span>
-                            </div>
-                            )}
             </div>
         )
     }

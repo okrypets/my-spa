@@ -18,7 +18,7 @@ class  ShopCatalogItem extends PureComponent {
         item:PropTypes.object,
         showMode: PropTypes.string,
         cartMode: PropTypes.string,
-        colorFavorite: PropTypes.string,
+        colorFavorite: PropTypes.bool,
     };
 
     state = {
@@ -27,9 +27,7 @@ class  ShopCatalogItem extends PureComponent {
         colorFavorite: this.props.colorFavorite,
     };
 
-    componentDidUpdate(prevProps) {
-        console.log(this.props.colorFavorite)
-        console.log(prevProps.colorFavorite)
+    componentDidUpdate(prevProps, prevState, Snapshot) {
     }
 
     isFavoriteItemHandleClick = () => {
@@ -60,7 +58,6 @@ class  ShopCatalogItem extends PureComponent {
         } else {
             delete newItem[IS_FAVORITE];
         }
-
         appEvents.emit('EisFavoriteItemOnChange', newItem);
     };
 
