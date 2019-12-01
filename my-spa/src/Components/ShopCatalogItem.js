@@ -71,7 +71,6 @@ class  ShopCatalogItem extends PureComponent {
 
 
     render() {
-        console.log("ShopCatalogItem - render");
         const {showMode, colorFavorite} = this.props;
         let item = this.props.item;
         const {isFavorite} = this.state;
@@ -82,7 +81,10 @@ class  ShopCatalogItem extends PureComponent {
                     <img src={`/Images/Shop/${item.ImgSrc}`} alt=""/>
                     <div className={`itemInfo`} >
                         <h2>
-                            <Link to={`/catalog/item-${item.id}`} className="SingleItemName">{item.Name}</Link>
+                            {showMode === SINGLE_ITEM ?
+                                item.Name
+                                : <Link to={`/catalog/item-${item.id}`} className="SingleItemName">{item.Name}</Link>
+                            }
                         </h2>
 
                         <div className="priceBlock">

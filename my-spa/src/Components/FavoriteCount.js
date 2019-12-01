@@ -47,7 +47,6 @@ class FavoriteCount extends PureComponent {
 
 
     render() {
-        console.log(`FavoriteCount - RENDER`);
         const {allFavoriteCount} = this.state;
         return(
            <div>

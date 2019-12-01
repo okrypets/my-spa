@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import './IconStar.scss';
 
 class IconStar extends PureComponent {
     static propTypes = {

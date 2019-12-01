@@ -12,7 +12,6 @@ class PagesNavLinks extends PureComponent {
 
 
     render() {
-        console.log(`PagesNavLinks - RENDER`);
         return (
             <div className="PagesLinks">
                 <NavLink to="/" exact className="PageLink" activeClassName="ActivePageLink">Main Page</NavLink>

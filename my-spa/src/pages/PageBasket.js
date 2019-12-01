@@ -23,12 +23,12 @@ class PageBasket extends PureComponent  {
     }
 
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.dispatch( shoppingCartThunkAC(this.props.dispatch));
 
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+     componentDidUpdate(prevProps, prevState, Snapshot) {
         if (this.props.shoppingCart.status === 3) {
             this.setState({
                     shoppingCartProducts:this.props.shoppingCart.items,
@@ -68,7 +68,6 @@ class PageBasket extends PureComponent  {
 
 
     render() {
-        console.log(`PageBasket - RENDER`);
         const {shoppingCart, history} = this.props;
         if ( shoppingCart.status<=1)
             return <img src={loaderIconGif} alt={`Загрузка данных`} />;

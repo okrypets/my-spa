@@ -60,12 +60,13 @@ class Pagination extends PureComponent {
 
     componentDidUpdate(prevProps, prevState, Snapshot) {
         const locationCurrentPage = +this.props.location.pathname.replace(/[^0-9]/g, "");
-
+        if (this.props.location.pathname !== prevProps.location.pathname) {
             this.setState({
                 currentPage: locationCurrentPage === 0 || locationCurrentPage > this.totalPages ? 1 : locationCurrentPage,
                 totalPages: Math.ceil(this.props.totalRecords / this.state.pageLimit),
             });
-
+            this.gotoPage(locationCurrentPage)
+        }
     }
 
     componentDidMount() {
@@ -87,11 +88,9 @@ class Pagination extends PureComponent {
             totalRecords: this.totalRecords
         };
         this.setState({ currentPage }, () => cbOnPageChanged(paginationData));
-        console.log(paginationData)
     };
 
     pageLimitChange10 = () => {
-        console.log(`pageLimitChange10`);
         const totalPages = Math.ceil(this.totalRecords / 10);
         this.setState({
             pageLimit:10,
@@ -102,7 +101,6 @@ class Pagination extends PureComponent {
     }
 
     pageLimitChange50 = () => {
-        console.log(`pageLimitChange50`);
         const totalPages = Math.ceil(this.totalRecords / 50);
         this.setState({
             pageLimit:50,
@@ -169,7 +167,6 @@ class Pagination extends PureComponent {
     };
 
     render() {
-        console.log(`Pagination - RENDER`);
         if (!this.totalRecords) return null;
 
         if (this.totalPages === 1) return null;

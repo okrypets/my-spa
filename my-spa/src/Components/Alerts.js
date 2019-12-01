@@ -43,7 +43,6 @@ class Alerts extends PureComponent {
     }
 
     render() {
-        console.log(`Alerts - RENDER`);
         const  {color, shouldShow} = this.state;
         return (
             <Fragment>

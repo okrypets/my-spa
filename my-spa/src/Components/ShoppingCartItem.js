@@ -19,7 +19,6 @@ class ShoppingCartItem extends PureComponent {
     }
 
     render() {
-        console.log(`ShoppingCartItem - RENDER`);
         const { item} = this.props;
         return (
             <div className={`ShoppingCartItem`} >

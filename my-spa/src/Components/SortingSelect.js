@@ -34,7 +34,6 @@ class SortingSelect extends PureComponent {
 
 
     render() {
-        console.log(`Sorting - RENDER`);
         const  {location} = this.props;
         const pageCatalogSortedBy = location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
         return (

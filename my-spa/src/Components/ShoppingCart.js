@@ -53,7 +53,6 @@ class ShoppingCart extends PureComponent {
     }
 
     render() {
-        console.log(`ShoppingCart - RENDER`);
         const {shoppingCartProducts} = this.state;
 
         return(

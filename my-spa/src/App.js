@@ -15,11 +15,6 @@ import PageBasket from "./pages/PageBasket";
 class App extends PureComponent {
 
     render() {
-        console.log(`App - RENDER`);
-        const {location} = this.props;
-
-        console.log(location.search);
-
         return (
             <Router history={history}>
                 <div className="App">
@@ -29,7 +24,10 @@ class App extends PureComponent {
                     <main>
                         <div className="contentBlock">
                             <Switch>
-                                <Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
+
+                                    <Redirect exact from={`/catalog`} to={`/catalog/page-1`} />
+
+
                                 <Route exact path="/" component = {PageMain} />
                                 <Route path="/basket" component = {PageBasket} />
                                 <Route path="/:catalog/:urlParams?" component = {PageShop} />

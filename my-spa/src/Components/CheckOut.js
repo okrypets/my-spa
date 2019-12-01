@@ -48,7 +48,9 @@ class CheckOut extends PureComponent {
                     {alert && !name && <span className={`alert`}>* Required field</span>}
                     <input type = "text" value={this.state.tel} onChange={e => this.setState({ tel: e.target.value })} />
                     {alert && !tel && <span className={`alert`}>* Required field</span>}
-                    <input type = "button" value={`Send`} onClick={this.onClickButtonSend}/>
+                    <input type = "button" value={`Send`}
+                           onClick={this.onClickButtonSend}
+                    />
                 </div>
             </Fragment>
         );

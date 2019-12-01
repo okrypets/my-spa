@@ -104,7 +104,6 @@ export class PageShop extends PureComponent {
 
 
     render() {
-        console.log(`PageShop - RENDER`);
         const {match, products, location} = this.props;
         if (products.status<=1) {return  <img src={loaderIconGif} alt={`Загрузка данных`} />}
         if (products.status===2) {return <p>Ошибка загрузки данных</p>}

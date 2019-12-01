@@ -34,22 +34,30 @@ export class ShopCatalog extends PureComponent {
     };
 
     componentDidUpdate(prevProps, prevState, Snapshot) {
-        console.log(`componentDidUpdate`);
         if (this.props.products !== prevProps.products) {
             this.setState({
                 allProducts:this.props.products,
             })
         }
+        if (this.props.location.search !== prevProps.location.search) {
+            const pageCatalogSortedBy = this.props.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
+            this.setState({isSortBy:pageCatalogSortedBy}, () => this.getSortedProductsArray(this.state.isSortBy));
+        }
+
+        const locationCurrentPage = +this.props.location.pathname.replace(/[^0-9]/g, "");
+        if (this.props.location.pathname !== prevProps.location.pathname) {
+            this.setState({
+                currentPage: locationCurrentPage,
+            });
+        }
     }
 
     UNSAFE_componentWillMount() {
-        console.log(`componentWillMount`);
         const pageCatalogSortedBy = this.props.location.search.replace(/\?sort=(?=\w+)/g,"").toUpperCase();
         this.setState({isSortBy:pageCatalogSortedBy}, () => this.getSortedProductsArray(this.state.isSortBy));
 
     }
     componentDidMount() {
-        console.log(`componentDidMount`);
         appEvents.addListener('EcolorAllFavoriteByClick',this.colorAllFavoriteProducts);
         appEvents.addListener('EonHandleChangeSelectSorting',this.getSortedProductsArray);
     };
@@ -61,7 +69,6 @@ export class ShopCatalog extends PureComponent {
 
 
     colorAllFavoriteProducts = () => {
-        console.log(`colorAllFavoriteProducts`)
         const {colorFavorite} = this.state;
         this.setState({
             colorFavorite: !colorFavorite,
@@ -75,7 +82,6 @@ export class ShopCatalog extends PureComponent {
 
 
     onPageChanged = data => {
-        console.log(`onPageChanged`)
         this.setState({
             onPageChangedData:data,
         })
@@ -89,7 +95,6 @@ export class ShopCatalog extends PureComponent {
 
 
     getSortedProductsByName = () => {
-        console.log(`getSortedProductsByName`)
         const {products} = this.props;
         let newProducts = products.slice();
         let sortedByName;
@@ -109,7 +114,6 @@ export class ShopCatalog extends PureComponent {
     };
 
     getSortedProductsByPrice = () => {
-        console.log(`getSortedProductsByPrice`)
         const {products} = this.props;
         let newProducts = products.slice();
         let sortedByPrice;
@@ -123,7 +127,6 @@ export class ShopCatalog extends PureComponent {
     };
 
     getSortedProductsArray =(sortingSelected) => {
-        console.log(`getSortedProductsArray`)
         this.setState({
             isSortBy:sortingSelected,
         });
@@ -142,7 +145,6 @@ export class ShopCatalog extends PureComponent {
     };
 
     render() {
-        console.log("ShopCatalog - RENDER");
         const {
             allProducts,
             currentPageProducts,
@@ -172,12 +174,15 @@ export class ShopCatalog extends PureComponent {
 
 
                 }
-                        <Pagination
-                            totalRecords={totalProducts}
-                            pageNeighbours={1}
-                            cbOnPageChanged={this.onPageChanged}
-                            currentPage={currentPage}
-                        />
+
+                    <Pagination
+                        totalRecords={totalProducts}
+                        pageNeighbours={1}
+                        cbOnPageChanged={this.onPageChanged}
+                        currentPage={currentPage}
+                    />
+
+
             </div>
         )
     }

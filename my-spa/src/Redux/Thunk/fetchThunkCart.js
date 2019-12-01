@@ -55,9 +55,6 @@ function shoppingCartAddThunkAC(item) {
                 else
                     return response.json();
             })
-            //.then( (item) => {
-            //    shoppingCartAddAC(item);
-            //})
             .catch( (error) => {
                 console.error(error);
             });
