@@ -26,7 +26,7 @@ class FavoriteCount extends PureComponent {
     };
 
 
-    getFavoriteCount = () => {
+    getFavoriteCount = () =>  {
         const {products} = this.state;
         let sumOfFavorite = 0;
 

@@ -11,6 +11,10 @@ import {
 } from '../pages/PageShop'
 
 const IS_FAVORITE = "IS_FAVORITE";
+const CANT_ORDER= "Can't Order";
+const IN_CART= "Just in the Cart";
+const ADD_IN_CART= "Add to Sopping Cart";
+
 
 class  ShopCatalogItem extends PureComponent {
 
@@ -19,15 +23,55 @@ class  ShopCatalogItem extends PureComponent {
         showMode: PropTypes.string,
         cartMode: PropTypes.string,
         colorFavorite: PropTypes.bool,
+        cartValue: PropTypes.string,
+        inShoppingCart: PropTypes.array,
     };
 
     state = {
         isFavorite: this.props.item.IS_FAVORITE,
         inCart: false,
         colorFavorite: this.props.colorFavorite,
+        cartValue: '',
     };
 
     componentDidUpdate(prevProps, prevState, Snapshot) {
+        console.log(`componentDidUpdate`)
+        const {item, inShoppingCart} = this.props;
+        for (let i = 0; i < inShoppingCart.length; i++) {
+            if (inShoppingCart[i].id === item.id) {
+                this.setState({
+                    inCart: true,
+                });
+            }
+        }
+        this.getValue()
+    }
+
+    componentDidMount() {
+        console.log(`componentDidMount`)
+        const {item, inShoppingCart} = this.props;
+        for (let i = 0; i < inShoppingCart.length; i++) {
+            if (inShoppingCart[i].id === item.id) {
+                this.setState({
+                    inCart: true,
+                });
+            }
+        }
+        //const {item} = this.props;
+        const {isFavorite, inCart} = this.state;
+        if (item.Price === 0 && !isFavorite) {
+            this.setState({
+                cartValue: CANT_ORDER,
+            });
+        } else if (inCart) {
+            this.setState({
+                cartValue: IN_CART,
+            });
+        } else {
+            this.setState({
+                cartValue: ADD_IN_CART,
+            });
+        }
     }
 
     isFavoriteItemHandleClick = () => {
@@ -62,19 +106,39 @@ class  ShopCatalogItem extends PureComponent {
     };
 
     handleClickAddToCart = () => {
+        console.log(`handleClickAddToCart`)
         const {item} = this.props;
         appEvents.emit('EhandleClickAddToCart', item);
         this.setState({
             inCart: true,
-        })
+        });
+        //this.getValue();
+    }
+    getValue= () => {
+        console.log(`getValue`);
+        const {item} = this.props;
+        const {isFavorite, inCart} = this.state;
+        if (item.Price === 0 && !isFavorite) {
+            this.setState({
+                cartValue: CANT_ORDER,
+            });
+        } else if (inCart) {
+            this.setState({
+                cartValue: IN_CART,
+            });
+        } else {
+            this.setState({
+                cartValue: ADD_IN_CART,
+            });
+        }
+
     }
 
 
     render() {
         const {showMode, colorFavorite} = this.props;
         let item = this.props.item;
-        const {isFavorite} = this.state;
-
+        const {isFavorite, inCart, cartValue} = this.state;
         return (
             <div className={`ShopCatalogItem ${isFavorite ? 'active' : ''} ${showMode === SINGLE_ITEM ? 'single' : ''} `} key={item.id} >
                 <div className={`block`} style={ isFavorite && colorFavorite ? {backgroundColor: '#ff4b46'} : {}}>
@@ -101,8 +165,8 @@ class  ShopCatalogItem extends PureComponent {
 
                                     <input type="button"
                                            className="inBasket"
-                                           value={!item.Price && !isFavorite ? "can't Order" : 'Add to Sopping Cart'}
-                                           disabled={!item.Price && !isFavorite}
+                                           defaultValue={cartValue}
+                                           disabled={inCart || (!item.Price && !isFavorite)}
                                            onClick={this.handleClickAddToCart}
                                     />
 

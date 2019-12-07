@@ -104,7 +104,7 @@ export class PageShop extends PureComponent {
 
 
     render() {
-        const {match, products, location} = this.props;
+        const {match, products, location, shoppingCart} = this.props;
         if (products.status<=1) {return  <img src={loaderIconGif} alt={`Загрузка данных`} />}
         if (products.status===2) {return <p>Ошибка загрузки данных</p>}
         return (
@@ -118,6 +118,7 @@ export class PageShop extends PureComponent {
                                         <ShopCatalog currentPage={+match.params.pageNumber}
                                                 products={products.data}
                                                 showMode={CATALOG_ITEM}
+                                                inShoppingCart = {shoppingCart && shoppingCart.items}
                                         />
                                     }
                                 </Fragment>

@@ -145,6 +145,7 @@ export class ShopCatalog extends PureComponent {
     };
 
     render() {
+        const {inShoppingCart} = this.props;
         const {
             allProducts,
             currentPageProducts,
@@ -168,6 +169,7 @@ export class ShopCatalog extends PureComponent {
                                                     item={item}
                                                     showMode={CATALOG_ITEM}
                                                     colorFavorite={colorFavorite}
+                                                    inShoppingCart = {inShoppingCart}
                             />
                         }
                         )
