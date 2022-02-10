@@ -8,7 +8,7 @@
     "expect": "latest",
     "fetch-mock": "^8.0.0",
     "history": "latest",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "prop-types": "latest",
     "react": "^16.11.0",
     "react-addons-transition-group": "^15.6.2",
